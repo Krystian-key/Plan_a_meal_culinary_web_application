@@ -25,7 +25,7 @@ public class BookDao {
      * @param bookId
      * @return
      */
-    public Book read(Integer bookId) {
+    public Book readBook(Integer bookId) {
         Book book = new Book();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(READ_BOOK_QUERY)
