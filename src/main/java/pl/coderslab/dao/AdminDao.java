@@ -14,11 +14,11 @@ import java.util.List;
 
 public class AdminDao {
 
-    private static final String CREATE_Admins_QUERY = "INSERT INTO admins(firstName,lastName,email,password,superadmin,enable) VALUES (?,?,?,?,?,?);";
+    private static final String CREATE_Admins_QUERY = "INSERT INTO admins(first_name,last_name,email,password,superadmin,enable) VALUES (?,?,?,?,?,?);";
     private static final String DELETE_Admins_QUERY = "DELETE FROM admins where id = ?;";
     private static final String FIND_ALL_Admins_QUERY = "SELECT * FROM admins;";
     private static final String READ_Admins_QUERY = "SELECT * from admins where id = ?;";
-    private static final String UPDATE_Admins_QUERY = "UPDATE	admins SET firstName = ? , lastName = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
+    private static final String UPDATE_Admins_QUERY = "UPDATE	admins SET first_name = ? , last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
 
     /**
      * Get admin by id
@@ -97,6 +97,7 @@ public class AdminDao {
             insertStm.setInt(5, admin.getSuperadmin());
             insertStm.setInt(6, admin.getEnable());
             int result = insertStm.executeUpdate();
+            System.out.println("result " + result);
 
             if (result != 1) {
                 throw new RuntimeException("Execute update returned " + result);
