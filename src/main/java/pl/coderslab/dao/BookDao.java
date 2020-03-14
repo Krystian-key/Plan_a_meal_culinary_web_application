@@ -51,6 +51,7 @@ public class BookDao {
      *
      * @return
      */
+    public void newMetoda(){}
     public List<Book> findAll() {
         List<Book> bookList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
