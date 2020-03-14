@@ -23,6 +23,11 @@ public class Admins {
         this.enable = enable;
     }
 
+    public Admins(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public Admins(int id, String firstName, String lastName, String email, String password, int superadmin, int enable) {
         this.id = id;
         this.firstName = firstName;
@@ -64,13 +69,13 @@ public class Admins {
     public void setEmail(String email) {
         this.email = email;
     }
-
+        //Mistake
     public String getPassword() {
-        return password;
+        return password = BCrypt.hashpw(password, BCrypt.gensalt(10));
     }
-
+    //Mistake
     public void setPassword(String password) {
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt(10));
     }
 
     public int getSuperadmin() {

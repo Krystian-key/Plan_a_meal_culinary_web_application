@@ -40,7 +40,7 @@ public class PlanDao {
                     plan.setName(resultSet.getString("name"));
                     plan.setDescription(resultSet.getString("description"));
                     plan.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
-                    plan.setAdminId(resultSet.getInt("adminID"));
+                    plan.setAdminId(resultSet.getInt("admin_id"));
                 }
             }
         } catch (Exception e) {
@@ -68,7 +68,7 @@ public class PlanDao {
                 planToADD.setName(resultSet.getString("name"));
                 planToADD.setDescription(resultSet.getString("description"));
                 planToADD.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
-                planToADD.setAdminId(resultSet.getInt("adminID"));
+                planToADD.setAdminId(resultSet.getInt("admin_id"));
                 plansList.add(planToADD);
             }
 

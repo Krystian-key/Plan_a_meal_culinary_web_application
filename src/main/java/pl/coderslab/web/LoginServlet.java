@@ -1,5 +1,8 @@
 package pl.coderslab.web;
 
+import pl.coderslab.dao.AdminDao;
+import pl.coderslab.model.Admins;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +18,14 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        //Mistake
+        if(new AdminDao().validationAdminData(new Admins(email, password))== true){
+            request.getRequestDispatcher("home.jsp").forward(request,response);
+        }else {
+            request.getRequestDispatcher("login").forward(request,response);
+        }
     }
 }

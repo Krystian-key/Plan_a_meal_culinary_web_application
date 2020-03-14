@@ -1,8 +1,8 @@
 package pl.coderslab.dao;
 
+import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.Admins;
-import pl.coderslab.model.Book;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.Connection;
@@ -14,11 +14,11 @@ import java.util.List;
 
 public class AdminDao {
 
-    private static final String CREATE_Admins_QUERY = "INSERT INTO admins(first_name,last_name,email,password,superadmin,enable) VALUES (?,?,?,?,?,?);";
-    private static final String DELETE_Admins_QUERY = "DELETE FROM admins where id = ?;";
-    private static final String FIND_ALL_Admins_QUERY = "SELECT * FROM admins;";
-    private static final String READ_Admins_QUERY = "SELECT * from admins where id = ?;";
-    private static final String UPDATE_Admins_QUERY = "UPDATE	admins SET first_name = ? , last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
+    private static final String CREATE_ADMIN_QUERY = "INSERT INTO admins(first_name,last_name,email,password,superadmin,enable) VALUES (?,?,?,?,?,?);";
+    private static final String DELETE_ADMIN_QUERY = "DELETE FROM admins where id = ?;";
+    private static final String FIND_ALL_ADMIN_QUERY = "SELECT * FROM admins;";
+    private static final String READ_ADMIN_QUERY = "SELECT * from admins where id = ?;";
+    private static final String UPDATE_ADMIN_QUERY = "UPDATE	admins SET first_name = ? , last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
 
     /**
      * Get admin by id
@@ -29,14 +29,14 @@ public class AdminDao {
     public Admins readAdmins(Integer adminId) {
         Admins admins = new Admins();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(READ_Admins_QUERY)
+             PreparedStatement statement = connection.prepareStatement(READ_ADMIN_QUERY)
         ) {
             statement.setInt(1, adminId);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     admins.setId(resultSet.getInt("id"));
-                    admins.setFirstName(resultSet.getString("firstName"));
-                    admins.setLastName(resultSet.getString("lastName"));
+                    admins.setFirstName(resultSet.getString("first_name"));
+                    admins.setLastName(resultSet.getString("last_name"));
                     admins.setEmail(resultSet.getString("email"));
                     admins.setPassword(resultSet.getString("password"));
                     admins.setSuperadmin(resultSet.getInt("superadmin"));
@@ -58,14 +58,14 @@ public class AdminDao {
     public List<Admins> findAllAdmins() {
         List<Admins> adminsList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_ALL_Admins_QUERY);
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_ADMIN_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
                 Admins adminsToAdd = new Admins();
                 adminsToAdd.setId(resultSet.getInt("id"));
-                adminsToAdd.setFirstName(resultSet.getString("firstName"));
-                adminsToAdd.setLastName(resultSet.getString("lastName"));
+                adminsToAdd.setFirstName(resultSet.getString("first_name"));
+                adminsToAdd.setLastName(resultSet.getString("last_name"));
                 adminsToAdd.setEmail(resultSet.getString("email"));
                 adminsToAdd.setPassword(resultSet.getString("password"));
                 adminsToAdd.setSuperadmin(resultSet.getInt("superadmin"));
@@ -88,7 +88,7 @@ public class AdminDao {
      */
     public Admins createAdmin(Admins admin) {
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement insertStm = connection.prepareStatement(CREATE_Admins_QUERY,
+             PreparedStatement insertStm = connection.prepareStatement(CREATE_ADMIN_QUERY,
                      PreparedStatement.RETURN_GENERATED_KEYS)) {
             insertStm.setString(1, admin.getFirstName());
             insertStm.setString(2, admin.getLastName());
@@ -126,7 +126,7 @@ public class AdminDao {
      */
     public void deleteAdmin(Integer adminsId) {
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(DELETE_Admins_QUERY)) {
+             PreparedStatement statement = connection.prepareStatement(DELETE_ADMIN_QUERY)) {
             statement.setInt(1, adminsId);
             statement.executeUpdate();
 
@@ -147,7 +147,7 @@ public class AdminDao {
      */
     public void updateAdmin(Admins admin) {
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_Admins_QUERY)) {
+             PreparedStatement statement = connection.prepareStatement(UPDATE_ADMIN_QUERY)) {
             statement.setInt(7, admin.getId());
             statement.setString(1, admin.getFirstName());
             statement.setString(2, admin.getLastName());
@@ -162,15 +162,13 @@ public class AdminDao {
         }
 
     }
-
+    //Mistake
     public boolean validationAdminData(Admins admin) {
         List<Admins> allAdmins = findAllAdmins();
         for (Admins admins : allAdmins) {
-            if (admins.getLastName().equals(admin.getLastName())) {
-                if(admins.getPassword().equals(admin.getPassword())){
-                    if(admins.getEmail().equals(admin.getEmail())){
-                        return true;
-                    }
+            if (BCrypt.checkpw(admins.getPassword(), admin.getPassword())) {
+                if (admins.getEmail().equals(admin.getEmail())) {
+                    return true;
                 }
             }
         }
