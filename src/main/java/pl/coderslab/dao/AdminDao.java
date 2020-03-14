@@ -163,4 +163,18 @@ public class AdminDao {
 
     }
 
+    public boolean validationAdminData(Admins admin) {
+        List<Admins> allAdmins = findAllAdmins();
+        for (Admins admins : allAdmins) {
+            if (admins.getLastName().equals(admin.getLastName())) {
+                if(admins.getPassword().equals(admin.getPassword())){
+                    if(admins.getEmail().equals(admin.getEmail())){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
 }
