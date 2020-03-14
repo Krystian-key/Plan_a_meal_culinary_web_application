@@ -163,7 +163,7 @@ public class AdminDao {
 
     }
 
-    public boolean validationAdmin(Admins admin) {
+    public boolean validationAdminData(Admins admin) {
         List<Admins> allAdmins = findAllAdmins();
         for (Admins admins : allAdmins) {
             if (admins.getLastName().equals(admin.getLastName())) {
