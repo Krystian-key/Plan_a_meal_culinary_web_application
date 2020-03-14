@@ -145,7 +145,7 @@ public class PlanDao {
     public void updatePlan(Plan plan) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PLAN_QUERY)) {
-            statement.setInt(4, plan.getId());
+            statement.setInt(5, plan.getId());
             statement.setString(1, plan.getName());
             statement.setString(2, plan.getDescription());
             statement.setString(3, plan.getCreated().toString());
