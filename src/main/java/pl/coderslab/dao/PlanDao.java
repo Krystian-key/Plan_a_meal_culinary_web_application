@@ -16,7 +16,7 @@ import java.util.List;
 
 public class PlanDao {
     // ZAPYTANIA SQL
-    private static final String CREATE_PLAN_QUERY = "INSERT INTO plan(name,description,created, admin_id) VALUES (?,?,?,?);";
+    private static final String CREATE_PLAN_QUERY = "INSERT INTO plan(name,description,created, adminID) VALUES (?,?,?,?);";
     private static final String DELETE_PLAN_QUERY = "DELETE FROM plan where id = ?;";
     private static final String FIND_ALL_PLAN_QUERY = "SELECT * FROM plan;";
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?;";
@@ -129,7 +129,7 @@ public class PlanDao {
 
             boolean deleted = statement.execute();
             if (!deleted) {
-                throw new NotFoundException("Plan not found");
+                throw new NotFoundException("Product not found");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -145,7 +145,7 @@ public class PlanDao {
     public void updatePlan(Plan plan) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PLAN_QUERY)) {
-            statement.setInt(5, plan.getId());
+            statement.setInt(4, plan.getId());
             statement.setString(1, plan.getName());
             statement.setString(2, plan.getDescription());
             statement.setString(3, plan.getCreated().toString());
