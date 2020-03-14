@@ -1,5 +1,7 @@
 package pl.coderslab.model;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public class Admins {
     private int id;
     private String firstName;
@@ -10,19 +12,6 @@ public class Admins {
     private int enable;
 
     public Admins() {
-    }
-
-    @Override
-    public String toString() {
-        return "Admins{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", superadmin='" + superadmin + '\'' +
-                ", enable=" + enable +
-                '}';
     }
 
     public Admins(int id, String firstName, String lastName, String email, String password, int superadmin, int enable) {
@@ -72,7 +61,7 @@ public class Admins {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
 
     public int getSuperadmin() {
@@ -90,4 +79,20 @@ public class Admins {
     public void setEnable(int enable) {
         this.enable = enable;
     }
+
+    @Override
+    public String toString() {
+        return "Admins{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", superadmin='" + superadmin + '\'' +
+                ", enable=" + enable +
+                '}';
+    }
 }
+
+
+
