@@ -22,7 +22,7 @@ public class DayNameDao {
      *
      * @return
      */
-    public List<DayName> findAll() {
+    public List<DayName> findAllDayName() {
         List<DayName> dayNamesList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_DAY_NAME_QUERY);
