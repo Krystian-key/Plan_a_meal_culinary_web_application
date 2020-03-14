@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminsDao {
+public class AdminDao {
 
     private static final String CREATE_Admins_QUERY = "INSERT INTO admins(firstName,lastName,email,password,superadmin,enable) VALUES (?,?,?,?,?,?);";
     private static final String DELETE_Admins_QUERY = "DELETE FROM admins where id = ?;";
@@ -160,6 +160,20 @@ public class AdminsDao {
             e.printStackTrace();
         }
 
+    }
+
+    public boolean validationAdmin(Admins admin) {
+        List<Admins> allAdmins = findAllAdmins();
+        for (Admins admins : allAdmins) {
+            if (admins.getLastName().equals(admin.getLastName())) {
+                if(admins.getPassword().equals(admin.getPassword())){
+                    if(admins.getEmail().equals(admin.getEmail())){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 }
