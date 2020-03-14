@@ -14,6 +14,15 @@ public class Admins {
     public Admins() {
     }
 
+    public Admins(String firstName, String lastName, String email, String password, int superadmin, int enable) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.superadmin = superadmin;
+        this.enable = enable;
+    }
+
     public Admins(int id, String firstName, String lastName, String email, String password, int superadmin, int enable) {
         this.id = id;
         this.firstName = firstName;
