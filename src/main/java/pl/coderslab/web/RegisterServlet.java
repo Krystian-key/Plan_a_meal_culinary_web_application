@@ -1,5 +1,6 @@
 package pl.coderslab.web;
 
+import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.dao.AdminDao;
 import pl.coderslab.model.Admins;
 
@@ -25,6 +26,7 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         int superAdmin = 0;
         int enable = 0;
+        //Mistake
         new AdminDao().createAdmin(new Admins(firstName, lastName, email, password, superAdmin, enable));
         request.getRequestDispatcher("login").forward(request, response);
     }
