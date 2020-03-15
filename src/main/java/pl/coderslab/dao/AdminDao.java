@@ -19,6 +19,7 @@ public class AdminDao {
     private static final String FIND_ALL_ADMIN_QUERY = "SELECT * FROM admins;";
     private static final String READ_ADMIN_QUERY = "SELECT * from admins where id = ?;";
     private static final String UPDATE_ADMIN_QUERY = "UPDATE	admins SET first_name = ? , last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
+    private static final String UPDATE_ADMIN_ENABLE_QUERY = "UPDATE	admins SET enable = ? WHERE id = ?;";
 
     /**
      * Get admin by id
@@ -162,12 +163,34 @@ public class AdminDao {
         }
 
     }
+
+    /**
+     * Update status online/offline
+     *
+     * @param id
+     *
+     * @param enable
+     */
+    public void updateAdminEnable(int id, int enable) {
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_ADMIN_ENABLE_QUERY)) {
+            statement.setInt(2, id);
+            statement.setInt(1, enable);
+
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     //Mistake
     public boolean validationAdminData(Admins admin) {
         List<Admins> allAdmins = findAllAdmins();
         for (Admins admins : allAdmins) {
-            if (BCrypt.checkpw(admins.getPassword(), admin.getPassword())) {
-                if (admins.getEmail().equals(admin.getEmail())) {
+            if (admins.getEmail().equals(admin.getEmail())) {
+                if (new Admins().checkPassword(admin.getPassword(), admins.getPassword())) {
+                    new AdminDao().updateAdminEnable(admins.getId(),1);
                     return true;
                 }
             }
