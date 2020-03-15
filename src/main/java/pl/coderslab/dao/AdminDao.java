@@ -97,7 +97,6 @@ public class AdminDao {
             insertStm.setInt(5, admin.getSuperadmin());
             insertStm.setInt(6, admin.getEnable());
             int result = insertStm.executeUpdate();
-            System.out.println("result " + result);
 
             if (result != 1) {
                 throw new RuntimeException("Execute update returned " + result);
