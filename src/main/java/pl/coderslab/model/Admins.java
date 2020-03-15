@@ -33,7 +33,7 @@ public class Admins {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        setPassword(password);
+        this.password = password;
         this.superadmin = superadmin;
         this.enable = enable;
     }
@@ -77,6 +77,9 @@ public class Admins {
     public void setPassword(String password) {
         this.password = BCrypt.hashpw(password, BCrypt.gensalt());
     }
+    public void setPasswordString(String password) {
+        this.password = password;
+    }
 
     /**
      * Compare new password with new password,
@@ -93,13 +96,12 @@ public class Admins {
     /**
      * Something do?
      *
-     * @param newPassword
+     * @param plain
      * @return
      */
-    public boolean checkPassword(String newPassword) {
-        return BCrypt.checkpw(newPassword, this.password);
+    public boolean checkPassword(String plain) {
+        return BCrypt.checkpw(plain,this.password);
     }
-
     public int getSuperadmin() {
         return superadmin;
     }

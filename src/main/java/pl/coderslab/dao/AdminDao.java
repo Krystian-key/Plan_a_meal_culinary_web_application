@@ -1,6 +1,5 @@
 package pl.coderslab.dao;
 
-import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.Admins;
 import pl.coderslab.utils.DbUtil;
@@ -39,7 +38,7 @@ public class AdminDao {
                     admins.setFirstName(resultSet.getString("first_name"));
                     admins.setLastName(resultSet.getString("last_name"));
                     admins.setEmail(resultSet.getString("email"));
-                    admins.setPassword(resultSet.getString("password"));
+                    admins.setPasswordString(resultSet.getString("password"));
                     admins.setSuperadmin(resultSet.getInt("superadmin"));
                     admins.setEnable(resultSet.getInt("enable"));
                 }
@@ -68,7 +67,7 @@ public class AdminDao {
                 adminsToAdd.setFirstName(resultSet.getString("first_name"));
                 adminsToAdd.setLastName(resultSet.getString("last_name"));
                 adminsToAdd.setEmail(resultSet.getString("email"));
-                adminsToAdd.setPassword(resultSet.getString("password"));
+                adminsToAdd.setPasswordString(resultSet.getString("password"));
                 adminsToAdd.setSuperadmin(resultSet.getInt("superadmin"));
                 adminsToAdd.setEnable(resultSet.getInt("enable"));
                 adminsList.add(adminsToAdd);
@@ -168,7 +167,6 @@ public class AdminDao {
      * Update status online/offline
      *
      * @param id
-     *
      * @param enable
      */
     public void updateAdminEnable(int id, int enable) {
@@ -184,18 +182,24 @@ public class AdminDao {
 
     }
 
-    //Mistake
+    /**
+     * Checking email and password
+     * @param admin
+     * @return
+     */
     public boolean validationAdminData(Admins admin) {
         List<Admins> allAdmins = findAllAdmins();
         for (Admins admins : allAdmins) {
             if (admins.getEmail().equals(admin.getEmail())) {
-                if (new Admins().checkPassword(admin.getPassword(), admins.getPassword())) {
+                if (admins.checkPassword(admin.getPassword(), admins.getPassword())) {
                     new AdminDao().updateAdminEnable(admins.getId(),1);
                     return true;
                 }
+
             }
         }
-        return false;
-    }
 
+        return false;
+
+    }
 }

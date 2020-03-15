@@ -22,13 +22,16 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         AdminDao ad = new AdminDao();
-        //Mistake
-        Admins adminTest = new Admins(email, password);
-        if(ad.validationAdminData(adminTest)){
+
+
+        Admins adminLogin = new Admins(email, password);
+        if(ad.validationAdminData(adminLogin)){
+
             request.getRequestDispatcher("home.jsp").forward(request,response);
+
         }else {
-            response.getWriter().println("Nie ma takich danych");
-//            request.getRequestDispatcher("login.html").forward(request,response);
+
+            request.getRequestDispatcher("login.html").forward(request,response);
         }
     }
 }
