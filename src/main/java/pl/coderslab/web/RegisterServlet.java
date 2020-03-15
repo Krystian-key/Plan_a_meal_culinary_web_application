@@ -28,6 +28,6 @@ public class RegisterServlet extends HttpServlet {
         int enable = 0;
         //Mistake
         new AdminDao().createAdmin(new Admins(firstName, lastName, email, password, superAdmin, enable));
-        request.getRequestDispatcher("login").forward(request, response);
+        request.getRequestDispatcher("login.html").forward(request, response);
     }
 }

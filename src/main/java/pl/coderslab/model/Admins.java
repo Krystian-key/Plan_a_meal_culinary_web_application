@@ -18,7 +18,7 @@ public class Admins {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        setPassword(password);
         this.superadmin = superadmin;
         this.enable = enable;
     }
@@ -33,7 +33,7 @@ public class Admins {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        setPassword(password);
         this.superadmin = superadmin;
         this.enable = enable;
     }
@@ -69,13 +69,35 @@ public class Admins {
     public void setEmail(String email) {
         this.email = email;
     }
-        //Mistake
+
     public String getPassword() {
-        return password = BCrypt.hashpw(password, BCrypt.gensalt(10));
+        return password;
     }
-    //Mistake
+
     public void setPassword(String password) {
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt(10));
+        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    }
+
+    /**
+     * Compare new password with new password,
+     * if correct return true
+     *
+     * @param newPassword
+     * @return
+     */
+    //mistake
+    public boolean checkPassword(String newPassword, String oldPassword) {
+        return BCrypt.checkpw(newPassword, oldPassword);
+    }
+
+    /**
+     * Something do?
+     *
+     * @param newPassword
+     * @return
+     */
+    public boolean checkPassword(String newPassword) {
+        return BCrypt.checkpw(newPassword, this.password);
     }
 
     public int getSuperadmin() {
