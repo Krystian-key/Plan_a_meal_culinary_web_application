@@ -18,8 +18,9 @@ public class AdminDao {
     private static final String FIND_ALL_ADMIN_QUERY = "SELECT * FROM admins;";
     private static final String READ_ADMIN_BY_ID_QUERY = "SELECT * from admins where id = ?;";
     private static final String READ_ADMIN_BY_EMAIL_QUERY = "SELECT * from admins where email = ?;";
-    private static final String UPDATE_ADMIN_QUERY = "UPDATE	admins SET first_name = ? , last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
-    private static final String UPDATE_ADMIN_ENABLE_QUERY = "UPDATE	admins SET enable = ? WHERE id = ?;";
+    private static final String UPDATE_ADMIN_QUERY = "UPDATE   admins SET first_name = ? , last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
+    private static final String UPDATE_ADMIN_ENABLE_QUERY = "UPDATE    admins SET enable = ? WHERE id = ?;";
+
 
     /**
      * Get admin by id
@@ -48,7 +49,6 @@ public class AdminDao {
             e.printStackTrace();
         }
         return admins;
-
     }
 
     /**
