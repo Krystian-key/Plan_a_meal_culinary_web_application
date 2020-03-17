@@ -16,7 +16,8 @@ public class AdminDao {
     private static final String CREATE_ADMIN_QUERY = "INSERT INTO admins(first_name,last_name,email,password,superadmin,enable) VALUES (?,?,?,?,?,?);";
     private static final String DELETE_ADMIN_QUERY = "DELETE FROM admins where id = ?;";
     private static final String FIND_ALL_ADMIN_QUERY = "SELECT * FROM admins;";
-    private static final String READ_ADMIN_QUERY = "SELECT * from admins where id = ?;";
+    private static final String READ_ADMIN_BY_ID_QUERY = "SELECT * from admins where id = ?;";
+    private static final String READ_ADMIN_BY_EMAIL_QUERY = "SELECT * from admins where email = ?;";
     private static final String UPDATE_ADMIN_QUERY = "UPDATE	admins SET first_name = ? , last_name = ?, email = ?, password = ?, superadmin = ?, enable = ? WHERE id = ?;";
     private static final String UPDATE_ADMIN_ENABLE_QUERY = "UPDATE	admins SET enable = ? WHERE id = ?;";
 
@@ -29,7 +30,7 @@ public class AdminDao {
     public Admins readAdmins(Integer adminId) {
         Admins admins = new Admins();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(READ_ADMIN_QUERY)
+             PreparedStatement statement = connection.prepareStatement(READ_ADMIN_BY_ID_QUERY)
         ) {
             statement.setInt(1, adminId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -49,6 +50,33 @@ public class AdminDao {
         return admins;
 
     }
+
+    /**
+     * Get admin by email
+     * @param email
+     * @return
+     */
+    public Admins readAdminsByEmail(String email) {
+        Admins admins = new Admins();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(READ_ADMIN_BY_EMAIL_QUERY)
+        ) {
+            statement.setString(1, email);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    admins.setId(resultSet.getInt("id"));
+                    admins.setFirstName(resultSet.getString("first_name"));
+                    admins.setLastName(resultSet.getString("last_name"));
+                    admins.setEmail(resultSet.getString("email"));
+                    admins.setPasswordString(resultSet.getString("password"));
+                    admins.setSuperadmin(resultSet.getInt("superadmin"));
+                    admins.setEnable(resultSet.getInt("enable"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return admins;}
 
     /**
      * Return all admins
