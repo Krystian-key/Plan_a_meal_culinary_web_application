@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
         if(ad.validationAdminData(adminLogin)){
             HttpSession sessionUser = request.getSession();
             Admins admin = new AdminDao().readAdminsByEmail(email);
-            sessionUser.setAttribute(admin.getEmail(), admin.getId());
+            sessionUser.setAttribute("user", admin.getId());
             //setting session to expiry in 30 mins
             sessionUser.setMaxInactiveInterval(30*60);
             Cookie userEmail = new Cookie("mail", admin.getEmail());

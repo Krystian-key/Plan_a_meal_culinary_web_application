@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @WebFilter("/ServletFilter")
 public class ServletFilter implements Filter {
@@ -54,32 +55,21 @@ public class ServletFilter implements Filter {
         // If filter is active, then do check
         if (filterConfig.getInitParameter("active").equalsIgnoreCase("true")) {
             HttpServletRequest req = (HttpServletRequest) request;
-            // separation from whole url
-            String[] list = req.getRequestURI().split("/");
-            // Getting name from page
-            String page = null;
-            if (list[list.length - 1].indexOf(".jsp") > 0) {
-                page = list[list.length - 1];
-            }
-            // If oppening page "recipes" then do check
-            if ((page != null) && page.equalsIgnoreCase("recipes.html")) {
-                // If before was open "login.html" then will open "recipes.html"
-                if (pages.contains("login.html") || page.contains("login") ) {
-                    filterChain.doFilter(request, response);
-                    return;
-                } else {
-                    // Redirect to "login.html"
-                    ServletContext ctx = filterConfig.getServletContext();
-                    RequestDispatcher dispatcher = ctx.getRequestDispatcher("/login.html");
-                    dispatcher.forward(request, response);
-                    return;
-                }
-            } else if (page != null) {
-                // Add page to list
-                if (!pages.contains(page))
-                    pages.add(page);
+
+            request.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            HttpSession sessionUser = req.getSession();
+            if (sessionUser.getAttribute("user") == null && req.getRequestURI().endsWith("recipes.html")) {
+                System.out.println(sessionUser.getAttribute("user"));
+                RequestDispatcher rd = request.getRequestDispatcher("/login.html");
+                rd.forward(request, response);
+            } else {
+                ServletContext ctx = filterConfig.getServletContext();
+                RequestDispatcher dispatcher = ctx.getRequestDispatcher("/recipes.html");
+                dispatcher.forward(request, response);
+                return;
             }
         }
-        filterChain.doFilter(request, response);
-    }
+            filterChain.doFilter(request, response);
+        }
 }
