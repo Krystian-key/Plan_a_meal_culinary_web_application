@@ -9,7 +9,10 @@
           <param-value>true</param-value>
       </init-param>
   </filter>
-
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>RecipeServlet</servlet-name>-->
+<!--        <url-pattern>/app/recipe/list/</url-pattern>-->
+<!--    </servlet-mapping>-->
   <filter-mapping>
       <filter-name>ServletFilter</filter-name>
       <url-pattern>/recipes.html</url-pattern>
