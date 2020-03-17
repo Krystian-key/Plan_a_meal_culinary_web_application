@@ -20,10 +20,11 @@ public class PlanDao {
     private static final String DELETE_PLAN_QUERY = "DELETE FROM plan where id = ?;";
     private static final String FIND_ALL_PLAN_QUERY = "SELECT * FROM plan;";
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?;";
+    private static final String READ_PLAN_BY_ADMIN_ID_QUERY = "SELECT * from plan where admin_id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE	id = ?;";
 
     /**
-     * Get book by id
+     * Get plan by id
      *
      * @param planID
      * @return
@@ -48,6 +49,33 @@ public class PlanDao {
         }
         return plan;
 
+    }
+
+    /**
+     * Method return all plans for current user
+     * @return Plan
+     */
+    public List<Plan> showAllPlansUser(int userId){
+        List<Plan> plansList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(READ_PLAN_BY_ADMIN_ID_QUERY)
+        ) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Plan planToADD = new Plan();
+                    planToADD.setId(resultSet.getInt("id"));
+                    planToADD.setName(resultSet.getString("name"));
+                    planToADD.setDescription(resultSet.getString("description"));
+                    planToADD.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
+                    planToADD.setAdminId(resultSet.getInt("admin_id"));
+                    plansList.add(planToADD);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return plansList;
     }
 
     /**

@@ -66,7 +66,14 @@
         </a>
     </div>
 </section>
-
+    <div>
+        <c:choose>
+            <c:when test="${sessionScope.get('Login') == 'on'}">
+                <p>Ilość planów</p>
+                <c:out value="${sessionScope.get('count')}" />
+            </c:when>
+        </c:choose>
+    </div>
 <section class="section-more padding-small">
     <div class="container d-flex justify-content-between">
         <div class="mr-4">
