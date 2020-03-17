@@ -5,9 +5,7 @@ import pl.coderslab.model.Admins;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet(name = "login", urlPatterns = {"/login"})
@@ -26,7 +24,14 @@ public class LoginServlet extends HttpServlet {
 
         Admins adminLogin = new Admins(email, password);
         if(ad.validationAdminData(adminLogin)){
-
+            HttpSession sessionUser = request.getSession();
+            Admins admin = new AdminDao().readAdminsByEmail(email);
+            sessionUser.setAttribute(admin.getEmail(), admin.getId());
+            //setting session to expiry in 30 mins
+            sessionUser.setMaxInactiveInterval(30*60);
+            Cookie userEmail = new Cookie("mail", admin.getEmail());
+            userEmail.setMaxAge(30*60);
+            response.addCookie(userEmail);
             request.getRequestDispatcher("home.jsp").forward(request,response);
 
         }else {

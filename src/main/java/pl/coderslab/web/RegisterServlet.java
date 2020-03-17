@@ -26,7 +26,6 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
         int superAdmin = 0;
         int enable = 0;
-        //Mistake
         new AdminDao().createAdmin(new Admins(firstName, lastName, email, password, superAdmin, enable));
         request.getRequestDispatcher("login.html").forward(request, response);
     }
