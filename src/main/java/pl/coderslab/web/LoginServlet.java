@@ -22,14 +22,11 @@ public class LoginServlet extends HttpServlet {
         AdminDao ad = new AdminDao();
         Admins adminLogin = new Admins(email, password);
         if(ad.validationAdminData(adminLogin)){
-            HttpSession sessionUser = request.getSession();
-            Admins admin = new AdminDao().readAdminsByEmail(email);
-            sessionUser.setAttribute("user", admin.getId());
-            //setting session to expiry in 30 mins
-            sessionUser.setMaxInactiveInterval(30*60);
-            Cookie userEmail = new Cookie("mail", admin.getEmail());
-            userEmail.setMaxAge(30*60);
-            response.addCookie(userEmail);
+            HttpSession sess = request.getSession();
+            sess.setAttribute("Login", "on");
+            sess.setAttribute("adminEmail", adminLogin.getEmail());
+            sess.setMaxInactiveInterval(60*60*24);
+
             request.getRequestDispatcher("home.jsp").forward(request,response);
 
 

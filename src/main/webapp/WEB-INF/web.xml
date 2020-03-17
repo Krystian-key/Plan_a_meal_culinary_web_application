@@ -12,7 +12,7 @@
 
   <filter-mapping>
       <filter-name>ServletFilter</filter-name>
-      <url-pattern>/*</url-pattern>
+      <url-pattern>/recipes.html</url-pattern>
   </filter-mapping>
 
   

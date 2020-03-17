@@ -1,75 +1,33 @@
 package pl.coderslab.filter;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.ServletException;
-import javax.servlet.RequestDispatcher;
+import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+@WebFilter(filterName = "ServletFilter",urlPatterns ="recipes.html")
 
-@WebFilter("/ServletFilter")
 public class ServletFilter implements Filter {
-    private FilterConfig filterConfig;
-    private static ArrayList<String> pages;
-
-    public ServletFilter() {
-        if (pages == null)
-            pages = new ArrayList<String>();
-    }
-
-    /**
-     * Method cleanig resources
-     *
-     * @see Filter#destroy()
-     */
-    @Override
+    private String charsetEncoding = "utf-8";
+    private String contentType = "text/html";
     public void destroy() {
     }
 
-    /**
-     * Method initilization filter
-     *
-     * @see Filter#init(FilterConfig)
-     */
-    @Override
-    public void init(FilterConfig fConfig) throws ServletException {
-        filterConfig = fConfig;
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) resp;
+        request.setCharacterEncoding(charsetEncoding);
+        response.setContentType(contentType);
+        response.setCharacterEncoding(charsetEncoding);
+        HttpSession sess = request.getSession();
+
+        if (sess.getAttribute("Login")=="on"){
+            chain.doFilter(request,response);
+        }else{
+            response.sendRedirect(request.getContextPath() + "/login.html");
+        }
     }
-
-    /**
-     * Method filter
-     *
-     * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-     */
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response,
-                         FilterChain filterChain) throws IOException, ServletException {
-        // If filter is active, then do check
-        if (filterConfig.getInitParameter("active").equalsIgnoreCase("true")) {
-            HttpServletRequest req = (HttpServletRequest) request;
-
-            request.setCharacterEncoding("UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            HttpSession sessionUser = req.getSession();
-            if (sessionUser.getAttribute("user") == null && req.getRequestURI().endsWith("recipes.html")) {
-                System.out.println(sessionUser.getAttribute("user"));
-                RequestDispatcher rd = request.getRequestDispatcher("/login.html");
-                rd.forward(request, response);
-            } else {
-                ServletContext ctx = filterConfig.getServletContext();
-                RequestDispatcher dispatcher = ctx.getRequestDispatcher("/recipes.html");
-                dispatcher.forward(request, response);
-                return;
-            }
-        }
-            filterChain.doFilter(request, response);
-        }
+    public void init(FilterConfig config) throws ServletException {
+    }
 }
