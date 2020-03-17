@@ -24,15 +24,10 @@ public class LoginServlet extends HttpServlet {
         if(ad.validationAdminData(adminLogin)){
             HttpSession sess = request.getSession();
             sess.setAttribute("Login", "on");
-            sess.setAttribute("adminEmail", adminLogin.getEmail());
+            sess.setAttribute("adminId", adminLogin.getId());
             sess.setMaxInactiveInterval(60*60*24);
-
             request.getRequestDispatcher("home.jsp").forward(request,response);
-
-
-
         }else {
-
             request.getRequestDispatcher("login.html").forward(request,response);
         }
     }
