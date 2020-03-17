@@ -13,6 +13,7 @@ public class Recipe {
     private String preparation;
     private int adminId;
 
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -26,6 +27,16 @@ public class Recipe {
                 ", preparation='" + preparation + '\'' +
                 ", adminID=" + adminId +
                 '}';
+    }
+    public Recipe(String name, String ingredients, String description, LocalDateTime created, LocalDateTime updated, int preparationTime, String preparation, int adminId) {
+        this.name = name;
+        this.ingredients = ingredients;
+        this.description = description;
+        this.created = created;
+        this.updated = updated;
+        this.preparationTime = preparationTime;
+        this.preparation = preparation;
+        this.adminId = adminId;
     }
 
     public Recipe() {
@@ -114,4 +125,6 @@ public class Recipe {
     public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
+
+
 }
