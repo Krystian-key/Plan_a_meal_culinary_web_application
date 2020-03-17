@@ -5,6 +5,7 @@
 
 # Log file
 *.log
+context.xml
 
 # BlueJ files
 *.ctxt
