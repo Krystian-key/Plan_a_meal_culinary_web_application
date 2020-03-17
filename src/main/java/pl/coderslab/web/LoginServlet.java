@@ -20,8 +20,6 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         AdminDao ad = new AdminDao();
-
-
         Admins adminLogin = new Admins(email, password);
         if(ad.validationAdminData(adminLogin)){
             HttpSession sessionUser = request.getSession();
@@ -33,6 +31,8 @@ public class LoginServlet extends HttpServlet {
             userEmail.setMaxAge(30*60);
             response.addCookie(userEmail);
             request.getRequestDispatcher("home.jsp").forward(request,response);
+
+
 
         }else {
 
