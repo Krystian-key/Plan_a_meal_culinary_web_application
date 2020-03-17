@@ -5,7 +5,8 @@
 /META-INF
 # Log file
 *.log
-context.xml
+# Context.xml
+src/main/webapp/META-INF/context.xml
 
 # BlueJ files
 *.ctxt

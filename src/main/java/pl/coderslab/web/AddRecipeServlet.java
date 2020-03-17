@@ -34,7 +34,7 @@ public class AddRecipeServlet extends HttpServlet {
         int adminId = Integer.parseInt(String.valueOf(sessionId.getAttribute("adminId")));
         Recipe recipe = new Recipe(recipeName, ingredients, recipeDescription, LocalDateTime.now(), LocalDateTime.now(), cookTime, wayToCook, adminId);
         new RecipeDao().createRecipe(recipe);
-        req.getRequestDispatcher("recipes.html").forward(req, resp);
+        req.getRequestDispatcher("/recipes.html").forward(req, resp);
     }
 }
 
