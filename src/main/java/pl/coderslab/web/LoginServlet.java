@@ -1,6 +1,7 @@
 package pl.coderslab.web;
 
 import pl.coderslab.dao.AdminDao;
+import pl.coderslab.dao.PlanDao;
 import pl.coderslab.model.Admins;
 
 import javax.servlet.ServletException;
@@ -19,12 +20,12 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        AdminDao ad = new AdminDao();
-        Admins adminLogin = new Admins(email, password);
-        if(ad.validationAdminData(adminLogin)){
+        if(new AdminDao().validationAdminData(new Admins(email, password))){
+            int id = new AdminDao().readAdminsByEmail(email).getId();
             HttpSession sess = request.getSession();
             sess.setAttribute("Login", "on");
-            sess.setAttribute("adminId", adminLogin.getId());
+            sess.setAttribute("adminId", id);
+            sess.setAttribute("count", new PlanDao().showAllPlansUser(id).size());
             sess.setMaxInactiveInterval(60*60*24);
             request.getRequestDispatcher("home.jsp").forward(request,response);
         }else {
