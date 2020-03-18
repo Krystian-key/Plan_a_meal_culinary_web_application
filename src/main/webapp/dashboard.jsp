@@ -20,7 +20,7 @@
 <body>
     <header class="page-header">
         <nav class="navbar navbar-expand-lg justify-content-between">
-            <a href="/" class="navbar-brand main-logo main-logo-smaller">
+            <a href="/jee_scrumlab_war_exploded/home.jsp" class="navbar-brand main-logo main-logo-smaller">
                 Zaplanuj <span>Jedzonko</span>
             </a>
          <div class="d-flex justify-content-around">
@@ -61,7 +61,7 @@
                         <div class="alert-item alert-info">
                             <i class="fas icon-circle fa-info-circle"></i>
                             <span class="font-weight-bold">Liczba przepisów:
-                                <c:out value="${sessionScope.get('numberRecipe')}" /></span></span>
+                                <c:out value="${requestScope.numberRecipe}" default="xxx"/></span>
                         </div>
                         <div class="alert-item alert-light">
                             <i class="far icon-calendar fa-calendar-alt"></i>
