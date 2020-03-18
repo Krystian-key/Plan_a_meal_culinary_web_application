@@ -3,6 +3,7 @@ package pl.coderslab.dao;
 import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.Book;
 import pl.coderslab.model.Plan;
+import pl.coderslab.model.RecipePlan;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.Connection;
@@ -53,9 +54,10 @@ public class PlanDao {
 
     /**
      * Method return all plans for current user
+     *
      * @return Plan
      */
-    public List<Plan> showAllPlansUser(int userId){
+    public List<Plan> showAllPlansUser(int userId) {
         List<Plan> plansList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(READ_PLAN_BY_ADMIN_ID_QUERY)
@@ -145,7 +147,7 @@ public class PlanDao {
 
 
     /**
-     * Remove book by id
+     * Remove plan by id
      *
      * @param planID
      */
@@ -157,7 +159,7 @@ public class PlanDao {
 
             boolean deleted = statement.execute();
             if (!deleted) {
-                throw new NotFoundException("Product not found");
+                throw new NotFoundException("Plan not found");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -166,7 +168,7 @@ public class PlanDao {
 
 
     /**
-     * Update book
+     * Update plan
      *
      * @param plan
      */
@@ -183,7 +185,5 @@ public class PlanDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
 }
