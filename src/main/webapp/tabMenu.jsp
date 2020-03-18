@@ -19,7 +19,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="${request.contextPath}/jee_scrumlab_war_exploded/app/recipe/list">
+        <a class="nav-link" href="${pageContext.request.contextPath}/app/recipe">
             <span>Przepisy</span>
             <i class="fas fa-angle-right"></i>
         </a>

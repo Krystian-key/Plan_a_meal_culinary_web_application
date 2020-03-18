@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession sessionUser = request.getSession();
         if (sessionUser.getAttribute("Login") == "on") {
-            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath()+"/app");
         } else {
             request.getRequestDispatcher("login.html").forward(request, response);
         }
@@ -33,15 +33,8 @@ public class LoginServlet extends HttpServlet {
             HttpSession sessionUser = request.getSession();
             sessionUser.setAttribute("Login", "on");
             sessionUser.setAttribute("adminId", id);
-            sessionUser.setAttribute("numberPlan", new PlanDao().showAllPlansUser(id).size());
-//            sessionUser.setAttribute("numberRecipe", new RecipeDao().showAllRecipeUser(id).size());
             sessionUser.setMaxInactiveInterval(60 * 60 * 24);
-
-
-
-
-
-            request.getRequestDispatcher("/app").forward(request, response);
+            response.sendRedirect(request.getContextPath()+"/app");
         } else {
             request.getRequestDispatcher("login.html").forward(request, response);
         }

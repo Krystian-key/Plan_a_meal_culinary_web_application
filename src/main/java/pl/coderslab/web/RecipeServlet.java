@@ -11,22 +11,16 @@ import java.io.IOException;
 
 
 
-@WebServlet(name ="RecipeServlet", urlPatterns ={"/app/recipe/list"})
+@WebServlet(name ="RecipeServlet", urlPatterns ={"/app/recipe"})
 public class RecipeServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-        HttpSession session = request.getSession();
-
-         String adminIdStr = session.getAttribute("adminId").toString();
-         int adminId = Integer.parseInt(adminIdStr);
-
-
-         request.setAttribute("idAdmin",adminId);
-
         getServletContext().getRequestDispatcher("/app-recipes.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }
 
