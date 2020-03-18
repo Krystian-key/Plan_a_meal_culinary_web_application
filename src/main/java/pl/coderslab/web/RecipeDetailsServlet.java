@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -17,9 +18,11 @@ public class RecipeDetailsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Integer recipeId = Integer.parseInt(request.getParameter("id"));
-        Recipe readRecipe = new RecipeDao().readRecipe(recipeId);
-        request.getRequestDispatcher("/app-recipe-details.html").forward(request, response);
+        HttpSession session = request.getSession();
+        int recipeId = Integer.parseInt(session.getAttribute("recipeId").toString());
+        Recipe recipe = new RecipeDao().readRecipe(recipeId);
+        request.setAttribute("recipe", recipe);
+        request.getRequestDispatcher("/app-recipe-details.jsp").forward(request, response);
 
     }
 }
