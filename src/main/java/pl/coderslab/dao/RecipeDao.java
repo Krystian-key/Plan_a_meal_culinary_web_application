@@ -20,7 +20,7 @@ public class RecipeDao {
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String READ_RECUPE_BY_ADMIN_ID_QUERY = "SELECT * from recipe where admin_id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
-
+    private static final String FIND_ALL_RECIPE_LOGIN_ADMIN = "SELECT  COUNT(*) FROM recipe WHERE admin_id= ? ";
     /**
      * Get recipe by id
      *
@@ -202,5 +202,24 @@ public class RecipeDao {
         }
 
     }
+
+    public int allRecipeFromLoginUser(int userId) {
+        int quantityRecipe = 0;
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_RECIPE_LOGIN_ADMIN)
+        ) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    quantityRecipe = resultSet.getInt("COUNT(*)");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return quantityRecipe;
+
+    }
+
 
 }

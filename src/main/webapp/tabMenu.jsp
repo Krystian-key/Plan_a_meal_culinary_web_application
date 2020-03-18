@@ -13,13 +13,13 @@
 <body>
 <ul class="nav flex-column long-bg">
     <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/dashboard.jsp">
+        <a class="nav-link" href="${pageContext.request.contextPath}/app">
             <span>Pulpit</span>
             <i class="fas fa-angle-right"></i>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="${pageContext.request.contextPath}/app-recipes.jsp">
+        <a class="nav-link" href="${request.contextPath}/jee_scrumlab_war_exploded/app/recipe/list">
             <span>Przepisy</span>
             <i class="fas fa-angle-right"></i>
         </a>

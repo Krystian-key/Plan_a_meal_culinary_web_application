@@ -34,9 +34,14 @@ public class LoginServlet extends HttpServlet {
             sessionUser.setAttribute("Login", "on");
             sessionUser.setAttribute("adminId", id);
             sessionUser.setAttribute("numberPlan", new PlanDao().showAllPlansUser(id).size());
-            sessionUser.setAttribute("numberRecipe", new RecipeDao().showAllRecipeUser(id).size());
+//            sessionUser.setAttribute("numberRecipe", new RecipeDao().showAllRecipeUser(id).size());
             sessionUser.setMaxInactiveInterval(60 * 60 * 24);
-            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+
+
+
+
+
+            request.getRequestDispatcher("/app").forward(request, response);
         } else {
             request.getRequestDispatcher("login.html").forward(request, response);
         }
