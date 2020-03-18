@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "ServletFilter", urlPatterns = "/app/*")
+@WebFilter(filterName = "ServletFilter", urlPatterns = "/dashboard.jsp")
 
-public class ServletFilter implements Filter {
+public class DashboardFilter implements Filter {
     private String charsetEncoding = "utf-8";
     private String contentType = "text/html";
 
@@ -23,7 +23,6 @@ public class ServletFilter implements Filter {
         response.setContentType(contentType);
         response.setCharacterEncoding(charsetEncoding);
         HttpSession sessionUser = request.getSession();
-
         if (sessionUser.getAttribute("Login") == "on") {
             chain.doFilter(request, response);
         } else {
