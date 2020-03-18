@@ -32,44 +32,7 @@
 
     <section class="dashboard-section">
         <div class="row dashboard-nowrap">
-                <ul class="nav flex-column long-bg">
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard.jsp">
-                                <span>Pulpit</span>
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/app-recipes.html">
-                                <span>Przepisy</span>
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/app-schedules.html">
-                                <span>Plany</span>
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/app-edit-user-data.html">
-                                <span>Edytuj dane</span>
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="/app-edit-password.html">
-                                <span>Zmień hasło</span>
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/super-admin-users.html">
-                                <span>Użytkownicy</span>
-                                <i class="fas fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
+            <%@include file="tabMenu.jsp"%>
 
             <div class="m-4 p-4 width-medium">
                 <div class="dashboard-header m-4">
@@ -104,12 +67,6 @@
                             <i class="far icon-calendar fa-calendar-alt"></i>
                             <span class="font-weight-bold">Liczba planów:
                                 <c:out value="${sessionScope.get('numberPlan')}" /></span>
-<%--                            <c:choose>--%>
-<%--                                <c:when test="${sessionScope.get('Login') == 'on'}">--%>
-<%--                                    <p>Ilość planów</p>--%>
-<%--                                    <c:out value="${sessionScope.get('count')}" />--%>
-<%--                                </c:when>--%>
-<%--                            </c:choose>--%>
                         </div>
                     </div>
                 </div>

@@ -15,7 +15,7 @@ public class RecipeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/app-recipes.html").forward(request, response);
+        getServletContext().getRequestDispatcher("/app-recipes.jsp").forward(request, response);
     }
 }
 
