@@ -1,5 +1,6 @@
 package pl.coderslab.web;
 
+import pl.coderslab.dao.PlanDao;
 import pl.coderslab.dao.RecipeDao;
 
 import javax.servlet.ServletException;
@@ -16,15 +17,10 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-
-        String adminIdStr = session.getAttribute("adminId").toString();
-        int adminId = Integer.parseInt(adminIdStr);
-
+        int adminId = Integer.parseInt(session.getAttribute("adminId").toString());
         int quantityRecipe = new RecipeDao().allRecipeFromLoginUser(adminId);
         request.setAttribute("numberRecipe",quantityRecipe);
-
-
-
+        request.setAttribute("numberPlan",  new PlanDao().showAllPlansUser(adminId).size());
         getServletContext().getRequestDispatcher("/dashboard.jsp").forward(request, response);
     }
     @Override

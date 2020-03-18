@@ -38,7 +38,7 @@
                 <div class="dashboard-header m-4">
                     <div class="dashboard-menu">
                         <div class="menu-item border-dashed">
-                            <a onclick="location.href='<%=request.getContextPath()%>/app/recipe/add'">
+                            <a  href="${pageContext.request.contextPath}/app/recipe/add">
                                 <i class="far fa-plus-square icon-plus-square"></i>
                                 <span class="title">dodaj przepis</span>
                             </a>
@@ -66,7 +66,7 @@
                         <div class="alert-item alert-light">
                             <i class="far icon-calendar fa-calendar-alt"></i>
                             <span class="font-weight-bold">Liczba planów:
-                                <c:out value="${sessionScope.get('numberPlan')}" /></span>
+                                <c:out value="${requestScope.get('numberPlan')}" default="yyy"/></span>
                         </div>
                     </div>
                 </div>
