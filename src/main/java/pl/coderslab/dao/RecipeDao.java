@@ -1,6 +1,7 @@
 package pl.coderslab.dao;
 
 import pl.coderslab.exception.NotFoundException;
+import pl.coderslab.model.Plan;
 import pl.coderslab.model.Recipe;
 import pl.coderslab.utils.DbUtil;
 
@@ -17,6 +18,7 @@ public class RecipeDao {
     private static final String DELETE_RECIPE_QUERY = "DELETE FROM recipe where id = ?;";
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
+    private static final String READ_RECUPE_BY_ADMIN_ID_QUERY = "SELECT * from recipe where admin_id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
 
     /**
@@ -49,6 +51,37 @@ public class RecipeDao {
         }
         return recipe;
 
+    }
+    /**
+     * Method return all recipe for current user
+     *
+     * @return Recipe
+     */
+    public List<Recipe> showAllRecipeUser(int userId) {
+        List<Recipe> recipeList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(READ_RECUPE_BY_ADMIN_ID_QUERY)
+        ) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Recipe recipeToADD = new Recipe();
+                    recipeToADD.setId(resultSet.getInt("id"));
+                    recipeToADD.setName(resultSet.getString("name"));
+                    recipeToADD.setIngredients(resultSet.getString("ingredients"));
+                    recipeToADD.setDescription(resultSet.getString("description"));
+                    recipeToADD.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
+                    recipeToADD.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
+                    recipeToADD.setPreparationTime(resultSet.getInt("preparation_time"));
+                    recipeToADD.setPreparation(resultSet.getString("preparation"));
+                    recipeToADD.setAdminId(resultSet.getInt("admin_id"));
+                    recipeList.add(recipeToADD);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return recipeList;
     }
 
     /**

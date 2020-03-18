@@ -19,12 +19,12 @@ import java.time.LocalDateTime;
 public class AddRecipeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/add-new-recipes.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/app-add-recipe.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String recipeName = req.getParameter("recipeName");
+        String recipeName = req.getParameter("name");
         String recipeDescription = req.getParameter("recipeDescription");
         int cookTime = Integer.parseInt(req.getParameter("cookTime"));
         String wayToCook = req.getParameter("wayToCook");
