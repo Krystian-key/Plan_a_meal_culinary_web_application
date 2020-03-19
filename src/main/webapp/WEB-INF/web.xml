@@ -9,6 +9,10 @@
         <filter-class>pl.coderslab.filter.ServletFilter</filter-class>
     </filter>
     <filter>
+        <filter-name>CharactersFilter</filter-name>
+        <filter-class>pl.coderslab.filter.CharactersFilter</filter-class>
+    </filter>
+    <filter>
         <filter-name>DashboardFilter</filter-name>
         <filter-class>pl.coderslab.filter.DashboardFilter</filter-class>
     </filter>
@@ -20,6 +24,8 @@
         <filter-name>DashboardFilter</filter-name>
         <url-pattern>/dashboard.jsp</url-pattern>
     </filter-mapping>
-
-
+    <filter-mapping>
+        <filter-name>CharactersFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
