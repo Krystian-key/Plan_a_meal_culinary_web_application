@@ -1,7 +1,6 @@
 package pl.coderslab.dao;
 
 import pl.coderslab.exception.NotFoundException;
-import pl.coderslab.model.Plan;
 import pl.coderslab.model.Recipe;
 import pl.coderslab.utils.DbUtil;
 
@@ -20,7 +19,8 @@ public class RecipeDao {
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String READ_RECUPE_BY_ADMIN_ID_QUERY = "SELECT * from recipe where admin_id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
-    private static final String FIND_ALL_RECIPE_LOGIN_ADMIN = "SELECT  COUNT(*) FROM recipe WHERE admin_id= ? ";
+    private static final String FIND_ALL_RECIPE_FOR_USER = "SELECT  COUNT(*) FROM recipe WHERE admin_id= ? ";
+
     /**
      * Get recipe by id
      *
@@ -52,6 +52,7 @@ public class RecipeDao {
         return recipe;
 
     }
+
     /**
      * Method return all recipe for current user
      *
@@ -203,10 +204,10 @@ public class RecipeDao {
 
     }
 
-    public int allRecipeFromLoginUser(int userId) {
+    public int quantityRecipeUser(int userId) {
         int quantityRecipe = 0;
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_ALL_RECIPE_LOGIN_ADMIN)
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_RECIPE_FOR_USER)
         ) {
             statement.setInt(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -218,7 +219,6 @@ public class RecipeDao {
             e.printStackTrace();
         }
         return quantityRecipe;
-
     }
 
 

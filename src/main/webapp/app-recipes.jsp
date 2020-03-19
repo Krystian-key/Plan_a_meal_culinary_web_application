@@ -1,6 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 
 
 <!DOCTYPE html>
@@ -27,7 +26,7 @@
             Zaplanuj <span>Jedzonko</span>
         </a>
         <div class="d-flex justify-content-around">
-            <h4 class="text-light mr-3"> <c:out value="${idAdmin}" default="Imię"/> </h4>
+            <h4 class="text-light mr-3"><c:out value="${idAdmin}" default="Imię"/></h4>
             <div class="circle-div text-center"><i class="fas fa-user icon-user"></i></div>
         </div>
     </nav>
@@ -44,7 +43,7 @@
                     <div class="col noPadding"><h3 class="color-header text-uppercase">Lista Przepisów</h3></div>
                     <div class="col noPadding d-flex justify-content-end mb-2">
                         <a href="${pageContext.request.contextPath}/app/recipe/add"
-                            class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj przepis</a></div>
+                           class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj przepis</a></div>
                 </div>
                 <table class="table border-bottom schedules-content">
                     <thead>
@@ -59,58 +58,23 @@
                     <c:forEach var="allRecipe" items="${requestScope.allRecipes}">
                         <tr class="d-flex">
                             <th scope="row" class="col-1">
-                                ${allRecipe.id}
+                                    ${allRecipe.id}
                             </th>
                             <td class="col-2">
-                                ${allRecipe.name}
+                                    ${allRecipe.name}
                             </td>
                             <td class="col-7">
-                                ${allRecipe.description}
+                                    ${allRecipe.description}
                             </td>
                             <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
                                 <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                <a href="/app-recipe-details.jsp"
+                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${allRecipe.id}"
                                    class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                <a href="/app-edit-recipe.html" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
+                                <a href="/app-edit-recipe.html"
+                                   class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
                             </td>
                         </tr>
                     </c:forEach>
-                    <%--
-                    <tr class="d-flex">
-                        <th scope="row" class="col-1">1</th>
-                        <td class="col-2">
-                            Zapiekanka z ziemniakami i brukselką
-                        </td>
-                        <td class="col-7">Mamusina najlepsza zapiekanka pod słońcem. Można ją podać jako główne danie
-                            albo jako kolację. W zapiekance możesz użyć również kiełbasy paprykowej sprawi ona, że
-                            zapiekanka będzie ostrzejsza w smaku. Zgodnie z zalecanimi Makłowicza, podawać z dobrze
-                            dobranym winkiem ;)
-                        </td>
-                        <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
-                            <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                            <a href="/app-recipe-details.jsp"
-                               class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                            <a href="/app-edit-recipe.html" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
-                        </td>
-                    </tr>
-                    <tr class="d-flex">
-                        <th scope="row" class="col-1">2</th>
-                        <td class="col-2">
-                            Zapiekanka z ziemniakami i brukselką
-                        </td>
-                        <td class="col-7">Mamusina najlepsza zapiekanka pod słońcem. Można ją podać jako główne danie
-                            albo jako kolację. W zapiekance możesz użyć również kiełbasy paprykowej sprawi ona, że
-                            zapiekanka będzie ostrzejsza w smaku. Zgodnie z zalecanimi Makłowicza, podawać z dobrze
-                            dobranym winkiem ;)
-                        </td>
-                        <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
-                            <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                            <a href="/app-recipe-details.jsp"
-                               class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                            <a href="/app-edit-recipe.html" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
-                        </td>
-                    </tr>
-                    --%>
                     </tbody>
                 </table>
             </div>
