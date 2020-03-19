@@ -2,6 +2,7 @@ package pl.coderslab.dao;
 
 import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.DayName;
+import pl.coderslab.model.Plan;
 import pl.coderslab.model.Recipe;
 import pl.coderslab.model.RecipePlan;
 import pl.coderslab.utils.DbUtil;
@@ -23,11 +24,12 @@ public class RecipePlanDao {
     private static final String READ_RECIPE_PLAN_QUERY = "SELECT * from recipe_plan where id = ?;";
     private static final String READ_RECIPE_PLAN_BY_PLAN_ID_QUERY = "SELECT * from recipe_plan where plan_id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	recipe_plan SET recipe_id = ? , meal_name = ?, display_order = ?, day_name_id = ?, plan_id = ?  WHERE	id = ?;";
-    private static final String FIND_LAST_ADDED_PLAN = "SELECT day_name.name as day_name, meal_name,  recipe.name as recipe_name, recipe.description as recipe_description\n" +
+    private static final String FIND_LAST_ADDED_PLAN = "SELECT plan.name as name, day_name.name as day_name, meal_name,  recipe.name as recipe_name, recipe.description as recipe_description\n" +
             "FROM `recipe_plan`\n" +
+            "JOIN plan on plan.id = plan_id\n" +
             "JOIN day_name on day_name.id=day_name_id\n" +
             "JOIN recipe on recipe.id=recipe_id WHERE\n" +
-            "recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)\n" +
+            "recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = 1) -- zamiast 1 należy wstawić id użytkownika (tabela admins) --\n" +
             "ORDER by day_name.display_order, recipe_plan.display_order;";
 
     /**
@@ -215,10 +217,13 @@ public class RecipePlanDao {
                 RecipePlan planToADD = new RecipePlan();
                 DayName dayName = new DayName();
                 Recipe recipe = new Recipe();
+                Plan plan = new Plan();
+                plan.setName(resultSet.getString("name"));
                 dayName.setName(resultSet.getString("day_name"));
                 planToADD.setMealName(resultSet.getString("meal_name"));
                 recipe.setName(resultSet.getString("recipe_name"));
                 recipe.setDescription(resultSet.getString("recipe_description"));
+                plansList.put("name", plan.getName());
                 plansList.put("day_name", dayName.getName());
                 plansList.put("meal_name", planToADD.getMealName());
                 plansList.put("recipe_name", recipe.getName());

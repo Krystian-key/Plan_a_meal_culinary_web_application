@@ -1,17 +1,13 @@
 package pl.coderslab.dao;
 
 import pl.coderslab.exception.NotFoundException;
-import pl.coderslab.model.Book;
 import pl.coderslab.model.Plan;
-import pl.coderslab.model.RecipePlan;
 import pl.coderslab.utils.DbUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +19,7 @@ public class PlanDao {
     private static final String READ_PLAN_QUERY = "SELECT * from plan where id = ?;";
     private static final String READ_PLAN_BY_ADMIN_ID_QUERY = "SELECT * from plan where admin_id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE	id = ?;";
+    private static final String FIND_ALL_PLAN_FOR_USER = "SELECT  COUNT(*) FROM plan WHERE admin_id= ? ";
 
     /**
      * Get plan by id
@@ -185,5 +182,22 @@ public class PlanDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public int quantityPlanUser(int userId) {
+        int quantityPlan = 0;
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_PLAN_FOR_USER)
+        ) {
+            statement.setInt(1, userId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    quantityPlan = resultSet.getInt("COUNT(*)");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return quantityPlan;
     }
 }

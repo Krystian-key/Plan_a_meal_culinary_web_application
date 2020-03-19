@@ -20,6 +20,13 @@ public class Plan {
                 '}';
     }
 
+    public Plan(String name, String description, LocalDateTime created, int adminId) {
+        this.name = name;
+        this.description = description;
+        this.created = created;
+        this.adminId = adminId;
+    }
+
     public Plan() {
     }
 

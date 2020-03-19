@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet(name ="RecipeServlet", urlPatterns ={"/app/recipe"})
+@WebServlet(name ="RecipeServlet", urlPatterns ={"/app/recipe/list"})
 public class RecipeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
