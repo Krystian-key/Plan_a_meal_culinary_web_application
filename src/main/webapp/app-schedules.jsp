@@ -55,7 +55,30 @@
                                 </tr>
                             </thead>
                             <tbody class="text-color-lighter">
+
+                            <c:forEach var="allPlanList" items="${requestScope.allPlans}">
                                 <tr class="d-flex">
+                                    <th scope="row" class="col-1">
+                                        ${allPlanList.id}
+                                    </th>
+                                    <td class="col-2">
+                                        ${allPlanList.name}
+                                    </td>
+                                    <td class="col-7">
+                                            ${allPlanList.description}
+                                    </td>
+                                    <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
+                                        <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                        <a href="${pageContext.request.contextPath}/app/schedule/details?id=${allPlanList.id}"
+                                           class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                        <a href="/app-edit-recipe.html"
+                                           class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
+                                    </td>
+                                </tr>
+
+                            </c:forEach>
+
+                                <%--<tr class="d-flex">
                                     <td class="col-1">1</td>
                                     <td class="col-2">Plan jarski na bezmięsny tydzień</td>
                                     <td class="col-7">
@@ -76,7 +99,7 @@
                                         <a href="/app-details-schedules.html" class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
                                         <a href="/app-edit-schedules.html" class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
                                     </td>
-                                </tr>
+                                </tr>--%>
                             </tbody>
                         </table>
                     </div>
