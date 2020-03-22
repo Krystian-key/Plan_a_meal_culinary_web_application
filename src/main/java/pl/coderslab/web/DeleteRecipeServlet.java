@@ -1,8 +1,5 @@
 package pl.coderslab.web;
 
-import pl.coderslab.dao.PlanDao;
-import pl.coderslab.model.Plan;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,13 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteRecipeFromPlan", urlPatterns = {"/app/plan/delete-recipe"})
-public class DeleteRecipeFromPlan extends HttpServlet {
+@WebServlet(name = "DeleteRecipeServlet", urlPatterns = {"/app/recipe/delete"})
+public class DeleteRecipeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         System.out.println("Jestem w GETE");
-        request.getRequestDispatcher("/app-remove-recive-from-plan.jsp").forward(request, response);
+        request.getRequestDispatcher("/app-remove-recipe.jsp").forward(request, response);
     }
 
     @Override
@@ -25,7 +22,7 @@ public class DeleteRecipeFromPlan extends HttpServlet {
 //        new PlanDao().deletePlan(id);
 //        response.sendRedirect("/app/plan/list");
         System.out.println("Jestem w POSTE");
-        response.sendRedirect(request.getContextPath()+"/app/plan/details");
+        response.sendRedirect(request.getContextPath()+"/app/recipe/list");
 //        request.getRequestDispatcher("/app/plan/details").forward(request, response);
     }
 }
