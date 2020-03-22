@@ -22,7 +22,7 @@ public class RecipeDetailsServlet extends HttpServlet {
         Recipe recipe = new RecipeDao().readRecipe(id);
         request.setAttribute("recipe", recipe);
         request.getRequestDispatcher("/app-recipe-details.jsp").forward(request, response);
-        //Recipe Details aktualizacja
+        //Recipe Details aktualizacja 02
 
     }
 }
