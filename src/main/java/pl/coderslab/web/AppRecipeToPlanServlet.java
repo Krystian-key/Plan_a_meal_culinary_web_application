@@ -23,6 +23,7 @@ import java.util.List;
 public class AppRecipeToPlanServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         HttpSession session = request.getSession();
         int adminId = Integer.parseInt(String.valueOf(session.getAttribute("adminId")));
         PlanDao planDao = new PlanDao();
@@ -58,7 +59,8 @@ public class AppRecipeToPlanServlet extends HttpServlet {
         recipePlan.setDayNameId(Integer.parseInt(dayNameList));
         recipePlan.setDisplayOrder(1);
         recipePlanDao.createPlan(recipePlan);
-        getServletContext().getRequestDispatcher("/app/recipe/plan/add").forward(request,response);
+
+        response.sendRedirect(request.getContextPath()+"/app/recipe/plan/add");
 
 
     }
