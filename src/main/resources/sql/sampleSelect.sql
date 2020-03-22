@@ -20,7 +20,7 @@ FROM recipe_plan
     JOIN plan on plan.id = plan_id
     JOIN day_name on day_name.id = day_name_id
     JOIN recipe on recipe.id = recipe_id
-    WHERE recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = 1)
+    WHERE recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = 17)
 ORDER BY  day_name.display_order, recipe_plan.display_order;
 
 -- SQL pobiera szczegoly planu  po id planu
@@ -32,3 +32,7 @@ FROM recipe_plan
     WHERE plan_id = 6
 ORDER BY day_name.display_order, recipe_plan.display_order;
 #     WHERE plan_id = 6
+
+SELECT plan.name as name, plan.description as description
+FROM plan
+    WHERE plan.id = (SELECT  MAX(id) FROM plan WHERE admin_id = 17);

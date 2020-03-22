@@ -234,52 +234,31 @@ public class RecipePlanDao {
                     }
                     if (dayName.equals("poniedziałek")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListM.add(planDetails);
                     } else if (dayName.equals("wtorek")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListT.add(planDetails);
                     } else if (dayName.equals("środa")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListW.add(planDetails);
                     } else if (dayName.equals("czwartek")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListTu.add(planDetails);
                     } else if (dayName.equals("piątek")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListF.add(planDetails);
                     } else if (dayName.equals("sobota")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListS.add(planDetails);
                     } else if (dayName.equals("niedziela")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListSa.add(planDetails);
                     }
                 }
@@ -311,6 +290,13 @@ public class RecipePlanDao {
             e.printStackTrace();
         }
         return displayPlan;
+    }
+
+    private void getData(ResultSet resultSet, String dayName, DetailsPlan planDetails) throws SQLException {
+        planDetails.setMealName(resultSet.getString("meal_name"));
+        planDetails.setRecipeName(resultSet.getString("recipe_name"));
+        planDetails.setDayName(dayName);
+        planDetails.setId(resultSet.getInt("id"));
     }
 
     /**
@@ -347,52 +333,31 @@ public class RecipePlanDao {
                     }
                     if (dayName.equals("poniedziałek")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListM.add(planDetails);
                     } else if (dayName.equals("wtorek")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListT.add(planDetails);
                     } else if (dayName.equals("środa")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListW.add(planDetails);
                     } else if (dayName.equals("czwartek")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListTu.add(planDetails);
                     } else if (dayName.equals("piątek")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListF.add(planDetails);
                     } else if (dayName.equals("sobota")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListS.add(planDetails);
                     } else if (dayName.equals("niedziela")) {
                         DetailsPlan planDetails = new DetailsPlan();
-                        planDetails.setMealName(resultSet.getString("meal_name"));
-                        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-                        planDetails.setDayName(dayName);
-                        planDetails.setId(resultSet.getInt("id"));
+                        getData(resultSet, dayName, planDetails);
                         recipePlansListSa.add(planDetails);
                     }
                 }

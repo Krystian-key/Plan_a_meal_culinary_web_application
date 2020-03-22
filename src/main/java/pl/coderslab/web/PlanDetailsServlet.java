@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(name ="RecipeDetailsServlet", urlPatterns ={"/app/plan/details"})
+@WebServlet(name ="PlanDetailsServlet", urlPatterns ={"/app/plan/details"})
 public class PlanDetailsServlet extends HttpServlet {
 
     @Override

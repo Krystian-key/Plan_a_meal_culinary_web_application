@@ -76,7 +76,7 @@
         </div>
         <div class="ml-4 align-self-center">
             <button class="btn btn-color rounded-0 mt-4 pl-4 pr-4">
-                <a href="index.html">Lorem ipsum</a>
+                <a href="mytest.html">Lorem ipsum</a>
             </button>
         </div>
     </div>
@@ -120,7 +120,7 @@
                            aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="input-group-text btn-color border-0 rounded-0" type="submit" id="basic-addon2">
-                            <a href="index.html">Lorem</a>
+                            <a href="mytest.html">Lorem</a>
                         </button>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
                            aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="input-group-text btn-color border-0 rounded-0" type="submit" id="basic-addon2"><a
-                                href="index.html">Lorem</a></button>
+                                href="mytest.html">Lorem</a></button>
                     </div>
                 </div>
                 <div class="container d-flex-row">

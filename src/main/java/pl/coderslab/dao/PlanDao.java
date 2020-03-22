@@ -20,6 +20,9 @@ public class PlanDao {
     private static final String READ_PLAN_BY_ADMIN_ID_QUERY = "SELECT * from plan where admin_id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	plan SET name = ? , description = ?, created = ?, admin_id = ? WHERE	id = ?;";
     private static final String FIND_ALL_PLAN_FOR_USER = "SELECT  COUNT(*) FROM plan WHERE admin_id= ? ";
+    private static final String FIND_LAST_ADDED_PLAN = "SELECT plan.name as name, plan.description as description\n" +
+            "FROM plan\n" +
+            "    WHERE plan.id = (SELECT  MAX(id) FROM plan WHERE admin_id = ?);";
 
     /**
      * Get plan by id
@@ -40,6 +43,31 @@ public class PlanDao {
                     plan.setDescription(resultSet.getString("description"));
                     plan.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
                     plan.setAdminId(resultSet.getInt("admin_id"));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return plan;
+
+    }
+
+    /**
+     * Get last added plan by id
+     *
+     * @param adminId
+     * @return
+     */
+    public Plan readLastAddedPlan(Integer adminId) {
+        Plan plan = new Plan();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_LAST_ADDED_PLAN)
+        ) {
+            statement.setInt(1, adminId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    plan.setName(resultSet.getString("name"));
+                    plan.setDescription(resultSet.getString("description"));
                 }
             }
         } catch (Exception e) {
