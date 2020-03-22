@@ -18,5 +18,6 @@ public class RecipeDetailsServlet extends HttpServlet {
         request.setAttribute("recipe", recipe);
         request.getRequestDispatcher("/app-recipe-details.jsp").forward(request, response);
         //Recipe Details aktualizacja
+
     }
 }
