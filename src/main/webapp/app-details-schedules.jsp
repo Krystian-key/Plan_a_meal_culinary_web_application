@@ -91,7 +91,7 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
                                                 <a href="app-details-schedules.html"
@@ -104,7 +104,7 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
                                                 <a href="app-details-schedules.html"
@@ -117,7 +117,7 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
                                                 <a href="app-details-schedules.html"
@@ -130,7 +130,7 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
                                                 <a href="app-details-schedules.html"
@@ -143,7 +143,7 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
                                                 <a href="app-details-schedules.html"
@@ -156,7 +156,7 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
                                                 <a href="app-details-schedules.html"
@@ -169,7 +169,7 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="#" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
                                                 <a href="app-details-schedules.html"

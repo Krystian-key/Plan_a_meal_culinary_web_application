@@ -20,6 +20,8 @@
 </head>
 
 <body>
+
+
 <header class="page-header">
     <nav class="navbar navbar-expand-lg justify-content-between">
         <a href="/jee_scrumlab_war_exploded/home.jsp" class="navbar-brand main-logo main-logo-smaller">

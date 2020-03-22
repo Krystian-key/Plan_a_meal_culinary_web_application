@@ -1,6 +1,5 @@
 package pl.coderslab.web;
 
-import org.mindrot.jbcrypt.BCrypt;
 import pl.coderslab.dao.AdminDao;
 import pl.coderslab.model.Admins;
 
