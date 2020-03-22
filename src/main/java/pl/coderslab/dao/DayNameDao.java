@@ -14,7 +14,7 @@ public class DayNameDao {
     // ZAPYTANIA SQL
    
     private static final String FIND_ALL_DAY_NAME_QUERY = "SELECT * FROM day_name;";
-   
+
 
   
     /**
@@ -32,7 +32,7 @@ public class DayNameDao {
                 DayName DayToAdd = new DayName();
                 DayToAdd.setId(resultSet.getInt("id"));
                 DayToAdd.setName(resultSet.getString("name"));
-                DayToAdd.setDisplayOrder(resultSet.getInt("displayOrder"));
+                DayToAdd.setDisplayOrder(resultSet.getInt("display_order"));
 
                 dayNamesList.add(DayToAdd);
             }
