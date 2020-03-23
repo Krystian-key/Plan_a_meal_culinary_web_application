@@ -40,7 +40,7 @@
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
                 <!-- fix action, method -->
                 <!-- add name attribute for all inputs -->
-                <form action="${pageContext.request.contextPath}/app/recipe/plan/add" method="post">
+                <form action="${pageContext.request.contextPath}/app/plan/add" method="post">
                     <div class="row border-bottom border-3 p-1 m-1">
                         <div class="col noPadding">
                             <h3 class="color-header text-uppercase">NOWY PLAN</h3>
