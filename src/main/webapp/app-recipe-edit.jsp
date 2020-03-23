@@ -41,11 +41,14 @@
                 <div class="mt-4 ml-4 mr-4">
                     <div class="row border-bottom border-3">
                         <div class="col"><h3 class="color-header text-uppercase">Szczegóły przepisu</h3></div>
-                        <div class="col d-flex justify-content-end mb-2"><a href="${pageContext.request.contextPath}/app/recipe/list"
-                                                                            class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
+                        <form action="${pageContext.request.contextPath}/app/edit/recipe?id=${requestScope.recipe.id}" method="post">
+<%--                        <div class="col d-flex justify-content-end mb-2"><input type="submit" value="Edytuj" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">--%>
+<%--                        </div>--%>
+                        <div class="col d-flex justify-content-end mb-2"><input type="submit" value="Edytuj" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4"><a href="${pageContext.request.contextPath}/app/recipe/list"
+                                                                            class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4" style="margin-left: 10px">Powrót</a>
                         </div>
                     </div>
-                    <form action="${pageContext.request.contextPath}/app/edit/recipe?id=${requestScope.recipe.id}" method="post">
+
                     <table class="table borderless">
                         <tbody>
                         <tr class="d-flex">
@@ -79,13 +82,13 @@
                     <div class="row d-flex">
                         <div class="col-5 p-4">
                             <p>
-                                <input name="recipePreparation" type="text" placeholder="${requestScope.recipe.preparation}">
+                                <textarea class="w-100 p-1" rows="9" name="recipePreparation" type="text" placeholder="${requestScope.recipe.preparation}"></textarea>
                             </p>
                         </div>
                         <div class="col-2"></div>
                         <ul class="col-5 p-4 list-unstyled">
-                            <input name="recipeIngredients" type="text" placeholder="${requestScope.recipe.ingredients}">
-                            <input type="submit" value="Edytuj" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">
+                            <textarea class="w-100 p-1" rows="10" name="recipeIngredients" type="text" placeholder="${requestScope.recipe.ingredients}"></textarea>
+
                         </ul>
                     </div>
                     </form>
