@@ -16,7 +16,7 @@ public class RecipePlanDao {
     private static final String DELETE_RECIPE_PLAN_QUERY = "DELETE FROM recipe_plan where id = ?;";
     private static final String FIND_ALL_RECIPE_PLAN_QUERY = "SELECT * FROM recipe_plan;";
     private static final String READ_RECIPE_PLAN_QUERY = "SELECT * from recipe_plan where id = ?;";
-    private static final String READ_RECIPE_PLAN_BY_PLAN_ID_QUERY = "SELECT * from recipe_plan where plan_id = ?;";
+    private static final String READ_RECIPE_PLAN_BY_PLAN_ID_QUERY = "SELECT * from recipe_plan where recipe_id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	recipe_plan SET recipe_id = ? , meal_name = ?, display_order = ?, day_name_id = ?, plan_id = ?  WHERE	id = ?;";
     private static final String FIND_LAST_ADDED_PLAN_QUERY = "SELECT plan.name as name, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id\n" +
             "FROM recipe_plan\n" +
