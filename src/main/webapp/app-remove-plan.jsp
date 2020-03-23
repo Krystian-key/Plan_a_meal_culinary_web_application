@@ -46,7 +46,7 @@
 
                     <div class="mt-4 ml-4 mr-4">
                         <div class="row border-bottom border-3">
-                            <div class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć przepis?</h3></div>
+                            <div class="col"><h3 class="color-header text-uppercase">Czy na pewno chcesz usunąć planu?</h3></div>
                         </div>
                         <div class="row d-flex">
                             <table class="table borderless">
@@ -60,7 +60,7 @@
                                     </th>
                                     <th class="col-1"></th>
                                     <th class="col-2">
-                                        <a href="${pageContext.request.contextPath}/app/recipe/list" class="btn btn-warning rounded-25 text-light m-1">Anuluj</a>
+                                        <a href="${pageContext.request.contextPath}/app/plan/list" class="btn btn-warning rounded-25 text-light m-1">Anuluj</a>
                                     </th>
                                     <th class="col-3"></th>
                                 </tr>
