@@ -72,7 +72,7 @@
                                 <a href="${pageContext.request.contextPath}/app/recipe/delete" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                 <a href="${pageContext.request.contextPath}/app/recipe/details?id=${allRecipe.id}"
                                    class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                <a href="/app-edit-recipe.html"
+                                <a href="${pageContext.request.contextPath}/app/edit/recipe?id=${allRecipe.id}"
                                    class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
                             </td>
                         </tr>

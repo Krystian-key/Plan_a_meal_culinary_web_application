@@ -17,8 +17,9 @@ public class RecipeDao {
     private static final String DELETE_RECIPE_QUERY = "DELETE FROM recipe where id = ?;";
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
-    private static final String READ_RECUPE_BY_ADMIN_ID_QUERY = "SELECT * from recipe where admin_id = ?;";
-    private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
+    private static final String READ_RECIPE_BY_ADMIN_ID_QUERY = "SELECT * from recipe where admin_id = ?;";
+  //  private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
+    private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, updated = ?, preparation_time = ?, preparation = ? WHERE id = ?;";
     private static final String FIND_ALL_RECIPE_FOR_USER = "SELECT  COUNT(*) FROM recipe WHERE admin_id= ? ";
 
     /**
@@ -61,7 +62,7 @@ public class RecipeDao {
     public List<Recipe> showAllRecipeUser(int userId) {
         List<Recipe> recipeList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(READ_RECUPE_BY_ADMIN_ID_QUERY)
+             PreparedStatement statement = connection.prepareStatement(READ_RECIPE_BY_ADMIN_ID_QUERY)
         ) {
             statement.setInt(1, userId);
             try (ResultSet resultSet = statement.executeQuery()) {
@@ -187,15 +188,15 @@ public class RecipeDao {
     public void updateRecipe(Recipe recipe) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_RECIPE_QUERY)) {
-            statement.setInt(9, recipe.getId());
+            statement.setInt(7, recipe.getId());
             statement.setString(1, recipe.getName());
             statement.setString(2, recipe.getIngredients());
             statement.setString(3, recipe.getDescription());
-            statement.setString(4, recipe.getCreated().toString());
-            statement.setString(5, recipe.getUpdated().toString());
-            statement.setInt(6, recipe.getPreparationTime());
-            statement.setString(7, recipe.getPreparation());
-            statement.setInt(8, recipe.getAdminId());
+        //    statement.setString(4, recipe.getCreated().toString());
+            statement.setString(4, recipe.getUpdated().toString());
+            statement.setInt(5, recipe.getPreparationTime());
+            statement.setString(6, recipe.getPreparation());
+        //    statement.setInt(8, recipe.getAdminId());
 
             statement.executeUpdate();
         } catch (Exception e) {
