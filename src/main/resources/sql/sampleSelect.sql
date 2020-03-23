@@ -37,4 +37,4 @@ SELECT plan.name as name, plan.description as description
 FROM plan
     WHERE plan.id = (SELECT  MAX(id) FROM plan WHERE admin_id = 17);
 
-SELECT * from recipe_plan where recipe_id = ?;
+SELECT * from recipe_plan where recipe_id = 18;

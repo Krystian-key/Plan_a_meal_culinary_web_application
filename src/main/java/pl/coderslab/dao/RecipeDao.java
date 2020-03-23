@@ -169,11 +169,6 @@ public class RecipeDao {
              PreparedStatement statement = connection.prepareStatement(DELETE_RECIPE_QUERY)) {
             statement.setInt(1, recipeId);
             statement.executeUpdate();
-
-            boolean deleted = statement.execute();
-            if (!deleted) {
-                throw new NotFoundException("Recipe not found");
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
