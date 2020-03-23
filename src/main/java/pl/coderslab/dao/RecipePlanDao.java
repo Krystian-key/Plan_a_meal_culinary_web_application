@@ -14,6 +14,7 @@ public class RecipePlanDao {
     // ZAPYTANIA SQL
     private static final String CREATE_RECIPE_PLAN_QUERY = "INSERT INTO recipe_plan(recipe_id, meal_name,display_order, day_name_id, plan_id) VALUES (?,?,?,?,?);";
     private static final String DELETE_RECIPE_PLAN_QUERY = "DELETE FROM recipe_plan where id = ?;";
+    private static final String DELETE_RECIPE_PLAN_BY_PLAN_ID_QUERY = "DELETE FROM recipe_plan where plan_id = ?;";
     private static final String FIND_ALL_RECIPE_PLAN_QUERY = "SELECT * FROM recipe_plan;";
     private static final String READ_RECIPE_PLAN_QUERY = "SELECT * from recipe_plan where id = ?;";
     private static final String READ_RECIPE_PLAN_BY_PLAN_ID_QUERY = "SELECT * from recipe_plan where recipe_id = ?;";
@@ -159,14 +160,29 @@ public class RecipePlanDao {
 
 
     /**
-     * Remove recipe_plan by id
+     * Remove recipe_plan by plan_id
      *
-     * @param recipePlanId
+     * @param id
      */
-    public void deleteRecipePlan(Integer recipePlanId) {
+    public void deleteRecipePlan(Integer id) {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_RECIPE_PLAN_QUERY)) {
-            statement.setInt(1, recipePlanId);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Remove recipe_plan by id
+     *
+     * @param id
+     */
+    public void deleteRecipePlanByPlanID(Integer id) {
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_RECIPE_PLAN_BY_PLAN_ID_QUERY)) {
+            statement.setInt(1, id);
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

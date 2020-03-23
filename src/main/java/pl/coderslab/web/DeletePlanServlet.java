@@ -1,5 +1,8 @@
 package pl.coderslab.web;
 
+import pl.coderslab.dao.PlanDao;
+import pl.coderslab.dao.RecipePlanDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,12 +14,17 @@ import java.io.IOException;
 public class DeletePlanServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-          int planId = Integer.parseInt(request.getParameter("id"));
-          request.getRequestDispatcher("/app-remove-plan.jsp").forward(request,response);
+        int planId = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("planId", planId);
+        request.getRequestDispatcher("/app-remove-plan.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int planId = Integer.parseInt(request.getParameter("id"));
+        new RecipePlanDao().deleteRecipePlanByPlanID(planId);
+        new PlanDao().deletePlan(planId);
+        response.sendRedirect(request.getContextPath()+"/app/plan/list");
+        request.getRequestDispatcher("/app-remove-plan.jsp").forward(request, response);
     }
 }
