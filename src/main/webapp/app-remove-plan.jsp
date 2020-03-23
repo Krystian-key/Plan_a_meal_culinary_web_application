@@ -54,7 +54,7 @@
                                 <tr class="d-flex">
                                     <th class="col-4"></th>
                                     <th class="col-2">
-                                        <form action="${pageContext.request.contextPath}/app/recipe/delete?id=${requestScope.recipeId}" method="post">
+                                        <form action="${pageContext.request.contextPath}/app/plan/delete?id=${requestScope.planId}" method="post">
                                             <button type="submit" class="btn btn-danger rounded-25 text-light m-1">Ok</button>
                                         </form>
                                     </th>

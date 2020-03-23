@@ -26,8 +26,6 @@ public class DeleteRecipeFromPlanServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int recipPlanId = Integer.parseInt(request.getParameter("delateRecipPlanId"));
         int planId = Integer.parseInt(request.getParameter("deletePlanId"));
-//        request.setAttribute("delateRecipPlanId", recipPlanId);
-//        request.setAttribute("deletePlanId", planId);
         new RecipePlanDao().deleteRecipePlan(planId);
         response.sendRedirect(request.getContextPath()+"/app/plan/details?id="+recipPlanId);
     }
