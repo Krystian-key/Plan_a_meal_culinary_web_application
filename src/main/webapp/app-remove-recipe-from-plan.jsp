@@ -54,13 +54,13 @@
                                 <tr class="d-flex">
                                     <th class="col-4"></th>
                                     <th class="col-2">
-                                        <form action="${pageContext.request.contextPath}/app/plan/delete-recipe" method="post">
+                                        <form action="${pageContext.request.contextPath}/app/plan/delete-recipe?delateRecipPlanId=${requestScope.delateRecipPlanId}&deletePlanId=${requestScope.deletePlanId}" method="post">
                                             <button type="submit" class="btn btn-danger rounded-25 text-light m-1">Ok</button>
                                         </form>
                                     </th>
                                     <th class="col-1"></th>
                                     <th class="col-2">
-                                        <a href="${pageContext.request.contextPath}/app/plan/details" class="btn btn-warning rounded-25 text-light m-1">Anuluj</a>
+                                        <a href="${pageContext.request.contextPath}/app/plan/details?id=${requestScope.delateRecipPlanId}" class="btn btn-warning rounded-25 text-light m-1">Anuluj</a>
                                     </th>
                                     <th class="col-3"></th>
                                 </tr>
