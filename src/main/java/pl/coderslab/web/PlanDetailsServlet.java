@@ -27,6 +27,7 @@ public class PlanDetailsServlet extends HttpServlet {
         if(displayPlan.getPlan().getName() != null) {
             request.setAttribute("recipePlanDao", displayPlan);
             request.setAttribute("plan", displayPlan.getPlan());
+            request.setAttribute("recipPlanId", id);
         }else {
             Plan recipePlan = new PlanDao().readPlan(id);
             request.setAttribute("plan", recipePlan);

@@ -1,6 +1,7 @@
 package pl.coderslab.web;
 
 import pl.coderslab.dao.PlanDao;
+import pl.coderslab.dao.RecipePlanDao;
 import pl.coderslab.model.Plan;
 
 import javax.servlet.ServletException;
@@ -14,18 +15,20 @@ import java.io.IOException;
 public class DeleteRecipeFromPlanServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        System.out.println("Jestem w GETE");
+        int recipPlanId = Integer.parseInt(request.getParameter("recipPlanId"));
+        int planId = Integer.parseInt(request.getParameter("planId"));
+        request.setAttribute("delateRecipPlanId", recipPlanId);
+        request.setAttribute("deletePlanId", planId);
         request.getRequestDispatcher("/app-remove-recipe-from-plan.jsp").forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        new PlanDao().deletePlan(id);
-//        response.sendRedirect("/app/plan/list");
-        System.out.println("Jestem w POSTE");
-        response.sendRedirect(request.getContextPath()+"/app/plan/details");
-//        request.getRequestDispatcher("/app/plan/details").forward(request, response);
+        int recipPlanId = Integer.parseInt(request.getParameter("delateRecipPlanId"));
+        int planId = Integer.parseInt(request.getParameter("deletePlanId"));
+//        request.setAttribute("delateRecipPlanId", recipPlanId);
+//        request.setAttribute("deletePlanId", planId);
+        new RecipePlanDao().deleteRecipePlan(planId);
+        response.sendRedirect(request.getContextPath()+"/app/plan/details?id="+recipPlanId);
     }
 }

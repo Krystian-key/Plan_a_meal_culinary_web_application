@@ -25,7 +25,7 @@ public class RecipePlanDao {
             "    JOIN recipe on recipe.id = recipe_id\n" +
             "    WHERE recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)\n" +
             "ORDER BY  day_name.display_order, recipe_plan.display_order;";
-    private static final String FIND_PLAN_ALL_DETITALS_BY_ID_QUERY = "SELECT plan.name as name, plan.description as description, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe.id as id\n" +
+    private static final String FIND_PLAN_ALL_DETITALS_BY_ID_QUERY = "SELECT plan.name as name, plan.description as description, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id as id\n" +
             "FROM recipe_plan\n" +
             "    JOIN plan on plan.id = plan_id\n" +
             "    JOIN day_name on day_name.id = day_name_id\n" +
@@ -168,11 +168,6 @@ public class RecipePlanDao {
              PreparedStatement statement = connection.prepareStatement(DELETE_RECIPE_PLAN_QUERY)) {
             statement.setInt(1, recipePlanId);
             statement.executeUpdate();
-
-            boolean deleted = statement.execute();
-            if (!deleted) {
-                throw new NotFoundException("recipePlan not found");
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
