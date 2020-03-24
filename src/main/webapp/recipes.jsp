@@ -1,3 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Charmonman:400,700|Open+Sans:400,600,700&amp;subset=latin-ext"
         rel="stylesheet">
-    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <link href='<c:url value="/css/style.css"/>' rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 
@@ -30,7 +33,7 @@
                     <a class="nav-link" href="about">o aplikacji</a>
                 </li>
                 <li class="nav-item ml-4">
-                    <a class="nav-link disabled" href="recipes.html">Przepisy</a>
+                    <a class="nav-link disabled" href="recipes.jsp">Przepisy</a>
                 </li>
                 <li class="nav-item ml-4">
                     <a class="nav-link disabled" href="contact">Kontakt</a>
@@ -47,7 +50,7 @@
             <div class="orange-line w-100"></div>
         </div>
     </section>
-
+<form action="${pageContext.request.contextPath}recipes" method="post">
     <section class="mr-4 ml-4"> 
     <table class="table">
             <thead>
@@ -59,42 +62,44 @@
               </tr>
             </thead>
             <tbody class="text-color-lighter">
+            <c:forEach var="recipe" items="${requestScope.recipes}">
               <tr class="d-flex">
-                <th scope="row" class="col-1">1</th>
+                <th scope="row" class="col-1">${recipe.id}</th>
                 <td class="col-5">
-                    Zapiekanka z ziemniakami i brukselką
+                    ${recipe.name}
                 </td>
-                <td class="col-5">Mamusina najlepsza zapiekanka pod słońcem. Można ją podać jako główne danie albo jako kolację. W zapiekance możesz użyć również kiełbasy paprykowej sprawi ona, że zapiekanka będzie ostrzejsza w smaku. Zgodnie z zalecanimi Makłowicza, podawać z dobrze dobranym winkiem ;)</td>
+                <td class="col-5">${recipe.description}</td>
                 <td class="col-1"><a href="#" class="btn btn-info rounded-0 text-light">Szczegóły</a></td>
               </tr>
-              <tr class="d-flex">
-                <th scope="row" class="col-1">2</th>
-                <td class="col-5">
-                    Zapiekanka z ziemniakami i brukselką
-                </td>
-                <td class="col-5">Mamusina najlepsza zapiekanka pod słońcem. Można ją podać jako główne danie albo jako kolację. W zapiekance możesz użyć również kiełbasy paprykowej sprawi ona, że zapiekanka będzie ostrzejsza w smaku. Zgodnie z zalecanimi Makłowicza, podawać z dobrze dobranym winkiem ;)</td>
-                <td class="col-1"><a href="#" class="btn btn-info rounded-0 text-light">Szczegóły</a></td>
-             </tr>
-             <tr class="d-flex">
-                <th scope="row" class="col-1">3</th>
-                <td class="col-5">
-                    Zapiekanka z ziemniakami i brukselką
-                </td>
-                <td class="col-5">Mamusina najlepsza zapiekanka pod słońcem. Można ją podać jako główne danie albo jako kolację. W zapiekance możesz użyć również kiełbasy paprykowej sprawi ona, że zapiekanka będzie ostrzejsza w smaku. Zgodnie z zalecanimi Makłowicza, podawać z dobrze dobranym winkiem ;)</td>
-                <td class="col-1"><a href="#" class="btn btn-info rounded-0 text-light">Szczegóły</a></td>
-              </tr>
-              <tr class="d-flex">
-                <th scope="row" class="col-1">4</th>
-                <td class="col-5">
-                    Zapiekanka z ziemniakami i brukselką
-                </td>
-                <td class="col-5">Mamusina najlepsza zapiekanka pod słońcem. Można ją podać jako główne danie albo jako kolację. W zapiekance możesz użyć również kiełbasy paprykowej sprawi ona, że zapiekanka będzie ostrzejsza w smaku. Zgodnie z zalecanimi Makłowicza, podawać z dobrze dobranym winkiem ;)</td>
-                <td class="col-1"><a href="#" class="btn btn-info rounded-0 text-light">Szczegóły</a></td>
-                </tr>
+            </c:forEach>
+<%--              <tr class="d-flex">--%>
+<%--                <th scope="row" class="col-1">2</th>--%>
+<%--                <td class="col-5">--%>
+<%--                    Zapiekanka z ziemniakami i brukselką--%>
+<%--                </td>--%>
+<%--                <td class="col-5">Mamusina najlepsza zapiekanka pod słońcem. Można ją podać jako główne danie albo jako kolację. W zapiekance możesz użyć również kiełbasy paprykowej sprawi ona, że zapiekanka będzie ostrzejsza w smaku. Zgodnie z zalecanimi Makłowicza, podawać z dobrze dobranym winkiem ;)</td>--%>
+<%--                <td class="col-1"><a href="#" class="btn btn-info rounded-0 text-light">Szczegóły</a></td>--%>
+<%--             </tr>--%>
+<%--             <tr class="d-flex">--%>
+<%--                <th scope="row" class="col-1">3</th>--%>
+<%--                <td class="col-5">--%>
+<%--                    Zapiekanka z ziemniakami i brukselką--%>
+<%--                </td>--%>
+<%--                <td class="col-5">Mamusina najlepsza zapiekanka pod słońcem. Można ją podać jako główne danie albo jako kolację. W zapiekance możesz użyć również kiełbasy paprykowej sprawi ona, że zapiekanka będzie ostrzejsza w smaku. Zgodnie z zalecanimi Makłowicza, podawać z dobrze dobranym winkiem ;)</td>--%>
+<%--                <td class="col-1"><a href="#" class="btn btn-info rounded-0 text-light">Szczegóły</a></td>--%>
+<%--              </tr>--%>
+<%--              <tr class="d-flex">--%>
+<%--                <th scope="row" class="col-1">4</th>--%>
+<%--                <td class="col-5">--%>
+<%--                    Zapiekanka z ziemniakami i brukselką--%>
+<%--                </td>--%>
+<%--                <td class="col-5">Mamusina najlepsza zapiekanka pod słońcem. Można ją podać jako główne danie albo jako kolację. W zapiekance możesz użyć również kiełbasy paprykowej sprawi ona, że zapiekanka będzie ostrzejsza w smaku. Zgodnie z zalecanimi Makłowicza, podawać z dobrze dobranym winkiem ;)</td>--%>
+<%--                <td class="col-1"><a href="#" class="btn btn-info rounded-0 text-light">Szczegóły</a></td>--%>
+<%--                </tr>--%>
             </tbody>
         </table>
     </section>
-
+</form>
     <section class="last-info-section padding-small">
             <div class="container">
                 <div class="row">
