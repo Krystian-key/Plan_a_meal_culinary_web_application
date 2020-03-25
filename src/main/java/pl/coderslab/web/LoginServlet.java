@@ -29,10 +29,11 @@ public class LoginServlet extends HttpServlet {
 
 
         if (new AdminDao().validationAdminData(new Admins(email, password))) {
-            int id = new AdminDao().readAdminsByEmail(email).getId();
+            Admins admins = new AdminDao().readAdminsByEmail(email);
             HttpSession sessionUser = request.getSession();
             sessionUser.setAttribute("Login", "on");
-            sessionUser.setAttribute("adminId", id);
+            sessionUser.setAttribute("adminId", admins.getId());
+            sessionUser.setAttribute("nameUser", admins.getFirstName() + " " + admins.getLastName());
             sessionUser.setMaxInactiveInterval(60 * 60 * 24);
             response.sendRedirect(request.getContextPath()+"/app");
         } else {

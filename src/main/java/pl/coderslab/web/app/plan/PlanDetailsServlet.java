@@ -1,5 +1,5 @@
 
-package pl.coderslab.web;
+package pl.coderslab.web.app.plan;
 
 import pl.coderslab.dao.PlanDao;
 import pl.coderslab.dao.RecipeDao;

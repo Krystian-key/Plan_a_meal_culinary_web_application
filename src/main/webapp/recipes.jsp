@@ -68,10 +68,11 @@
                     </thead>
                     <tbody class="text-color-lighter">
                     <tr class="d-flex">
-                        <td class="cpl-8">
+                        <td class="cpl-6" width="100%">
                                 <input name="recipeName" class="form-control" placeholder="Nazwa planu">
                         </td>
-                        <td class="col-4">
+                        <td class="col-1"></td>
+                        <td class="col-5">
                             <input type="submit" value="Wyszukać">
                         </td>
                     </tr>
