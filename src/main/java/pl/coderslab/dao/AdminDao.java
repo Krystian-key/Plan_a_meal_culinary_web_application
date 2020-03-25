@@ -19,6 +19,7 @@ public class AdminDao {
     private static final String READ_ADMIN_BY_ID_QUERY = "SELECT * from admins where id = ?;";
     private static final String READ_ADMIN_BY_EMAIL_QUERY = "SELECT * from admins where email = ?;";
     private static final String UPDATE_ADMIN_QUERY = "UPDATE   admins SET first_name = ? , last_name = ?, email = ? WHERE id = ?;";
+    private static final String UPDATE_ADMIN_PASSWORD_QUERY = "UPDATE   admins SET password = ? WHERE id = ?;";
     private static final String UPDATE_ADMIN_ENABLE_QUERY = "UPDATE    admins SET enable = ? WHERE id = ?;";
 
 
@@ -179,6 +180,22 @@ public class AdminDao {
             statement.setString(1, admin.getFirstName());
             statement.setString(2, admin.getLastName());
             statement.setString(3, admin.getEmail());
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    /**
+     * Update password for admin
+     *
+     * @param admin
+     */
+    public void updateAdminPassword(Admins admin) {
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_ADMIN_PASSWORD_QUERY)) {
+            statement.setInt(2, admin.getId());
+            statement.setString(1, admin.getPassword());
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

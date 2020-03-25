@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,12 +16,11 @@
 
         <div class="m-4 p-3 width-medium text-color-darker">
             <div class="m-4 border-dashed view-height">
-                <!-- fix action, method -->
-                <!-- add name attribute for all inputs -->
-                <form action="${pageContext.request.contextPath}/app/edit/user" method="post">
-                    <div class="mt-4 ml-4 mr-4">
+                <div class="mt-4 ml-4 mr-4">
+                    <form action="${pageContext.request.contextPath}/app/edit/password" method="post">
+
                         <div class="row border-bottom border-3">
-                            <div class="col"><h3 class="color-header text-uppercase">Edytuj dane</h3></div>
+                            <div class="col"><h3 class="color-header text-uppercase">Zmień hasło</h3></div>
                             <div class="col d-flex justify-content-end mb-2">
                                 <button type="submit" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Zapisz
                                 </button>
@@ -30,28 +30,23 @@
                         <table class="table borderless">
                             <tbody>
                             <tr class="d-flex">
-                                <th scope="row" class="col-2"><h4>Imię</h4></th>
+                                <th scope="row" class="col-2"><h4>Nowe hasło</h4></th>
                                 <td class="col-7">
-                                    <input class="w-100 p-1" type="text" name="firstName" value="${requestScope.admin.firstName}">
+                                    <input name="oldPassword" class="w-100 p-1" value="">
                                 </td>
                             </tr>
                             <tr class="d-flex">
-                                <th scope="row" class="col-2"><h4>Nazwisko</h4></th>
+                                <th scope="row" class="col-2"><h4>Powtórz hasło</h4></th>
                                 <td class="col-7">
-                                    <input class="w-100 p-1" type="text" name="lastName" value="${requestScope.admin.lastName}">
-                                </td>
-                            </tr>
-                            <tr class="d-flex">
-                                <th scope="row" class="col-2"><h4>Email</h4></th>
-                                <td class="col-3">
-                                    <input class="w-100 p-1" type="text" name="email" value="${requestScope.admin.email}">
+                                    <input name="newPassword" class="w-100 p-1" value="">
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
+
         </div>
     </div>
 </section>
