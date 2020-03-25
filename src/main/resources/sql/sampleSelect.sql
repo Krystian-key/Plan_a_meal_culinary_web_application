@@ -38,3 +38,8 @@ FROM plan
     WHERE plan.id = (SELECT  MAX(id) FROM plan WHERE admin_id = 17);
 
 SELECT * from recipe_plan where recipe_id = 18;
+
+#return all
+SELECT name FROM recipe WHERE name LIKE '%anyWord%';
+#no duplication
+SELECT DISTINCT name FROM recipe WHERE name LIKE '%bi%';
