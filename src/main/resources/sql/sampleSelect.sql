@@ -24,7 +24,7 @@ FROM recipe_plan
 ORDER BY  day_name.display_order, recipe_plan.display_order;
 
 -- SQL pobiera szczegoly planu  po id planu
-SELECT plan.name as name, plan.description as description, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id as id
+SELECT plan.name as name, plan.description as description, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id as id, recipe.id as recipe_id
 FROM recipe_plan
     JOIN plan on plan.id = plan_id
     JOIN day_name on day_name.id = day_name_id

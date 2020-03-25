@@ -25,6 +25,5 @@ public class DeletePlanServlet extends HttpServlet {
         new RecipePlanDao().deleteRecipePlanByPlanID(planId);
         new PlanDao().deletePlan(planId);
         response.sendRedirect(request.getContextPath()+"/app/plan/list");
-        request.getRequestDispatcher("/app-remove-plan.jsp").forward(request, response);
     }
 }

@@ -10,7 +10,7 @@
 
 <body>
 <section class="dashboard-section">
-    <form method="post" action="${pageContext.request.contextPath}/app/plan/edit">
+    <form method="post" action="${pageContext.request.contextPath}/app/plan/edit?planId=${requestScope.plan.id}">
     <div class="row dashboard-nowrap">
         <%@include file="tabMenu.jsp" %>
         <div class="m-4 p-3 width-medium ">
@@ -72,7 +72,7 @@
                                        <%-- <td class="col-2">${item.mealName}</td>
                                         <td class="col-7">${item.recipeName}</td>--%>
                                         <select class="form-control"  name="recipeMonday">
-                                            <option value="${item.mealName}">
+                                            <option name="planId" value="${item.mealName}">
                                                     ${item.recipeName}
                                             </option>
                                             <c:forEach var="recipe" items="${allRecipe}">
@@ -120,11 +120,11 @@
                                 <c:if test="${item.dayName eq thursday}">
                                     <tr class="d-flex">
                                         <select class="form-control" name="recipeThursday">
-                                            <option value="${item.mealName}">
-                                                    ${item.recipeName}
+                                            <option name="mealName"  value="${item.mealName}">
+                                                    <label name="recipeName"> ${item.recipeName} </label>
                                             </option>
                                             <c:forEach var="recipe" items="${allRecipe}">
-                                                <option value="${recipe.id}">
+                                                <option name="recipeId" value="${recipe.id}">
                                                         ${recipe.name}
                                                 </option>
                                                 <br>

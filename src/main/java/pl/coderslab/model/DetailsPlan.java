@@ -7,12 +7,24 @@ public class DetailsPlan {
     private String recipeName;
     private String description;
 
-    public DetailsPlan(int id, String dayName, String mealName, String recipeName, String description) {
+    public int getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(int recipeId) {
+        this.recipeId = recipeId;
+    }
+
+    private int recipeId;
+
+
+    public DetailsPlan(int id, String dayName, String mealName, String recipeName, String description, int recipeId) {
         this.id = id;
         this.dayName = dayName;
         this.mealName = mealName;
         this.recipeName = recipeName;
         this.description = description;
+        this.recipeId = recipeId;
     }
 
     public DetailsPlan() {
