@@ -18,7 +18,15 @@ public class AllRecipeServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String status = request.getParameter("recipeName");
+        if(!status.equals("")){
+            String recipeName = request.getParameter("recipeName");
+            request.setAttribute("recipes", new RecipeDao().findRecipesByName(recipeName));
+            request.getRequestDispatcher("/recipes.jsp").forward(request, response);
+        }else {
+            request.setAttribute("recipes", new RecipeDao().findAllRecipe());
+            request.getRequestDispatcher("/recipes.jsp").forward(request, response);
+        }
     }
 }

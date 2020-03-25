@@ -16,9 +16,10 @@ public class RecipeDao {
     private static final String CREATE_RECIPE_QUERY = "INSERT INTO recipe(name,ingredients,description,created,updated,preparation_time,preparation,admin_id) VALUES (?,?,?,?,?,?,?,?);";
     private static final String DELETE_RECIPE_QUERY = "DELETE FROM recipe where id = ?;";
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe;";
+    private static final String FIND_ALL_RECIPE_BY_NAME_QUERY = "SELECT * FROM recipe WHERE name LIKE ?;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
     private static final String READ_RECIPE_BY_ADMIN_ID_QUERY = "SELECT * from recipe where admin_id = ?;";
-  //  private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
+    //  private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, updated = ?, preparation_time = ?, preparation = ? WHERE id = ?;";
     private static final String FIND_ALL_RECIPE_FOR_USER = "SELECT  COUNT(*) FROM recipe WHERE admin_id= ? ";
 
@@ -91,7 +92,6 @@ public class RecipeDao {
      *
      * @return
      */
-
     public List<Recipe> findAllRecipe() {
         List<Recipe> recipeList = new ArrayList<>();
         try (Connection connection = DbUtil.getConnection();
@@ -117,6 +117,39 @@ public class RecipeDao {
         }
         return recipeList;
 
+    }
+
+    /**
+     * Return all recipes by name
+     *
+     * @param name
+     * @return
+     */
+    public List<Recipe> findRecipesByName(String name) {
+        List<Recipe> recipeList = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_RECIPE_BY_NAME_QUERY)
+        ) {
+            statement.setString(1, "%" + name + "%");
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Recipe recipeToADD = new Recipe();
+                    recipeToADD.setId(resultSet.getInt("id"));
+                    recipeToADD.setName(resultSet.getString("name"));
+                    recipeToADD.setIngredients(resultSet.getString("ingredients"));
+                    recipeToADD.setDescription(resultSet.getString("description"));
+                    recipeToADD.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
+                    recipeToADD.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
+                    recipeToADD.setPreparationTime(resultSet.getInt("preparation_time"));
+                    recipeToADD.setPreparation(resultSet.getString("preparation"));
+                    recipeToADD.setAdminId(resultSet.getInt("admin_id"));
+                    recipeList.add(recipeToADD);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return recipeList;
     }
 
     /**
@@ -187,11 +220,11 @@ public class RecipeDao {
             statement.setString(1, recipe.getName());
             statement.setString(2, recipe.getIngredients());
             statement.setString(3, recipe.getDescription());
-        //    statement.setString(4, recipe.getCreated().toString());
+            //    statement.setString(4, recipe.getCreated().toString());
             statement.setString(4, recipe.getUpdated().toString());
             statement.setInt(5, recipe.getPreparationTime());
             statement.setString(6, recipe.getPreparation());
-        //    statement.setInt(8, recipe.getAdminId());
+            //    statement.setInt(8, recipe.getAdminId());
 
             statement.executeUpdate();
         } catch (Exception e) {
