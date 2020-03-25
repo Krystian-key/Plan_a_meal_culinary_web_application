@@ -19,14 +19,14 @@ public class RecipePlanDao {
     private static final String READ_RECIPE_PLAN_QUERY = "SELECT * from recipe_plan where id = ?;";
     private static final String READ_RECIPE_PLAN_BY_PLAN_ID_QUERY = "SELECT * from recipe_plan where recipe_id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	recipe_plan SET recipe_id = ? , meal_name = ?, display_order = ?, day_name_id = ?, plan_id = ?  WHERE	id = ?;";
-    private static final String FIND_LAST_ADDED_PLAN_QUERY = "SELECT plan.name as name, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id\n" +
+    private static final String FIND_LAST_ADDED_PLAN_QUERY = "SELECT plan.name as name, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id, recipe.id as recipe_id\n" +
             "FROM recipe_plan\n" +
             "    JOIN plan on plan.id = plan_id\n" +
             "    JOIN day_name on day_name.id = day_name_id\n" +
             "    JOIN recipe on recipe.id = recipe_id\n" +
             "    WHERE recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)\n" +
             "ORDER BY  day_name.display_order, recipe_plan.display_order;";
-    private static final String FIND_PLAN_ALL_DETITALS_BY_ID_QUERY = "SELECT plan.name as name, plan.description as description, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id as id\n" +
+    private static final String FIND_PLAN_ALL_DETITALS_BY_ID_QUERY = "SELECT plan.name as name, plan.description as description, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id as id, recipe.id as recipe_id \n" +
             "FROM recipe_plan\n" +
             "    JOIN plan on plan.id = plan_id\n" +
             "    JOIN day_name on day_name.id = day_name_id\n" +
@@ -308,6 +308,7 @@ public class RecipePlanDao {
         planDetails.setRecipeName(resultSet.getString("recipe_name"));
         planDetails.setDayName(dayName);
         planDetails.setId(resultSet.getInt("id"));
+        planDetails.setRecipeId(resultSet.getInt("recipe_id"));
     }
 
     /**

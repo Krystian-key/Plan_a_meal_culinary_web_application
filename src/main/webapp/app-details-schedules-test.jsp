@@ -10,6 +10,7 @@
 
 <body>
 <section class="dashboard-section">
+    <form method="post" action="${pageContext.request.contextPath}/app/plan/edit">
     <div class="row dashboard-nowrap">
         <%@include file="tabMenu.jsp" %>
 
@@ -20,6 +21,7 @@
                         <h3 class="color-header text-uppercase">SZCZEGÓŁY PLANU</h3>
                     </div>
                     <div class="col d-flex justify-content-end mb-2 noPadding">
+                        <input type="submit" value="Edytuj" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">
                         <a href="${pageContext.request.contextPath}/app/plan/list" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
                     </div>
                 </div>
@@ -49,7 +51,18 @@
                         <table class="table">
                             <thead>
                             <tr class="d-flex">
-                                <th class="col-2">${day.key}</th>
+                                <th class="col-2">
+                                    <select class="form-control" id="day" name="day">
+                                        <option value="${day.key}">${day.key}</option>
+                                        <option value="Poniedziałek">Poniedziałek</option>
+                                        <option value="Wtorek">Wtorek</option>
+                                        <option value="Sroda">Sroda</option>
+                                        <option value="Czwartek">Czwartek</option>
+                                        <option value="Piatek">Piatek</option>
+                                        <option value="Sobota">Sobota</option>
+                                        <option value="Niedziela">Niedziela</option>
+                                    </select>
+                                </th>
                                 <th class="col-7"></th>
                                 <th class="col-1"></th>
                                 <th class="col-2"></th>
@@ -79,8 +92,33 @@
                                     </c:if>
                                     <c:if test="${item.dayName eq tuesday}">
                                         <tr class="d-flex">
-                                            <td  class="col-2">${item.mealName}</td>
-                                            <td class="col-7">${item.recipeName}</td>
+                                            <td  class="col-2">
+                                                <select class="form-control" id="meal" name="meal">
+                                                    <option value="${item.mealName}">${item.mealName}</option>
+                                                    <option value="Śniadanie">Śniadanie</option>
+                                                    <option value="Drugie Śniadanie">Drugie Śniadanie</option>
+                                                    <option value="Lunch">Lunch</option>
+                                                    <option value="Obiad">Obiad</option>
+                                                    <option value="Podwieczorek">Podwieczorek</option>
+                                                    <option value="Przekąska">Przekąska</option>
+                                                    <option value="Kolacja">Kolacja</option>
+                                                </select>
+                                            </td>
+                                            <td class="col-7">
+                                               <input type="hidden" name="planId"  value="${item.id}">
+                                               <input type="hidden" name="recipePlanId"  value="${requestScope.recipPlanId}">
+                                                <select class="form-control" id="recipeTuesdayId" name="recipeTuesdayId">
+                                                    <option value="${item.recipeId}">
+                                                            ${item.recipeName}
+                                                    </option>
+                                                    <c:forEach var="recipe" items="${allRecipe}">
+                                                        <option value="${recipe.id}">
+                                                                ${recipe.name}
+                                                        </option>
+                                                        <br>
+                                                    </c:forEach>
+                                                </select>
+                                            </td>
                                             <td class="col-1 center">
                                                 <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
                                             </td>
@@ -163,6 +201,7 @@
             </div>
         </div>
     </div>
+    </form>
 </section>
 
 

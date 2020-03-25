@@ -51,8 +51,10 @@
                                 <select class="form-control" id="meal" name="meal">
                                     <option value="Śniadanie">Śniadanie</option>
                                     <option value="Drugie Śniadanie">Drugie Śniadanie</option>
+                                    <option value="Lunch">Lunch</option>
                                     <option value="Obiad">Obiad</option>
                                     <option value="Podwieczorek">Podwieczorek</option>
+                                    <option value="Przekąska">Przekąska</option>
                                     <option value="Kolacja">Kolacja</option>
                                 </select>
                             </div>
