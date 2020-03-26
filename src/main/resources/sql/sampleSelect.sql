@@ -29,7 +29,7 @@ FROM recipe_plan
     JOIN plan on plan.id = plan_id
     JOIN day_name on day_name.id = day_name_id
     JOIN recipe on recipe.id = recipe_id
-    WHERE plan_id = 6
+    WHERE plan_id = 8
 ORDER BY day_name.display_order, recipe_plan.display_order;
 #     WHERE plan_id = 6
 
