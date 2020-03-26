@@ -242,4 +242,23 @@ public class AdminDao {
         return false;
 
     }
+
+    /**
+     * Return all emails
+     * @return
+     */
+    public List<String> readEmails() {
+        List<String> emails = new ArrayList<>();
+        try (Connection connection = DbUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(FIND_ALL_ADMIN_QUERY);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                emails.add(resultSet.getString("email"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return emails;
+    }
 }
