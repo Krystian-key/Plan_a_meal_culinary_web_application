@@ -12,11 +12,10 @@ import java.util.List;
 
 public class DayNameDao {
     // ZAPYTANIA SQL
-   
+
     private static final String FIND_ALL_DAY_NAME_QUERY = "SELECT * FROM day_name;";
 
 
-  
     /**
      * Return all day_name
      *
@@ -44,6 +43,30 @@ public class DayNameDao {
 
     }
 
+    /**
+     * Converting day from String to int
+     *
+     * @param day
+     * @return
+     */
+    public int dayIdToInt(String day) {
+        if (day.equals("poniedziałek")) {
+            return 1;
+        } else if (day.equals("wtorek")) {
+            return 2;
+        } else if (day.equals("środa")) {
+            return 3;
+        } else if (day.equals("czwartek")) {
+            return 4;
+        } else if (day.equals("piątek")) {
+            return 5;
+        } else if (day.equals("sobota")) {
+            return 6;
+        } else if (day.equals("niedziela")) {
+            return 7;
+        }
+        return 0;
+    }
 
 
 }

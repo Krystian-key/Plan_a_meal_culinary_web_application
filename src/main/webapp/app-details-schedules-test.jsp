@@ -6,6 +6,11 @@
 
 <head>
     <%@include file="headerDashboard.jsp"%>
+    <!--Load the CDN first -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--if CDN fails to load, server up the local version -->
+    <script>window.jQuery || document('<script src="js/jquery-3.4.1.js"><\/script>')</script>
+    <script src="js/scripts.js"></script>
 </head>
 
 <body>
@@ -51,18 +56,7 @@
                         <table class="table">
                             <thead>
                             <tr class="d-flex">
-                                <th class="col-2">
-                                    <select class="form-control" id="day" name="day">
-                                        <option value="${day.key}">${day.key}</option>
-                                        <option value="Poniedziałek">Poniedziałek</option>
-                                        <option value="Wtorek">Wtorek</option>
-                                        <option value="Sroda">Sroda</option>
-                                        <option value="Czwartek">Czwartek</option>
-                                        <option value="Piatek">Piatek</option>
-                                        <option value="Sobota">Sobota</option>
-                                        <option value="Niedziela">Niedziela</option>
-                                    </select>
-                                </th>
+                                <th class="col-2">${day.key}</th>
                                 <th class="col-7"></th>
                                 <th class="col-1"></th>
                                 <th class="col-2"></th>
@@ -92,8 +86,20 @@
                                     </c:if>
                                     <c:if test="${item.dayName eq tuesday}">
                                         <tr class="d-flex">
+                                            <td class="col-2">
+                                                <select class="form-control" id="selectedDay" name="selectedDay">
+                                                    <option value="${day.key}">${day.key}</option>
+                                                    <option value="poniedziałek">Poniedziałek</option>
+                                                    <option value="wtorek">Wtorek</option>
+                                                    <option value="środa">Środa</option>
+                                                    <option value="czwartek">Czwartek</option>
+                                                    <option value="piątek">Piątek</option>
+                                                    <option value="sobota">Sobota</option>
+                                                    <option value="niedziela">Niedziela</option>
+                                                </select>
+                                            </td>
                                             <td  class="col-2">
-                                                <select class="form-control" id="meal" name="meal">
+                                                <select class="form-control" id="selectedMeal" name="selectedMeal">
                                                     <option value="${item.mealName}">${item.mealName}</option>
                                                     <option value="Śniadanie">Śniadanie</option>
                                                     <option value="Drugie Śniadanie">Drugie Śniadanie</option>
@@ -104,10 +110,10 @@
                                                     <option value="Kolacja">Kolacja</option>
                                                 </select>
                                             </td>
-                                            <td class="col-7">
-                                               <input type="hidden" name="planId"  value="${item.id}">
-                                               <input type="hidden" name="recipePlanId"  value="${requestScope.recipPlanId}">
-                                                <select class="form-control" id="recipeTuesdayId" name="recipeTuesdayId">
+
+                                            <td class="col-5">
+                                               <input type="hidden" name="selectedRecipePlanId"  value="${item.id}">
+                                                <select class="form-control" id="selectedRecipeId" name="selectedRecipeId">
                                                     <option value="${item.recipeId}">
                                                             ${item.recipeName}
                                                     </option>
