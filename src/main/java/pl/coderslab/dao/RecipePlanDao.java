@@ -1,9 +1,7 @@
 package pl.coderslab.dao;
-
 import pl.coderslab.exception.NotFoundException;
 import pl.coderslab.model.*;
 import pl.coderslab.utils.DbUtil;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +16,7 @@ public class RecipePlanDao {
     private static final String FIND_ALL_RECIPE_PLAN_QUERY = "SELECT * FROM recipe_plan;";
     private static final String READ_RECIPE_PLAN_QUERY = "SELECT * from recipe_plan where id = ?;";
     private static final String READ_RECIPE_PLAN_BY_PLAN_ID_QUERY = "SELECT * from recipe_plan where recipe_id = ?;";
-    private static final String UPDATE_PLAN_QUERY = "UPDATE	recipe_plan SET recipe_id = ? , meal_name = ?, display_order = ?, day_name_id = ?, plan_id = ?  WHERE	id = ?;";
+    private static final String UPDATE_PLAN_QUERY = "UPDATE	recipe_plan SET recipe_id = ? , meal_name = ?, day_name_id = ? WHERE id = ?;";
     private static final String FIND_LAST_ADDED_PLAN_QUERY = "SELECT plan.name as name, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id, recipe.id as recipe_id\n" +
             "FROM recipe_plan\n" +
             "    JOIN plan on plan.id = plan_id\n" +
@@ -193,21 +191,21 @@ public class RecipePlanDao {
     /**
      * Update recipe_plan
      *
-     * @param recipePlan
+     * @param recipePlanList
      */
-    public void updatePlan(RecipePlan recipePlan) {
-        try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_PLAN_QUERY)) {
-            statement.setInt(6, recipePlan.getId());
-            statement.setInt(1, recipePlan.getRecipeId());
-            statement.setString(2, recipePlan.getMealName());
-            statement.setInt(3, recipePlan.getDisplayOrder());
-            statement.setInt(4, recipePlan.getDayNameId());
-            statement.setInt(4, recipePlan.getPlanId());
+    public void updatePlan(List<RecipePlan> recipePlanList) {
+        for (RecipePlan recipePlan : recipePlanList) {
 
-            statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
+            try (Connection connection = DbUtil.getConnection();
+                 PreparedStatement statement = connection.prepareStatement(UPDATE_PLAN_QUERY)) {
+                statement.setInt(4, recipePlan.getId());
+                statement.setInt(1, recipePlan.getRecipeId());
+                statement.setString(2, recipePlan.getMealName());
+                statement.setInt(3, recipePlan.getDayNameId());
+                statement.executeUpdate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

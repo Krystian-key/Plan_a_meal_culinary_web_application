@@ -4,7 +4,10 @@ import pl.coderslab.dao.DayNameDao;
 import pl.coderslab.dao.PlanDao;
 import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.dao.RecipePlanDao;
-import pl.coderslab.model.*;
+import pl.coderslab.model.DisplayPlan;
+import pl.coderslab.model.Plan;
+import pl.coderslab.model.Recipe;
+import pl.coderslab.model.RecipePlan;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @WebServlet(name = "PlanEditServlet", urlPatterns = {"/app/plan/edit"})
@@ -40,7 +41,7 @@ public class PlanEditServlet extends HttpServlet {
         List<Recipe> recipe = new ArrayList<>();
         recipe = recipeDao.showAllRecipeUser(adminId);
         request.setAttribute("allRecipe", recipe);
-        request.getRequestDispatcher("/app-details-schedules-test.jsp").forward(request, response);
+        request.getRequestDispatcher("/app-edit-details-schedules.jsp").forward(request, response);
     }
 
     @Override
@@ -59,11 +60,20 @@ public class PlanEditServlet extends HttpServlet {
             recipePlan.setDayNameId(new DayNameDao().dayIdToInt(dayName[i])); // day_name_id
             recipePlanList.add(recipePlan);
         }
-//        for (RecipePlan recipePlan : recipePlanList){
-//            response.getWriter().println("<br>Id z tabeli recipe_plan: " + recipePlan.getId() +
-//                    " Id dla recipe: " + recipePlan.getRecipeId() +
-//                    " Meal: " + recipePlan.getMealName() +
-//                    " Id dnia: " +recipePlan.getDayNameId() + "<br>");
-//        }
+
+        RecipePlanDao recipePlanDao = new RecipePlanDao();
+        recipePlanDao.updatePlan(recipePlanList);
+        response.sendRedirect(request.getContextPath() + "/app/plan/list");
+
+     /*
+      for (RecipePlan recipePlan : recipePlanList){
+            response.getWriter().println("<br>Id z tabeli recipe_plan: " + recipePlan.getId() +
+                " Id dla recipe: " + recipePlan.getRecipeId() +
+                " Meal: " + recipePlan.getMealName() +
+                " Id dnia: " +recipePlan.getDayNameId() + "<br>");
+
+        // Show connection with database recipe_plan
+    }*/
+
     }
 }
