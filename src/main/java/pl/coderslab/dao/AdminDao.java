@@ -20,6 +20,7 @@ public class AdminDao {
     private static final String READ_ADMIN_BY_EMAIL_QUERY = "SELECT * from admins where email = ?;";
     private static final String UPDATE_ADMIN_QUERY = "UPDATE   admins SET first_name = ? , last_name = ?, email = ? WHERE id = ?;";
     private static final String UPDATE_ADMIN_PASSWORD_QUERY = "UPDATE   admins SET password = ? WHERE id = ?;";
+    private static final String UPDATE_ADMIN_STATUS_QUERY = "UPDATE   admins SET enable = ? WHERE id = ?;";
     private static final String UPDATE_ADMIN_ENABLE_QUERY = "UPDATE    admins SET enable = ? WHERE id = ?;";
 
 
@@ -203,6 +204,7 @@ public class AdminDao {
 
     }
 
+
     /**
      * Update status online/offline
      *
@@ -232,15 +234,23 @@ public class AdminDao {
         for (Admins admins : allAdmins) {
             if (admins.getEmail().equals(admin.getEmail())) {
                 if (admins.checkPassword(admin.getPassword(), admins.getPassword())) {
-                    new AdminDao().updateAdminEnable(admins.getId(),1);
                     return true;
                 }
-
             }
         }
-
         return false;
+    }
 
+    /**
+     * Checking if user is blocked by SuperAdmin
+     * @param adminId
+     * @return
+     */
+    public boolean validationStatus(int adminId){
+        if (readAdmins(adminId).getEnable() == 1){
+            return true;
+        }
+        return false;
     }
 
     /**

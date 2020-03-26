@@ -22,7 +22,6 @@
                             <a href="#" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
                         </div>
                     </div>
-
                     <div class="schedules-content">
                         <table class="table">
                             <thead>
@@ -40,43 +39,19 @@
                                     <td class="col-3">${user.firstName}</td>
                                     <td class="col-6">${user.lastName}</td>
                                     <td class="col-2 center">
-                                        <a href="#" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>
+                                        <form action="${pageContext.request.contextPath}/app/super/admin?userId=${user.id}" method="post">
+                                            <button type="submit"class="btn btn-danger rounded-0 text-light m-1">Blokuj</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </c:forEach>
-<%--                                <tr class="d-flex">--%>
-<%--                                    <td class="col-1">1</td>--%>
-<%--                                    <td class="col-3">Marek</td>--%>
-<%--                                    <td class="col-6">Marecki</td>--%>
-<%--                                    <td class="col-2 center">--%>
-<%--                                        <a href="#" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
-<%--                                <tr class="d-flex">--%>
-<%--                                    <td class="col-1">2</td>--%>
-<%--                                    <td class="col-3">Marek</td>--%>
-<%--                                    <td class="col-6">Marecki</td>--%>
-<%--                                    <td class="col-2 center">--%>
-<%--                                        <a href="#" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
-<%--                                <tr class="d-flex">--%>
-<%--                                    <td class="col-1">3</td>--%>
-<%--                                    <td class="col-3">Marek</td>--%>
-<%--                                    <td class="col-6">Marecki</td>--%>
-<%--                                    <td class="col-2 center">--%>
-<%--                                        <a href="#" class="btn btn-danger rounded-0 text-light m-1">Blokuj</a>--%>
-<%--                                    </td>--%>
-<%--                                </tr>--%>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
