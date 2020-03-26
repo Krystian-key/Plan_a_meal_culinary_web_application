@@ -28,13 +28,17 @@ public class LoginServlet extends HttpServlet {
 
         if (new AdminDao().validationAdminData(new Admins(email, password))) {
             Admins admins = new AdminDao().readAdminsByEmail(email);
-            HttpSession sessionUser = request.getSession();
-            sessionUser.setAttribute("Login", "on");
-            sessionUser.setAttribute("adminId", admins.getId());
-            sessionUser.setAttribute("nameUser", admins.getFirstName() + " " + admins.getLastName());
-            sessionUser.setAttribute("superAdmin", admins.getSuperAdmin());
-            sessionUser.setMaxInactiveInterval(60 * 60 * 24);
-            response.sendRedirect(request.getContextPath()+"/app");
+            if(new AdminDao().validationStatus(admins.getId())) {
+                HttpSession sessionUser = request.getSession();
+                sessionUser.setAttribute("Login", "on");
+                sessionUser.setAttribute("adminId", admins.getId());
+                sessionUser.setAttribute("nameUser", admins.getFirstName() + " " + admins.getLastName());
+                sessionUser.setAttribute("superAdmin", admins.getSuperAdmin());
+                sessionUser.setMaxInactiveInterval(60 * 60 * 24);
+                response.sendRedirect(request.getContextPath() + "/app");
+            }else {
+                response.getWriter().println("Jesteś w ope");
+            }
         } else {
             request.getRequestDispatcher("login.html").forward(request, response);
         }

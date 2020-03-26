@@ -16,16 +16,18 @@ public class SuperAdminUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         int enable = Integer.parseInt(session.getAttribute("superAdmin").toString());
-        if(enable == 1){
+        if (enable == 1) {
             request.setAttribute("users", new AdminDao().findAllAdmins());
             request.getRequestDispatcher("/super-admin-users.jsp").forward(request, response);
-        }else {
-            response.sendRedirect(request.getContextPath()+"/app");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/app");
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("userId"));
+        new AdminDao().updateAdminEnable(id, 0);
+        response.sendRedirect(request.getContextPath() + "/app/super/admin");
     }
 }
