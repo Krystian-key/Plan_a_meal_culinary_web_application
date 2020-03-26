@@ -48,7 +48,7 @@
             <div class="container w-100" align="center">
                 <br>
                 <br>
-                <label class="color-black text-uppercase"><h3>Ten Email jest już zajęty!</h3></label>
+                <label class="color-black text-uppercase"><h3>Zostałeś zablokowany przez Administratora!</h3></label>
 
                 <div class="form-group">
                     <td>
