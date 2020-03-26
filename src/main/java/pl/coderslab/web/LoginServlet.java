@@ -1,8 +1,6 @@
 package pl.coderslab.web;
 
 import pl.coderslab.dao.AdminDao;
-import pl.coderslab.dao.PlanDao;
-import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.model.Admins;
 
 import javax.servlet.ServletException;
@@ -34,6 +32,7 @@ public class LoginServlet extends HttpServlet {
             sessionUser.setAttribute("Login", "on");
             sessionUser.setAttribute("adminId", admins.getId());
             sessionUser.setAttribute("nameUser", admins.getFirstName() + " " + admins.getLastName());
+            sessionUser.setAttribute("superAdmin", admins.getSuperAdmin());
             sessionUser.setMaxInactiveInterval(60 * 60 * 24);
             response.sendRedirect(request.getContextPath()+"/app");
         } else {

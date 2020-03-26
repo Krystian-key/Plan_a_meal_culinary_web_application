@@ -8,7 +8,7 @@ public class Admins {
     private String lastName;
     private String email;
     private String password;
-    private int superadmin;
+    private int superAdmin;
     private int enable;
 
     public Admins() {
@@ -19,7 +19,7 @@ public class Admins {
         this.lastName = lastName;
         this.email = email;
         setPassword(password);
-        this.superadmin = superadmin;
+        this.superAdmin = superadmin;
         this.enable = enable;
     }
 
@@ -28,13 +28,13 @@ public class Admins {
         this.password = password;
     }
 
-    public Admins(int id, String firstName, String lastName, String email, String password, int superadmin, int enable) {
+    public Admins(int id, String firstName, String lastName, String email, String password, int superAdmin, int enable) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.superadmin = superadmin;
+        this.superAdmin = superAdmin;
         this.enable = enable;
     }
 
@@ -102,12 +102,12 @@ public class Admins {
     public boolean checkPassword(String plain) {
         return BCrypt.checkpw(plain,this.password);
     }
-    public int getSuperadmin() {
-        return superadmin;
+    public int getSuperAdmin() {
+        return superAdmin;
     }
 
-    public void setSuperadmin(int superadmin) {
-        this.superadmin = superadmin;
+    public void setSuperAdmin(int superAdmin) {
+        this.superAdmin = superAdmin;
     }
 
     public int getEnable() {
@@ -126,7 +126,7 @@ public class Admins {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", superadmin='" + superadmin + '\'' +
+                ", superadmin='" + superAdmin + '\'' +
                 ", enable=" + enable +
                 '}';
     }
