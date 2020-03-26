@@ -1,5 +1,6 @@
 package pl.coderslab.web.app.plan;
 
+import pl.coderslab.dao.DayNameDao;
 import pl.coderslab.dao.PlanDao;
 import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.dao.RecipePlanDao;
@@ -44,44 +45,25 @@ public class PlanEditServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String[] recipeId = request.getParameterValues("recipeTuesdayId");
-        String[] mealName = request.getParameterValues("meal");
-        String[] dayName = request.getParameterValues("day");
-        String[] recipePlanIds = request.getParameterValues("recipePlanId");
-        String[] planId = request.getParameterValues("planId");
+        String[] recipeId = request.getParameterValues("selectedRecipeId");
+        String[] recipePlanId = request.getParameterValues("selectedRecipePlanId");
+        String[] mealName = request.getParameterValues("selectedMeal");
+        String[] dayName = request.getParameterValues("selectedDay");
 
-
-        for (String value : recipeId) {
-            response.getWriter().println("recipeId = "+value + "<br>");
-        }
-        for (String valueSec : mealName) {
-            response.getWriter().println("mealId = "+valueSec + "<br>");
-        }
-        for (String value : dayName) {
-            response.getWriter().println("day = "+value + "<br>");
-        }
-        for (String value : recipePlanIds) {
-            response.getWriter().println("recipePlanId = "+value + "<br>");
-        }
-
-        for (String value : planId) {
-            response.getWriter().println("planId = "+value + "<br>");
-        }
- //       Map<String,List<RecipePlan>> planDetails = new HashMap<>();
         List <RecipePlan> recipePlanList = new ArrayList<>();
-        for(int i=0; i<recipeId.length -1; i++){
-
+        for(int i=0; i<recipeId.length; i++){
             RecipePlan recipePlan = new RecipePlan();
-            recipePlan.setId(Integer.parseInt(recipePlanIds[i]));//id for table recipe_plan
+            recipePlan.setId(Integer.parseInt(recipePlanId[i]));//id for table recipe_plan (recipe_plan.id)
             recipePlan.setRecipeId(Integer.parseInt(recipeId[i])); // recipe_id
             recipePlan.setMealName(mealName[i]); //meal_name
-            recipePlan.setDayNameId(Integer.parseInt(dayName[0])); // day_name_id
-            recipePlan.setPlanId(Integer.parseInt(planId[i])); // plan_id
+            recipePlan.setDayNameId(new DayNameDao().dayIdToInt(dayName[i])); // day_name_id
             recipePlanList.add(recipePlan);
-
-
-
         }
-
+//        for (RecipePlan recipePlan : recipePlanList){
+//            response.getWriter().println("<br>Id z tabeli recipe_plan: " + recipePlan.getId() +
+//                    " Id dla recipe: " + recipePlan.getRecipeId() +
+//                    " Meal: " + recipePlan.getMealName() +
+//                    " Id dnia: " +recipePlan.getDayNameId() + "<br>");
+//        }
     }
 }
