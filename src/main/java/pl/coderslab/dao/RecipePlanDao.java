@@ -221,7 +221,7 @@ public class RecipePlanDao {
     public DisplayPlan lastAddedPlan(int adminId) {
         DisplayPlan displayPlan = new DisplayPlan();
         Plan plan = new Plan();
-        Map<String, List<DetailsPlan>> recipePlanListMap = new HashMap<>();
+        LinkedHashMap<String, List<DetailsPlan>> recipePlanListMap = new LinkedHashMap<>();
         List<DetailsPlan> recipePlansListM = new ArrayList<>();
         List<DetailsPlan> recipePlansListT = new ArrayList<>();
         List<DetailsPlan> recipePlansListW = new ArrayList<>();
@@ -319,7 +319,7 @@ public class RecipePlanDao {
     public DisplayPlan detailsPlan(int id) {
         DisplayPlan displayPlan = new DisplayPlan();
         Plan plan = new Plan();
-        Map<String, List<DetailsPlan>> recipePlanListMap = new HashMap<>();
+        LinkedHashMap<String, List<DetailsPlan>> recipePlanListMap = new LinkedHashMap<>();
         List<DetailsPlan> recipePlansListM = new ArrayList<>();
         List<DetailsPlan> recipePlansListT = new ArrayList<>();
         List<DetailsPlan> recipePlansListW = new ArrayList<>();

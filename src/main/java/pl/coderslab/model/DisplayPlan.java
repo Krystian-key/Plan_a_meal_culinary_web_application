@@ -1,16 +1,17 @@
 package pl.coderslab.model;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class DisplayPlan {
     private Plan plan;
-    private Map<String,List<DetailsPlan>> planDetails;
+    private LinkedHashMap<String,List<DetailsPlan>> planDetails;
 
     public DisplayPlan() {
     }
 
-    public DisplayPlan(Plan plan, Map<String, List<DetailsPlan>> planDetails) {
+    public DisplayPlan(Plan plan, LinkedHashMap<String, List<DetailsPlan>> planDetails) {
         this.plan = plan;
         this.planDetails = planDetails;
     }
@@ -27,7 +28,7 @@ public class DisplayPlan {
         return planDetails;
     }
 
-    public void setPlanDetails(Map<String, List<DetailsPlan>> planDetails) {
+    public void setPlanDetails(LinkedHashMap<String, List<DetailsPlan>> planDetails) {
         this.planDetails = planDetails;
     }
 }
