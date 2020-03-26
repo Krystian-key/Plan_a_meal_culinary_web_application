@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
                 sessionUser.setMaxInactiveInterval(60 * 60 * 24);
                 response.sendRedirect(request.getContextPath() + "/app");
             }else {
-                response.getWriter().println("Jesteś w ope");
+                request.getRequestDispatcher("/blocked-user.jsp").forward(request, response);
             }
         } else {
             request.getRequestDispatcher("login.html").forward(request, response);
