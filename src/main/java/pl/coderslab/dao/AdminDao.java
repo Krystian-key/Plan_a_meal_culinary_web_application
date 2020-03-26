@@ -42,7 +42,7 @@ public class AdminDao {
                     admins.setLastName(resultSet.getString("last_name"));
                     admins.setEmail(resultSet.getString("email"));
                     admins.setPasswordString(resultSet.getString("password"));
-                    admins.setSuperadmin(resultSet.getInt("superadmin"));
+                    admins.setSuperAdmin(resultSet.getInt("superadmin"));
                     admins.setEnable(resultSet.getInt("enable"));
                 }
             }
@@ -70,7 +70,7 @@ public class AdminDao {
                     admins.setLastName(resultSet.getString("last_name"));
                     admins.setEmail(resultSet.getString("email"));
                     admins.setPasswordString(resultSet.getString("password"));
-                    admins.setSuperadmin(resultSet.getInt("superadmin"));
+                    admins.setSuperAdmin(resultSet.getInt("superadmin"));
                     admins.setEnable(resultSet.getInt("enable"));
                 }
             }
@@ -97,7 +97,7 @@ public class AdminDao {
                 adminsToAdd.setLastName(resultSet.getString("last_name"));
                 adminsToAdd.setEmail(resultSet.getString("email"));
                 adminsToAdd.setPasswordString(resultSet.getString("password"));
-                adminsToAdd.setSuperadmin(resultSet.getInt("superadmin"));
+                adminsToAdd.setSuperAdmin(resultSet.getInt("superadmin"));
                 adminsToAdd.setEnable(resultSet.getInt("enable"));
                 adminsList.add(adminsToAdd);
             }
@@ -123,7 +123,7 @@ public class AdminDao {
             insertStm.setString(2, admin.getLastName());
             insertStm.setString(3, admin.getEmail());
             insertStm.setString(4, admin.getPassword());
-            insertStm.setInt(5, admin.getSuperadmin());
+            insertStm.setInt(5, admin.getSuperAdmin());
             insertStm.setInt(6, admin.getEnable());
             int result = insertStm.executeUpdate();
 

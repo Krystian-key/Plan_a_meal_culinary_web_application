@@ -43,7 +43,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/super-admin-users.html">
+        <a class="nav-link" href="${pageContext.request.contextPath}/app/super/admin">
             <span>Użytkownicy</span>
             <i class="fas fa-angle-right"></i>
         </a>
