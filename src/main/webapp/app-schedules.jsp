@@ -20,10 +20,10 @@
                             <h3 class="color-header text-uppercase">LISTA PLANÓW</h3>
                         </div>
                         <div class="col d-flex justify-content-end mb-2 noPadding">
-                            <a href="${pageContext.request.contextPath}/app/recipe/plan/add" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj plan do przepisu</a>
+                            <a href="${pageContext.request.contextPath}/app/recipe/plan/add" class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Dodaj przepisu do planu</a>
                         </div>
                         <div class="col d-flex justify-content-end mb-2 noPadding">
-                            <a href="${pageContext.request.contextPath}/app/plan/add" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj plan</a>
+                            <a href="${pageContext.request.contextPath}/app/plan/add" class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Dodaj plan</a>
                         </div>
                     </div>
 
@@ -51,12 +51,12 @@
                                             ${allPlanList.description}
                                     </td>
                                     <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
-                                        <a href="${pageContext.request.contextPath}/app/plan/delete?id=${allPlanList.id}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                        <a href="${pageContext.request.contextPath}/app/plan/delete?id=${allPlanList.id}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
 <%--                                        <a href="${pageContext.request.contextPath}/app/plan/details"--%>
                                         <a href="${pageContext.request.contextPath}/app/plan/details?id=${allPlanList.id}"
-                                           class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                           class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
                                         <a href="${pageContext.request.contextPath}/app/plan/edit?id=${allPlanList.id}"
-                                           class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
+                                           class="btn btn-warning rounded-4 text-light m-1">Edytuj</a>
                                     </td>
                                 </tr>
                             </c:forEach>

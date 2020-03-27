@@ -43,3 +43,5 @@ SELECT * from recipe_plan where recipe_id = 18;
 SELECT name FROM recipe WHERE name LIKE '%anyWord%';
 #no duplication
 SELECT DISTINCT name FROM recipe WHERE name LIKE '%bi%';
+
+SELECT * from recipe where admin_id = ? order by created DESC ;
