@@ -28,18 +28,39 @@
 </head>
 <body>
 <%@include file="header.jsp"%>
+<section class="padding-large bg-light">
 
-
-
-<h1 align="center">Jedzonko</h1>
-<div>
-    <p>
-        Książka Pani Iksińskiej promuje zdrowe odżywianie i podkreśla jak ważną rolę odgrywa w nim planowanie posiłków. <br>
-        Chce zacząć przeprowadzać w całym kraju warsztaty, na których będzie uczyć uczestników planowania posiłków.
-    </p>
-</div>
-
-
+    <div id="carouselExampleControls" class="carousel slide main-slider" data-ride="carousel">
+        <div class="carousel slider container">
+           <div class="carousel-item active">
+                <div class="container w-50 d-flex">
+                    <div class="carousel-caption d-block">
+                        <h1>Maria Iksińska autorka bestsellerowej książki</h1>
+                        <h3>Zaprasza do wypróbowania swoich nowatorskich przepisów.</h3>
+                    </div>
+                </div>
+            </div>
+            <c:forEach items="${requestScope.id}" var="about">
+                <div class="carousel-item">
+                    <div class="container w-75 d-flex">
+                        <div class="carousel-caption d-block">
+                            <h1>${about.title}</h1>
+                            <h3>${about.description}</h3>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
 <%@include file="footer.jsp"%>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
