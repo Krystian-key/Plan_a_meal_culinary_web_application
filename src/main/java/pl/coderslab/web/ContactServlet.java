@@ -1,5 +1,7 @@
 package pl.coderslab.web;
 
+import pl.coderslab.dao.AdminDao;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,7 @@ public class ContactServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("contacts", new AdminDao().findAllAdmins());
         request.getRequestDispatcher("contact.jsp").forward(request,response);
     }
 }
