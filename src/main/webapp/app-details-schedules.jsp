@@ -20,7 +20,7 @@
                         <h3 class="color-header text-uppercase">SZCZEGÓŁY PLANU</h3>
                     </div>
                     <div class="col d-flex justify-content-end mb-2 noPadding">
-                        <a href="${pageContext.request.contextPath}/app/plan/list" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
+                        <a href="${pageContext.request.contextPath}/app/plan/list" class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Powrót</a>
                     </div>
                 </div>
 
@@ -69,11 +69,11 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
+                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
                                             </td>
                                         </tr>
                                     </c:if>
@@ -82,11 +82,11 @@
                                             <td  class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
+                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
                                             </td>
                                         </tr>
                                     </c:if>
@@ -95,11 +95,11 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
+                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
                                             </td>
                                         </tr>
                                     </c:if>
@@ -108,11 +108,11 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
+                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
                                             </td>
                                         </tr>
                                     </c:if>
@@ -121,11 +121,11 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
+                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
                                             </td>
                                         </tr>
                                     </c:if>
@@ -134,11 +134,11 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
+                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
                                             </td>
                                         </tr>
                                     </c:if>
@@ -147,11 +147,11 @@
                                             <td class="col-2">${item.mealName}</td>
                                             <td class="col-7">${item.recipeName}</td>
                                             <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
                                             </td>
                                             <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
+                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
                                             </td>
                                         </tr>
                                     </c:if>

@@ -20,8 +20,8 @@
                         <h3 class="color-header text-uppercase">SZCZEGÓŁY PLANU</h3>
                     </div>
                     <div class="col d-flex justify-content-end mb-2 noPadding">
-                        <input type="submit" value="Edytuj" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">
-                        <a href="${pageContext.request.contextPath}/app/plan/list" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4" style="margin-left: 10px">Powrót</a>
+                        <input type="submit" value="Edytuj" class="btn btn-color rounded-4 pt-0 pb-0 pr-4 pl-4">
+                        <a href="${pageContext.request.contextPath}/app/plan/list" class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4" style="margin-left: 10px">Powrót</a>
                     </div>
                 </div>
 

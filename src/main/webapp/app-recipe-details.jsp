@@ -16,11 +16,11 @@
 
         <div class="m-4 p-3 width-medium text-color-darker">
             <div class="dashboard-content border-dashed p-3 m-4 view-height">
-                <div class="mt-4 ml-4 mr-4">
+                <div class="mt-4 ml-4 mr-4" >
                     <div class="row border-bottom border-3">
                         <div class="col"><h3 class="color-header text-uppercase">Szczegóły przepisu</h3></div>
                         <div class="col d-flex justify-content-end mb-2"><a href="${pageContext.request.contextPath}/app/recipe/list"
-                                                                            class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
+                                                                            class="btn btn-color rounded-4 pt-0 pb-0 pr-4 pl-4">Powrót</a>
                         </div>
                     </div>
 

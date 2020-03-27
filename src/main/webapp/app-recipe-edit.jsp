@@ -22,8 +22,8 @@
                         <form action="${pageContext.request.contextPath}/app/edit/recipe?id=${requestScope.recipe.id}" method="post">
 <%--                        <div class="col d-flex justify-content-end mb-2"><input type="submit" value="Edytuj" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">--%>
 <%--                        </div>--%>
-                        <div class="col d-flex justify-content-end mb-2"><input type="submit" value="Edytuj" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4"><a href="${pageContext.request.contextPath}/app/recipe/list"
-                                                                            class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4" style="margin-left: 10px">Powrót</a>
+                        <div class="col d-flex justify-content-end mb-2"><input type="submit" value="Edytuj" class="btn btn-color rounded-4 pt-0 pb-0 pr-4 pl-4"><a href="${pageContext.request.contextPath}/app/recipe/list"
+                                                                            class="btn btn-color rounded-4 pt-0 pb-0 pr-4 pl-4" style="margin-left: 10px">Powrót</a>
                         </div>
                     </div>
 

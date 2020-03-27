@@ -28,7 +28,7 @@
                     <div class="menu-item border-dashed">
                         <a href="${pageContext.request.contextPath}/app/plan/add">
                             <i class="far fa-plus-square icon-plus-square"></i>
-                            <span class="title">dodaj plan</span>
+                            <span class="title">utwórz plan</span>
                         </a>
                     </div>
                     <div class="menu-item border-dashed">

@@ -23,7 +23,7 @@
                             <a href="${pageContext.request.contextPath}/app/recipe/plan/add" class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Dodaj przepisu do planu</a>
                         </div>
                         <div class="col d-flex justify-content-end mb-2 noPadding">
-                            <a href="${pageContext.request.contextPath}/app/plan/add" class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Dodaj plan</a>
+                            <a href="${pageContext.request.contextPath}/app/plan/add" class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Dodaj nowy plan</a>
                         </div>
                     </div>
 

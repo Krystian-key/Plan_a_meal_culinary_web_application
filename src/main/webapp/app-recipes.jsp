@@ -25,7 +25,7 @@
                     </div>
                     <div class="col noPadding d-flex justify-content-end mb-2">
                         <a href="${pageContext.request.contextPath}/app/recipe/add"
-                           class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Dodaj przepis</a>
+                           class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Dodaj nowy przepis</a>
                     </div>
                 </div>
                 <table class="table border-bottom schedules-content">
