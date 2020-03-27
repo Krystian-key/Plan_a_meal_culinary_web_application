@@ -18,7 +18,7 @@ public class RecipeDao {
     private static final String FIND_ALL_RECIPE_QUERY = "SELECT * FROM recipe;";
     private static final String FIND_ALL_RECIPE_BY_NAME_QUERY = "SELECT * FROM recipe WHERE name LIKE ?;";
     private static final String READ_RECIPE_QUERY = "SELECT * from recipe where id = ?;";
-    private static final String READ_RECIPE_BY_ADMIN_ID_QUERY = "SELECT * from recipe where admin_id = ?;";
+    private static final String READ_RECIPE_BY_ADMIN_ID_QUERY = "SELECT * from recipe where admin_id = ? order by created DESC;";
     //  private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, created = ?, updated = ?, preparation_time = ?, preparation = ?, admin_id = ? WHERE	id = ?;";
     private static final String UPDATE_RECIPE_QUERY = "UPDATE	recipe SET name = ? , ingredients = ?, description = ?, updated = ?, preparation_time = ?, preparation = ? WHERE id = ?;";
     private static final String FIND_ALL_RECIPE_FOR_USER = "SELECT  COUNT(*) FROM recipe WHERE admin_id= ? ";

@@ -17,7 +17,7 @@
                 <form action="${pageContext.request.contextPath}/app/recipe/plan/add" method="post">
                     <div class="row border-bottom border-3 p-1 m-1">
                         <div class="col noPadding">
-                            <h3 class="color-header text-uppercase">DODAJ PRZEPIS DO PLANU</h3>
+                            <h3 class="color-header text-uppercase">DODAJ PRZEPIS DO PLANU </h3>
                         </div>
                         <div class="col d-flex justify-content-end mb-2 noPadding">
                             <button type="submit" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Wyślij</button>

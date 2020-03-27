@@ -26,11 +26,16 @@ public class EditUserDataServlet extends HttpServlet {
         HttpSession sessionUser = request.getSession();
         int adminId = Integer.parseInt(sessionUser.getAttribute("adminId").toString());
         Admins admins = new Admins();
-        admins.setFirstName(request.getParameter("firstName"));
-        admins.setLastName(request.getParameter("lastName"));
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        admins.setFirstName(firstName);
+        admins.setLastName(lastName);
         admins.setEmail(request.getParameter("email"));
         admins.setId(adminId);
         new AdminDao().updateAdmin(admins);
+        sessionUser.removeAttribute(sessionUser.getAttribute("nameUser").toString());
+        sessionUser.setAttribute("nameUser", firstName + " " + lastName);
+        sessionUser.setMaxInactiveInterval(60 * 60 * 24);
         response.sendRedirect(request.getContextPath()+"/app");
     }
 }

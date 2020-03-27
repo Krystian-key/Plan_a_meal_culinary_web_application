@@ -6,7 +6,7 @@
 <html lang="en">
 
 <head>
-    <%@include file="headerDashboard.jsp"%>
+    <%@include file="headerDashboard.jsp" %>
 </head>
 
 <body>
@@ -20,8 +20,13 @@
                 <div class="row border-bottom border-3 p-1 m-1">
                     <div class="col noPadding"><h3 class="color-header text-uppercase">Lista Przepisów</h3></div>
                     <div class="col noPadding d-flex justify-content-end mb-2">
+                        <a href="${pageContext.request.contextPath}/app"
+                           class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Powrót do strony głównej</a>
+                    </div>
+                    <div class="col noPadding d-flex justify-content-end mb-2">
                         <a href="${pageContext.request.contextPath}/app/recipe/add"
-                           class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Dodaj przepis</a></div>
+                           class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Dodaj przepis</a>
+                    </div>
                 </div>
                 <table class="table border-bottom schedules-content">
                     <thead>
@@ -45,11 +50,12 @@
                                     ${allRecipe.description}
                             </td>
                             <td class="col-2 d-flex align-items-center justify-content-center flex-wrap">
-                                <a href="${pageContext.request.contextPath}/app/recipe/delete?id=${allRecipe.id}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
+                                <a href="${pageContext.request.contextPath}/app/recipe/delete?id=${allRecipe.id}"
+                                   class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
                                 <a href="${pageContext.request.contextPath}/app/recipe/details?id=${allRecipe.id}"
-                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
+                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
                                 <a href="${pageContext.request.contextPath}/app/edit/recipe?id=${allRecipe.id}"
-                                   class="btn btn-warning rounded-0 text-light m-1">Edytuj</a>
+                                   class="btn btn-warning rounded-4 text-light m-1">Edytuj</a>
                             </td>
                         </tr>
                     </c:forEach>
