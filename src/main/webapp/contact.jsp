@@ -33,7 +33,7 @@
 <section class="padding-large bg-light">
 
     <div id="carouselExampleControls" class="carousel slide main-slider" data-ride="carousel">
-        <div class="carousel-inner container">
+        <div class="carousel slider container">
             <div class="carousel-item active">
                 <div class="container w-50 d-flex">
                     <div class="carousel-caption d-block">
@@ -42,25 +42,16 @@
                     </div>
                 </div>
             </div>
-            <c:forEach items="${requestScope.contacts}" var="contact">
+            <c:forEach items="${requestScope.contacts}" var="about">
             <div class="carousel-item">
                 <div class="container w-50 d-flex">
                     <div class="carousel-caption d-block">
-                        <h1>${contact.firstName} ${contact.lastName}</h1>
-                        <h3>${contact.email}</h3>
+                        <h1>${about.firstName} ${about.lastName}</h1>
+                        <h3>${about.email}</h3>
                     </div>
                 </div>
             </div>
             </c:forEach>
-            <%--<div class="carousel-item">
-                <div class="container w-75 d-flex">
-                    <div class="carousel-caption d-block">
-                        <h1>Borem ipsum dolor sit amet</h1>
-                        <h3> consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.</h3>
-                    </div>
-                </div>
-            </div>--%>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
