@@ -24,10 +24,10 @@ public class DashboardServlet extends HttpServlet {
         request.setAttribute("numberPlan", new PlanDao().quantityPlanUser(adminId));
         RecipePlanDao recipePlanDao = new RecipePlanDao();
         DisplayPlan lastAddedPlan = recipePlanDao.detailsPlan(adminId, recipePlanDao.choseQuery(2));
-        if(lastAddedPlan.getPlan().getName() != null) {
+        if (lastAddedPlan.getPlan().getName() != null) {
             request.setAttribute("lastAddedPlan", lastAddedPlan);
             request.setAttribute("plan", lastAddedPlan.getPlan());
-        }else {
+        } else {
             Plan plan = new PlanDao().readLastAddedPlan(adminId);
             request.setAttribute("plan", plan);
         }

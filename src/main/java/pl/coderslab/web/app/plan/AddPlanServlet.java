@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class AddPlanServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/app-add-schedules.jsp").forward(request,response);
+        getServletContext().getRequestDispatcher("/app-add-schedules.jsp").forward(request, response);
     }
 
     @Override
@@ -25,8 +25,8 @@ public class AddPlanServlet extends HttpServlet {
         String description = request.getParameter("planDescription");
         HttpSession sessionId = request.getSession();
         int adminId = Integer.parseInt(String.valueOf(sessionId.getAttribute("adminId")));
-        Plan plan = new Plan(name,description, LocalDateTime.now(),adminId);
+        Plan plan = new Plan(name, description, LocalDateTime.now(), adminId);
         new PlanDao().createPlan(plan);
-        response.sendRedirect(request.getContextPath()+"/app/plan/list");
+        response.sendRedirect(request.getContextPath() + "/app/plan/list");
     }
 }
