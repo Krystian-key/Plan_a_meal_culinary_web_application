@@ -1,5 +1,5 @@
 package pl.coderslab.dao;
-import pl.coderslab.exception.NotFoundException;
+import com.google.common.collect.LinkedHashMultimap;
 import pl.coderslab.model.*;
 import pl.coderslab.utils.DbUtil;
 import java.sql.Connection;
@@ -20,14 +20,14 @@ public class RecipePlanDao {
     private static final String READ_RECIPE_PLAN_QUERY = "SELECT * from recipe_plan where id = ?;";
     private static final String READ_RECIPE_PLAN_BY_PLAN_ID_QUERY = "SELECT * from recipe_plan where recipe_id = ?;";
     private static final String UPDATE_PLAN_QUERY = "UPDATE	recipe_plan SET recipe_id = ? , meal_name = ?, day_name_id = ? WHERE id = ?;";
-    private static final String FIND_LAST_ADDED_PLAN_QUERY = "SELECT plan.name as name, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id, recipe.id as recipe_id\n" +
+    private static final String FIND_LAST_ADDED_PLAN_QUERY = "SELECT plan.name as name, plan.description as description, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id, recipe.id as recipe_id\n" +
             "FROM recipe_plan\n" +
             "    JOIN plan on plan.id = plan_id\n" +
             "    JOIN day_name on day_name.id = day_name_id\n" +
             "    JOIN recipe on recipe.id = recipe_id\n" +
             "    WHERE recipe_plan.plan_id =  (SELECT MAX(id) from plan WHERE admin_id = ?)\n" +
             "ORDER BY  day_name.display_order, recipe_plan.display_order;";
-    private static final String FIND_PLAN_ALL_DETITALS_BY_ID_QUERY = "SELECT plan.name as name, plan.description as description, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id as id, recipe.id as recipe_id \n" +
+    private static final String FIND_PLAN_ALL_DETAILS_BY_ID_QUERY = "SELECT plan.name as name, plan.description as description, day_name.name as day_name, meal_name, recipe.name as recipe_name, recipe_plan.id as id, recipe.id as recipe_id \n" +
             "FROM recipe_plan\n" +
             "    JOIN plan on plan.id = plan_id\n" +
             "    JOIN day_name on day_name.id = day_name_id\n" +
@@ -208,118 +208,32 @@ public class RecipePlanDao {
         }
     }
 
-//    /**
-//     * Return full information for last added plan
-//     *
-//     * @param adminId
-//     * @return
-//     */
-//
-//    public DisplayPlan lastAddedPlan(int adminId) {
-//        DisplayPlan displayPlan = new DisplayPlan();
-//        Plan plan = new Plan();
-//        LinkedHashMap<String, List<DetailsPlan>> recipePlanListMap = new LinkedHashMap<>();
-//        List<DetailsPlan> recipePlansListM = new ArrayList<>();
-//        List<DetailsPlan> recipePlansListT = new ArrayList<>();
-//        List<DetailsPlan> recipePlansListW = new ArrayList<>();
-//        List<DetailsPlan> recipePlansListTu = new ArrayList<>();
-//        List<DetailsPlan> recipePlansListF = new ArrayList<>();
-//        List<DetailsPlan> recipePlansListS = new ArrayList<>();
-//        List<DetailsPlan> recipePlansListSa = new ArrayList<>();
-//
-//        int i = 0;
-//
-//        try (Connection connection = DbUtil.getConnection();
-//             PreparedStatement statement = connection.prepareStatement(FIND_LAST_ADDED_PLAN_QUERY)
-//        ) {
-//            statement.setInt(1, adminId);
-//            try (ResultSet resultSet = statement.executeQuery()) {
-//                while (resultSet.next()) {
-//                    i++;
-//                    String dayName = resultSet.getString("day_name");
-//                    if (i == 1) {
-//                        plan.setName(resultSet.getString("name"));
-//                    }
-//                    if (dayName.equals("poniedziałek")) {
-//                        DetailsPlan planDetails = new DetailsPlan();
-//                        getData(resultSet, dayName, planDetails);
-//                        recipePlansListM.add(planDetails);
-//                    } else if (dayName.equals("wtorek")) {
-//                        DetailsPlan planDetails = new DetailsPlan();
-//                        getData(resultSet, dayName, planDetails);
-//                        recipePlansListT.add(planDetails);
-//                    } else if (dayName.equals("środa")) {
-//                        DetailsPlan planDetails = new DetailsPlan();
-//                        getData(resultSet, dayName, planDetails);
-//                        recipePlansListW.add(planDetails);
-//                    } else if (dayName.equals("czwartek")) {
-//                        DetailsPlan planDetails = new DetailsPlan();
-//                        getData(resultSet, dayName, planDetails);
-//                        recipePlansListTu.add(planDetails);
-//                    } else if (dayName.equals("piątek")) {
-//                        DetailsPlan planDetails = new DetailsPlan();
-//                        getData(resultSet, dayName, planDetails);
-//                        recipePlansListF.add(planDetails);
-//                    } else if (dayName.equals("sobota")) {
-//                        DetailsPlan planDetails = new DetailsPlan();
-//                        getData(resultSet, dayName, planDetails);
-//                        recipePlansListS.add(planDetails);
-//                    } else if (dayName.equals("niedziela")) {
-//                        DetailsPlan planDetails = new DetailsPlan();
-//                        getData(resultSet, dayName, planDetails);
-//                        recipePlansListSa.add(planDetails);
-//                    }
-//                }
-//            }
-//            if (!recipePlansListM.isEmpty()) {
-//                recipePlanListMap.put("poniedziałek", recipePlansListM);
-//            }
-//            if (!recipePlansListT.isEmpty()) {
-//                recipePlanListMap.put("wtorek", recipePlansListT);
-//            }
-//            if (!recipePlansListW.isEmpty()) {
-//                recipePlanListMap.put("środa", recipePlansListW);
-//            }
-//            if (!recipePlansListTu.isEmpty()) {
-//                recipePlanListMap.put("czwartek", recipePlansListTu);
-//            }
-//            if (!recipePlansListF.isEmpty()) {
-//                recipePlanListMap.put("piątek", recipePlansListF);
-//            }
-//            if (!recipePlansListS.isEmpty()) {
-//                recipePlanListMap.put("sobota", recipePlansListS);
-//            }
-//            if (!recipePlansListSa.isEmpty()) {
-//                recipePlanListMap.put("niedziela", recipePlansListSa);
-//            }
-//            displayPlan.setPlan(plan);
-//            displayPlan.setPlanDetails(recipePlanListMap);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return displayPlan;
-//    }
-//
-//    private void getData(ResultSet resultSet, String dayName, DetailsPlan planDetails) throws SQLException {
-//        planDetails.setMealName(resultSet.getString("meal_name"));
-//        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-//        planDetails.setDayName(dayName);
-//        planDetails.setId(resultSet.getInt("id"));
-//        planDetails.setRecipeId(resultSet.getInt("recipe_id"));
-//    }
-
+    /**
+     * Method for chose between  query with all details(set 1) or
+     * query last added plan (set 2)
+     * @param chose
+     * @return
+     */
+    public String choseQuery(int chose){
+        if(chose ==1 ){
+            return FIND_PLAN_ALL_DETAILS_BY_ID_QUERY;
+        } else if (chose == 2){
+            return FIND_LAST_ADDED_PLAN_QUERY;
+        }
+        return null;
+    }
     /**
      * Return all details pf plan
      * @param id
      * @return
      */
-    public DisplayPlan detailsPlan(int id) {
+    public DisplayPlan detailsPlan(int id, String query) {
         DisplayPlan displayPlan = new DisplayPlan();
         Plan plan = new Plan();
-        Multimap displayMap = ArrayListMultimap.create();
+        Multimap displayMap = LinkedHashMultimap.create();
         int i = 0;
         try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_PLAN_ALL_DETITALS_BY_ID_QUERY)
+             PreparedStatement statement = connection.prepareStatement(query);
         ) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
