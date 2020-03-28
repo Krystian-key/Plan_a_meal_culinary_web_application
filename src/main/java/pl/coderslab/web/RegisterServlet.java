@@ -17,7 +17,6 @@ public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("registration.html").forward(req, resp);
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String firstName = request.getParameter("name");
@@ -31,10 +30,9 @@ public class RegisterServlet extends HttpServlet {
                return;
             }
         }
-
         int superAdmin = 0;
         int enable = 1;
         new AdminDao().createAdmin(new Admins(firstName, lastName, email, password, superAdmin, enable));
-        request.getRequestDispatcher("login.html").forward(request, response);
+        response.sendRedirect(request.getContextPath()+ "/login");
     }
 }

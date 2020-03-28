@@ -26,7 +26,7 @@
       integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <header class="page-header">
     <nav class="navbar navbar-expand-lg justify-content-between">
-        <a href="/jee_scrumlab_war_exploded/home.jsp" class="navbar-brand main-logo main-logo-smaller">
+        <a href="${pageContext.request.contextPath}/home.jsp" class="navbar-brand main-logo main-logo-smaller">
             Zaplanuj <span>Jedzonko</span>
         </a>
         <div class="d-flex justify-content-around">
