@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 
 @WebServlet(name = "DashboardServlet", urlPatterns = {"/app"})
 public class DashboardServlet extends HttpServlet {
@@ -25,7 +22,7 @@ public class DashboardServlet extends HttpServlet {
         int adminId = Integer.parseInt(session.getAttribute("adminId").toString());
         request.setAttribute("numberRecipe", new RecipeDao().quantityRecipeUser(adminId));
         request.setAttribute("numberPlan", new PlanDao().quantityPlanUser(adminId));
-        DisplayPlan lastAddedPlan = new RecipePlanDao().lastAddedPlan(adminId);
+        DisplayPlan lastAddedPlan = new RecipePlanDao().detailsPlan(adminId);
         if(lastAddedPlan.getPlan().getName() != null) {
             request.setAttribute("lastAddedPlan", lastAddedPlan);
             request.setAttribute("plan", lastAddedPlan.getPlan());

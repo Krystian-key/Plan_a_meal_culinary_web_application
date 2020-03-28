@@ -5,12 +5,7 @@
 <html lang="en">
 
 <head>
-    <%@include file="headerDashboard.jsp"%>
-    <!--Load the CDN first -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!--if CDN fails to load, server up the local version -->
-    <script>window.jQuery || document('<script src="js/jquery-3.4.1.js"><\/script>')</script>
-    <script src="js/scripts.js"></script>
+    <%@include file="headerDashboard.jsp" %>
 </head>
 
 <body>
@@ -27,7 +22,8 @@
                         </div>
                         <div class="col d-flex justify-content-end mb-2 noPadding">
                             <input type="submit" value="Edytuj" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">
-                            <a href="${pageContext.request.contextPath}/app/plan/list" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
+                            <a href="${pageContext.request.contextPath}/app/plan/list"
+                               class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
                         </div>
                     </div>
 
@@ -52,375 +48,66 @@
                                 </div>
                             </div>
                         </div>
-                        <c:forEach var="day" items="${requestScope.recipePlanDao.planDetails}">
+                        <c:forEach var="day" items="${requestScope.recipePlanDao.displayMap.keySet()}">
                             <table class="table">
                                 <thead>
                                 <tr class="d-flex">
-                                    <th class="col-2">${day.key}</th>
+                                    <th class="col-2">${day}</th>
                                     <th class="col-7"></th>
                                     <th class="col-1"></th>
                                     <th class="col-2"></th>
                                 </tr>
                                 </thead>
                                 <tbody class="text-color-lighter">
-                                <c:set var="monday" value="poniedziałek"></c:set>
-                                <c:set var="tuesday" value="wtorek"></c:set>
-                                <c:set var="wednesday" value="środa"></c:set>
-                                <c:set var="thursday" value="czwartek"></c:set>
-                                <c:set var="friday" value="piątek"></c:set>
-                                <c:set var="saturday" value="sobota"></c:set>
-                                <c:set var="sunday" value="niedziela"></c:set>
-                                <c:forEach var="item" items="${day.value}">
-                                    <c:if test="${item.dayName eq monday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">
-                                                <select class="form-control" id="selectedDay" name="selectedDay">
-                                                    <option value="${day.key}">${day.key}</option>
-                                                    <option value="poniedziałek">Poniedziałek</option>
-                                                    <option value="wtorek">Wtorek</option>
-                                                    <option value="środa">Środa</option>
-                                                    <option value="czwartek">Czwartek</option>
-                                                    <option value="piątek">Piątek</option>
-                                                    <option value="sobota">Sobota</option>
-                                                    <option value="niedziela">Niedziela</option>
-                                                </select>
-                                            </td>
-                                            <td  class="col-2">
-                                                <select class="form-control" id="selectedMeal" name="selectedMeal">
-                                                    <option value="${item.mealName}">${item.mealName}</option>
-                                                    <option value="Śniadanie">Śniadanie</option>
-                                                    <option value="Drugie Śniadanie">Drugie Śniadanie</option>
-                                                    <option value="Lunch">Lunch</option>
-                                                    <option value="Obiad">Obiad</option>
-                                                    <option value="Podwieczorek">Podwieczorek</option>
-                                                    <option value="Przekąska">Przekąska</option>
-                                                    <option value="Kolacja">Kolacja</option>
-                                                </select>
-                                            </td>
-
-                                            <td class="col-5">
-                                                <input type="hidden" name="selectedRecipePlanId"  value="${item.id}">
-                                                <select class="form-control" id="selectedRecipeId" name="selectedRecipeId">
-                                                    <option value="${item.recipeId}">
-                                                            ${item.recipeName}
+                                <c:forEach var="item" items="${requestScope.recipePlanDao.displayMap.get(day)}">
+                                    <tr class="d-flex">
+                                        <td class="col-2">
+                                            <select class="form-control" id="selectedDay" name="selectedDay">
+                                                <option value="${day}">${day}</option>
+                                                <option value="poniedziałek">Poniedziałek</option>
+                                                <option value="wtorek">Wtorek</option>
+                                                <option value="środa">Środa</option>
+                                                <option value="czwartek">Czwartek</option>
+                                                <option value="piątek">Piątek</option>
+                                                <option value="sobota">Sobota</option>
+                                                <option value="niedziela">Niedziela</option>
+                                            </select>
+                                        </td>
+                                        <td class="col-2">
+                                            <select class="form-control" id="selectedMeal" name="selectedMeal">
+                                                <option value="${item.mealName}">${item.mealName}</option>
+                                                <option value="Śniadanie">Śniadanie</option>
+                                                <option value="Drugie Śniadanie">Drugie Śniadanie</option>
+                                                <option value="Lunch">Lunch</option>
+                                                <option value="Obiad">Obiad</option>
+                                                <option value="Podwieczorek">Podwieczorek</option>
+                                                <option value="Przekąska">Przekąska</option>
+                                                <option value="Kolacja">Kolacja</option>
+                                            </select>
+                                        </td>
+                                        <td class="col-5">
+                                            <input type="hidden" name="selectedRecipePlanId" value="${item.id}">
+                                            <select class="form-control" id="selectedRecipeId" name="selectedRecipeId">
+                                                <option value="${item.recipeId}">
+                                                        ${item.recipeName}
+                                                </option>
+                                                <c:forEach var="recipe" items="${allRecipe}">
+                                                    <option value="${recipe.id}">
+                                                            ${recipe.name}
                                                     </option>
-                                                    <c:forEach var="recipe" items="${allRecipe}">
-                                                        <option value="${recipe.id}">
-                                                                ${recipe.name}
-                                                        </option>
-                                                        <br>
-                                                    </c:forEach>
-                                                </select>
-                                            </td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq tuesday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">
-                                                <select class="form-control" id="selectedDay" name="selectedDay">
-                                                    <option value="${day.key}">${day.key}</option>
-                                                    <option value="poniedziałek">Poniedziałek</option>
-                                                    <option value="wtorek">Wtorek</option>
-                                                    <option value="środa">Środa</option>
-                                                    <option value="czwartek">Czwartek</option>
-                                                    <option value="piątek">Piątek</option>
-                                                    <option value="sobota">Sobota</option>
-                                                    <option value="niedziela">Niedziela</option>
-                                                </select>
-                                            </td>
-                                            <td  class="col-2">
-                                                <select class="form-control" id="selectedMeal" name="selectedMeal">
-                                                    <option value="${item.mealName}">${item.mealName}</option>
-                                                    <option value="Śniadanie">Śniadanie</option>
-                                                    <option value="Drugie Śniadanie">Drugie Śniadanie</option>
-                                                    <option value="Lunch">Lunch</option>
-                                                    <option value="Obiad">Obiad</option>
-                                                    <option value="Podwieczorek">Podwieczorek</option>
-                                                    <option value="Przekąska">Przekąska</option>
-                                                    <option value="Kolacja">Kolacja</option>
-                                                </select>
-                                            </td>
-
-                                            <td class="col-5">
-                                                <input type="hidden" name="selectedRecipePlanId"  value="${item.id}">
-                                                <select class="form-control" id="selectedRecipeId" name="selectedRecipeId">
-                                                    <option value="${item.recipeId}">
-                                                            ${item.recipeName}
-                                                    </option>
-                                                    <c:forEach var="recipe" items="${allRecipe}">
-                                                        <option value="${recipe.id}">
-                                                                ${recipe.name}
-                                                        </option>
-                                                        <br>
-                                                    </c:forEach>
-                                                </select>
-                                            </td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq wednesday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">
-                                                <select class="form-control" id="selectedDay" name="selectedDay">
-                                                    <option value="${day.key}">${day.key}</option>
-                                                    <option value="poniedziałek">Poniedziałek</option>
-                                                    <option value="wtorek">Wtorek</option>
-                                                    <option value="środa">Środa</option>
-                                                    <option value="czwartek">Czwartek</option>
-                                                    <option value="piątek">Piątek</option>
-                                                    <option value="sobota">Sobota</option>
-                                                    <option value="niedziela">Niedziela</option>
-                                                </select>
-                                            </td>
-                                            <td  class="col-2">
-                                                <select class="form-control" id="selectedMeal" name="selectedMeal">
-                                                    <option value="${item.mealName}">${item.mealName}</option>
-                                                    <option value="Śniadanie">Śniadanie</option>
-                                                    <option value="Drugie Śniadanie">Drugie Śniadanie</option>
-                                                    <option value="Lunch">Lunch</option>
-                                                    <option value="Obiad">Obiad</option>
-                                                    <option value="Podwieczorek">Podwieczorek</option>
-                                                    <option value="Przekąska">Przekąska</option>
-                                                    <option value="Kolacja">Kolacja</option>
-                                                </select>
-                                            </td>
-
-                                            <td class="col-5">
-                                                <input type="hidden" name="selectedRecipePlanId"  value="${item.id}">
-                                                <select class="form-control" id="selectedRecipeId" name="selectedRecipeId">
-                                                    <option value="${item.recipeId}">
-                                                            ${item.recipeName}
-                                                    </option>
-                                                    <c:forEach var="recipe" items="${allRecipe}">
-                                                        <option value="${recipe.id}">
-                                                                ${recipe.name}
-                                                        </option>
-                                                        <br>
-                                                    </c:forEach>
-                                                </select>
-                                            </td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq thursday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">
-                                                <select class="form-control" id="selectedDay" name="selectedDay">
-                                                    <option value="${day.key}">${day.key}</option>
-                                                    <option value="poniedziałek">Poniedziałek</option>
-                                                    <option value="wtorek">Wtorek</option>
-                                                    <option value="środa">Środa</option>
-                                                    <option value="czwartek">Czwartek</option>
-                                                    <option value="piątek">Piątek</option>
-                                                    <option value="sobota">Sobota</option>
-                                                    <option value="niedziela">Niedziela</option>
-                                                </select>
-                                            </td>
-                                            <td  class="col-2">
-                                                <select class="form-control" id="selectedMeal" name="selectedMeal">
-                                                    <option value="${item.mealName}">${item.mealName}</option>
-                                                    <option value="Śniadanie">Śniadanie</option>
-                                                    <option value="Drugie Śniadanie">Drugie Śniadanie</option>
-                                                    <option value="Lunch">Lunch</option>
-                                                    <option value="Obiad">Obiad</option>
-                                                    <option value="Podwieczorek">Podwieczorek</option>
-                                                    <option value="Przekąska">Przekąska</option>
-                                                    <option value="Kolacja">Kolacja</option>
-                                                </select>
-                                            </td>
-
-                                            <td class="col-5">
-                                                <input type="hidden" name="selectedRecipePlanId"  value="${item.id}">
-                                                <select class="form-control" id="selectedRecipeId" name="selectedRecipeId">
-                                                    <option value="${item.recipeId}">
-                                                            ${item.recipeName}
-                                                    </option>
-                                                    <c:forEach var="recipe" items="${allRecipe}">
-                                                        <option value="${recipe.id}">
-                                                                ${recipe.name}
-                                                        </option>
-                                                        <br>
-                                                    </c:forEach>
-                                                </select>
-                                            </td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq friday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">
-                                                <select class="form-control" id="selectedDay" name="selectedDay">
-                                                    <option value="${day.key}">${day.key}</option>
-                                                    <option value="poniedziałek">Poniedziałek</option>
-                                                    <option value="wtorek">Wtorek</option>
-                                                    <option value="środa">Środa</option>
-                                                    <option value="czwartek">Czwartek</option>
-                                                    <option value="piątek">Piątek</option>
-                                                    <option value="sobota">Sobota</option>
-                                                    <option value="niedziela">Niedziela</option>
-                                                </select>
-                                            </td>
-                                            <td  class="col-2">
-                                                <select class="form-control" id="selectedMeal" name="selectedMeal">
-                                                    <option value="${item.mealName}">${item.mealName}</option>
-                                                    <option value="Śniadanie">Śniadanie</option>
-                                                    <option value="Drugie Śniadanie">Drugie Śniadanie</option>
-                                                    <option value="Lunch">Lunch</option>
-                                                    <option value="Obiad">Obiad</option>
-                                                    <option value="Podwieczorek">Podwieczorek</option>
-                                                    <option value="Przekąska">Przekąska</option>
-                                                    <option value="Kolacja">Kolacja</option>
-                                                </select>
-                                            </td>
-
-                                            <td class="col-5">
-                                                <input type="hidden" name="selectedRecipePlanId"  value="${item.id}">
-                                                <select class="form-control" id="selectedRecipeId" name="selectedRecipeId">
-                                                    <option value="${item.recipeId}">
-                                                            ${item.recipeName}
-                                                    </option>
-                                                    <c:forEach var="recipe" items="${allRecipe}">
-                                                        <option value="${recipe.id}">
-                                                                ${recipe.name}
-                                                        </option>
-                                                        <br>
-                                                    </c:forEach>
-                                                </select>
-                                            </td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq saturday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">
-                                                <select class="form-control" id="selectedDay" name="selectedDay">
-                                                    <option value="${day.key}">${day.key}</option>
-                                                    <option value="poniedziałek">Poniedziałek</option>
-                                                    <option value="wtorek">Wtorek</option>
-                                                    <option value="środa">Środa</option>
-                                                    <option value="czwartek">Czwartek</option>
-                                                    <option value="piątek">Piątek</option>
-                                                    <option value="sobota">Sobota</option>
-                                                    <option value="niedziela">Niedziela</option>
-                                                </select>
-                                            </td>
-                                            <td  class="col-2">
-                                                <select class="form-control" id="selectedMeal" name="selectedMeal">
-                                                    <option value="${item.mealName}">${item.mealName}</option>
-                                                    <option value="Śniadanie">Śniadanie</option>
-                                                    <option value="Drugie Śniadanie">Drugie Śniadanie</option>
-                                                    <option value="Lunch">Lunch</option>
-                                                    <option value="Obiad">Obiad</option>
-                                                    <option value="Podwieczorek">Podwieczorek</option>
-                                                    <option value="Przekąska">Przekąska</option>
-                                                    <option value="Kolacja">Kolacja</option>
-                                                </select>
-                                            </td>
-
-                                            <td class="col-5">
-                                                <input type="hidden" name="selectedRecipePlanId"  value="${item.id}">
-                                                <select class="form-control" id="selectedRecipeId" name="selectedRecipeId">
-                                                    <option value="${item.recipeId}">
-                                                            ${item.recipeName}
-                                                    </option>
-                                                    <c:forEach var="recipe" items="${allRecipe}">
-                                                        <option value="${recipe.id}">
-                                                                ${recipe.name}
-                                                        </option>
-                                                        <br>
-                                                    </c:forEach>
-                                                </select>
-                                            </td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq sunday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">
-                                                <select class="form-control" id="selectedDay" name="selectedDay">
-                                                    <option value="${day.key}">${day.key}</option>
-                                                    <option value="poniedziałek">Poniedziałek</option>
-                                                    <option value="wtorek">Wtorek</option>
-                                                    <option value="środa">Środa</option>
-                                                    <option value="czwartek">Czwartek</option>
-                                                    <option value="piątek">Piątek</option>
-                                                    <option value="sobota">Sobota</option>
-                                                    <option value="niedziela">Niedziela</option>
-                                                </select>
-                                            </td>
-                                            <td  class="col-2">
-                                                <select class="form-control" id="selectedMeal" name="selectedMeal">
-                                                    <option value="${item.mealName}">${item.mealName}</option>
-                                                    <option value="Śniadanie">Śniadanie</option>
-                                                    <option value="Drugie Śniadanie">Drugie Śniadanie</option>
-                                                    <option value="Lunch">Lunch</option>
-                                                    <option value="Obiad">Obiad</option>
-                                                    <option value="Podwieczorek">Podwieczorek</option>
-                                                    <option value="Przekąska">Przekąska</option>
-                                                    <option value="Kolacja">Kolacja</option>
-                                                </select>
-                                            </td>
-
-                                            <td class="col-5">
-                                                <input type="hidden" name="selectedRecipePlanId"  value="${item.id}">
-                                                <select class="form-control" id="selectedRecipeId" name="selectedRecipeId">
-                                                    <option value="${item.recipeId}">
-                                                            ${item.recipeName}
-                                                    </option>
-                                                    <c:forEach var="recipe" items="${allRecipe}">
-                                                        <option value="${recipe.id}">
-                                                                ${recipe.name}
-                                                        </option>
-                                                        <br>
-                                                    </c:forEach>
-                                                </select>
-                                            </td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-0 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="app-details-schedules.html"
-                                                   class="btn btn-info rounded-0 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
+                                                    <br>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                        <td class="col-1 center">
+                                            <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}"
+                                               class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
+                                        </td>
+                                        <td class="col-2 center">
+                                            <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
+                                               class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
+                                        </td>
+                                    </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
@@ -431,7 +118,6 @@
         </div>
     </form>
 </section>
-
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

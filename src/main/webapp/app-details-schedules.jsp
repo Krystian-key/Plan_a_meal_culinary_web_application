@@ -45,117 +45,31 @@
                             </div>
                         </div>
                     </div>
-                    <c:forEach var="day" items="${requestScope.recipePlanDao.planDetails}">
+                    <c:forEach var="day" items="${requestScope.recipePlanDao.displayMap.keySet()}">
                         <table class="table">
                             <thead>
                             <tr class="d-flex">
-                                <th class="col-2">${day.key}</th>
+                                <th class="col-2">${day}</th>
                                 <th class="col-7"></th>
                                 <th class="col-1"></th>
                                 <th class="col-2"></th>
                             </tr>
                             </thead>
                             <tbody class="text-color-lighter">
-                            <c:set var="monday" value="poniedziałek"></c:set>
-                            <c:set var="tuesday" value="wtorek"></c:set>
-                            <c:set var="wednesday" value="środa"></c:set>
-                            <c:set var="thursday" value="czwartek"></c:set>
-                            <c:set var="friday" value="piątek"></c:set>
-                            <c:set var="saturday" value="sobota"></c:set>
-                            <c:set var="sunday" value="niedziela"></c:set>
-                                <c:forEach var="item" items="${day.value}">
-                                    <c:if test="${item.dayName eq monday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">${item.mealName}</td>
-                                            <td class="col-7">${item.recipeName}</td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
-                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq tuesday}">
-                                        <tr class="d-flex">
-                                            <td  class="col-2">${item.mealName}</td>
-                                            <td class="col-7">${item.recipeName}</td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
-                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq wednesday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">${item.mealName}</td>
-                                            <td class="col-7">${item.recipeName}</td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
-                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq thursday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">${item.mealName}</td>
-                                            <td class="col-7">${item.recipeName}</td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
-                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq friday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">${item.mealName}</td>
-                                            <td class="col-7">${item.recipeName}</td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
-                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq saturday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">${item.mealName}</td>
-                                            <td class="col-7">${item.recipeName}</td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
-                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                    <c:if test="${item.dayName eq sunday}">
-                                        <tr class="d-flex">
-                                            <td class="col-2">${item.mealName}</td>
-                                            <td class="col-7">${item.recipeName}</td>
-                                            <td class="col-1 center">
-                                                <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${item.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
-                                            </td>
-                                            <td class="col-2 center">
-                                                <a href="${pageContext.request.contextPath}/app/recipe/details?id=${item.recipeId}"
-                                                   class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
-                                            </td>
-                                        </tr>
-                                    </c:if>
-                                </c:forEach>
+
+                            <c:forEach var="recipePlan" items="${requestScope.recipePlanDao.displayMap.get(day)}">
+                            <tr class="d-flex">
+                                <td class="col-2">${recipePlan.mealName}</td>
+                                <td class="col-7">${recipePlan.recipeName}</td>
+                                <td class="col-1 center">
+                                    <a href="${pageContext.request.contextPath}/app/plan/delete-recipe?planId=${recipePlan.id}&recipPlanId=${requestScope.recipPlanId}" class="btn btn-danger rounded-4 text-light m-1">Usuń</a>
+                                </td>
+                                <td class="col-2 center">
+                                    <a href="${pageContext.request.contextPath}/app/recipe/details?id=${recipePlan.recipeId}"
+                                       class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
+                                </td>
+                            </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </c:forEach>
