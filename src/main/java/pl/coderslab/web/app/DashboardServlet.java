@@ -22,7 +22,8 @@ public class DashboardServlet extends HttpServlet {
         int adminId = Integer.parseInt(session.getAttribute("adminId").toString());
         request.setAttribute("numberRecipe", new RecipeDao().quantityRecipeUser(adminId));
         request.setAttribute("numberPlan", new PlanDao().quantityPlanUser(adminId));
-        DisplayPlan lastAddedPlan = new RecipePlanDao().detailsPlan(adminId);
+        RecipePlanDao recipePlanDao = new RecipePlanDao();
+        DisplayPlan lastAddedPlan = recipePlanDao.detailsPlan(adminId, recipePlanDao.choseQuery(2));
         if(lastAddedPlan.getPlan().getName() != null) {
             request.setAttribute("lastAddedPlan", lastAddedPlan);
             request.setAttribute("plan", lastAddedPlan.getPlan());

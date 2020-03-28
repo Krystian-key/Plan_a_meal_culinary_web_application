@@ -57,101 +57,25 @@
                     <span>Ostatnio dodany plan:</span>
                     ${requestScope.plan.name}
                 </h2>
-                <c:forEach var="day" items="${requestScope.lastAddedPlan.planDetails}">
+                <c:forEach var="day" items="${requestScope.lastAddedPlan.displayMap.keySet()}">
                     <table class="table">
                         <thead>
                         <tr class="d-flex">
-                            <th class="col-2">${day.key}</th>
+                            <th class="col-2">${day}</th>
                             <th class="col-8"></th>
                             <th class="col-2"></th>
                         </tr>
                         </thead>
                         <tbody>
-                            <c:set var="monday" value="poniedziałek"></c:set>
-                            <c:set var="tuesday" value="wtorek"></c:set>
-                            <c:set var="wednesday" value="środa"></c:set>
-                            <c:set var="thursday" value="czwartek"></c:set>
-                            <c:set var="friday" value="piątek"></c:set>
-                            <c:set var="saturday" value="sobota"></c:set>
-                            <c:set var="sunday" value="niedziela"></c:set>
-                            <c:forEach var="item" items="${day.value}">
-                                <c:if test="${item.dayName eq monday }">
-                                    <tr class="d-flex">
-                                        <td class="col-2">${item.mealName}</td>
-                                        <td class="col-8">${item.recipeName}</td>
-                                        <td class="col-2">
-                                            <button onclick="location.href='<%=request.getContextPath()%>/app-details-schedules'"
-                                                    class="btn btn-primary rounded-0">Szczegóły
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </c:if>
-                                <c:if test="${item.dayName eq tuesday }">
-                                    <tr class="d-flex">
-                                        <td class="col-2">${item.mealName}</td>
-                                        <td class="col-8">${item.recipeName}</td>
-                                        <td class="col-2">
-                                            <button onclick="location.href='<%=request.getContextPath()%>/app-details-schedules'"
-                                                    class="btn btn-primary rounded-0">Szczegóły
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </c:if>
-                                <c:if test="${item.dayName eq wednesday }">
-                                    <tr class="d-flex">
-                                        <td class="col-2">${item.mealName}</td>
-                                        <td class="col-8">${item.recipeName}</td>
-                                        <td class="col-2">
-                                            <button onclick="location.href='<%=request.getContextPath()%>/app-details-schedules'"
-                                                    class="btn btn-primary rounded-0">Szczegóły
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </c:if>
-                                <c:if test="${item.dayName eq friday }">
-                                    <tr class="d-flex">
-                                        <td class="col-2">${item.mealName}</td>
-                                        <td class="col-8">${item.recipeName}</td>
-                                        <td class="col-2">
-                                            <button onclick="location.href='<%=request.getContextPath()%>/app-details-schedules'"
-                                                    class="btn btn-primary rounded-0">Szczegóły
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </c:if>
-                                <c:if test="${item.dayName eq thursday }">
-                                    <tr class="d-flex">
-                                        <td class="col-2">${item.mealName}</td>
-                                        <td class="col-8">${item.recipeName}</td>
-                                        <td class="col-2">
-                                            <button onclick="location.href='<%=request.getContextPath()%>/app-details-schedules'"
-                                                    class="btn btn-primary rounded-0">Szczegóły
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </c:if>
-                                <c:if test="${item.dayName eq saturday }">
-                                    <tr class="d-flex">
-                                        <td class="col-2">${item.mealName}</td>
-                                        <td class="col-8">${item.recipeName}</td>
-                                        <td class="col-2">
-                                            <button onclick="location.href='<%=request.getContextPath()%>/app-details-schedules'"
-                                                    class="btn btn-primary rounded-0">Szczegóły
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </c:if>
-                                <c:if test="${item.dayName eq sunday }">
-                                    <tr class="d-flex">
-                                        <td class="col-2">${item.mealName}</td>
-                                        <td class="col-8">${item.recipeName}</td>
-                                        <td class="col-2">
-                                            <button onclick="location.href='<%=request.getContextPath()%>/app-details-schedules'"
-                                                    class="btn btn-primary rounded-0">Szczegóły
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </c:if>
+                        <c:forEach var="recipePlan" items="${requestScope.lastAddedPlan.displayMap.get(day)}">
+                            <tr class="d-flex">
+                                <td class="col-2">${recipePlan.mealName}</td>
+                                <td class="col-8">${recipePlan.recipeName}</td>
+                                <td class="col-2 center">
+                                    <a href="${pageContext.request.contextPath}/app/recipe/details?id=${recipePlan.recipeId}"
+                                       class="btn btn-info rounded-4 text-light m-1">Szczegóły</a>
+                                </td>
+                            </tr>
                         </c:forEach>
                         </tbody>
                     </table>

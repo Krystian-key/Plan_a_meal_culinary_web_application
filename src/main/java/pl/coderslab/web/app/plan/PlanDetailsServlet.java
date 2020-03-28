@@ -20,7 +20,8 @@ public class PlanDetailsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        DisplayPlan displayPlan = new RecipePlanDao().detailsPlan(id);
+        RecipePlanDao recipePlanDao = new RecipePlanDao();
+        DisplayPlan displayPlan = recipePlanDao.detailsPlan(id, recipePlanDao.choseQuery(1));
         if(displayPlan.getPlan().getName() != null) {
             request.setAttribute("recipePlanDao", displayPlan);
             request.setAttribute("plan", displayPlan.getPlan());

@@ -26,7 +26,6 @@
                     </div>
 
                     <div class="schedules-content">
-
                         <div class="form-group row">
                             <label for="planList" class="col-sm-2 label-size col-form-label">
                                 Wybierz plan
@@ -59,15 +58,6 @@
                                 </select>
                             </div>
                         </div>
-                        <%--      for later use
-                            <div class="form-group row">
-                                      <label for="number" class="col-sm-2 label-size col-form-label">
-                                          numer posiłku baza danych display_order
-                                      </label>
-                                      <div class="col-sm-2">
-                                          <input type="text" class="form-control" value="" id="number" placeholder="Numer posiłki">
-                                      </div>
-                                  </div>--%>
                         <div class="form-group row">
                             <label for="recipie" class="col-sm-2 label-size col-form-label">
                                 Przepis
@@ -99,7 +89,6 @@
                                 </select>
                             </div>
                         </div>
-
                     </div>
                 </form>
             </div>
