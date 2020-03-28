@@ -2,12 +2,9 @@
 package pl.coderslab.web.app.plan;
 
 import pl.coderslab.dao.PlanDao;
-import pl.coderslab.dao.RecipeDao;
 import pl.coderslab.dao.RecipePlanDao;
 import pl.coderslab.model.DisplayPlan;
 import pl.coderslab.model.Plan;
-import pl.coderslab.model.Recipe;
-import pl.coderslab.model.RecipePlan;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

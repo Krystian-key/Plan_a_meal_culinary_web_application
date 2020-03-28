@@ -1,19 +1,29 @@
 package pl.coderslab.model;
 
+import com.google.common.collect.Multimap;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class DisplayPlan {
     private Plan plan;
-    private LinkedHashMap<String,List<DetailsPlan>> planDetails;
+    private Multimap displayMap;
 
     public DisplayPlan() {
     }
 
-    public DisplayPlan(Plan plan, LinkedHashMap<String, List<DetailsPlan>> planDetails) {
+    public DisplayPlan(Plan plan, Multimap displayMap) {
         this.plan = plan;
-        this.planDetails = planDetails;
+        this.displayMap = displayMap;
+    }
+
+    public Multimap getDisplayMap() {
+        return displayMap;
+    }
+
+    public void setDisplayMap(Multimap displayMap) {
+        this.displayMap = displayMap;
     }
 
     public Plan getPlan() {
@@ -22,14 +32,6 @@ public class DisplayPlan {
 
     public void setPlan(Plan plan) {
         this.plan = plan;
-    }
-
-    public Map<String, List<DetailsPlan>> getPlanDetails() {
-        return planDetails;
-    }
-
-    public void setPlanDetails(LinkedHashMap<String, List<DetailsPlan>> planDetails) {
-        this.planDetails = planDetails;
     }
 }
 

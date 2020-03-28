@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import pl.coderslab.model.DetailsPlan;
 
 public class RecipePlanDao {
@@ -101,7 +103,6 @@ public class RecipePlanDao {
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_ALL_RECIPE_PLAN_QUERY);
              ResultSet resultSet = statement.executeQuery()) {
-
             while (resultSet.next()) {
                 RecipePlan recipePlanToAdd = new RecipePlan();
                 recipePlanToAdd.setId(resultSet.getInt("id"));
@@ -112,12 +113,10 @@ public class RecipePlanDao {
                 recipePlanToAdd.setDayNameId(resultSet.getInt("plan_id"));
                 recipePlanList.add(recipePlanToAdd);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return recipePlanList;
-
     }
 
     /**
@@ -156,7 +155,6 @@ public class RecipePlanDao {
         }
         return null;
     }
-
 
     /**
      * Remove recipe_plan by plan_id
@@ -210,126 +208,116 @@ public class RecipePlanDao {
         }
     }
 
+//    /**
+//     * Return full information for last added plan
+//     *
+//     * @param adminId
+//     * @return
+//     */
+//
+//    public DisplayPlan lastAddedPlan(int adminId) {
+//        DisplayPlan displayPlan = new DisplayPlan();
+//        Plan plan = new Plan();
+//        LinkedHashMap<String, List<DetailsPlan>> recipePlanListMap = new LinkedHashMap<>();
+//        List<DetailsPlan> recipePlansListM = new ArrayList<>();
+//        List<DetailsPlan> recipePlansListT = new ArrayList<>();
+//        List<DetailsPlan> recipePlansListW = new ArrayList<>();
+//        List<DetailsPlan> recipePlansListTu = new ArrayList<>();
+//        List<DetailsPlan> recipePlansListF = new ArrayList<>();
+//        List<DetailsPlan> recipePlansListS = new ArrayList<>();
+//        List<DetailsPlan> recipePlansListSa = new ArrayList<>();
+//
+//        int i = 0;
+//
+//        try (Connection connection = DbUtil.getConnection();
+//             PreparedStatement statement = connection.prepareStatement(FIND_LAST_ADDED_PLAN_QUERY)
+//        ) {
+//            statement.setInt(1, adminId);
+//            try (ResultSet resultSet = statement.executeQuery()) {
+//                while (resultSet.next()) {
+//                    i++;
+//                    String dayName = resultSet.getString("day_name");
+//                    if (i == 1) {
+//                        plan.setName(resultSet.getString("name"));
+//                    }
+//                    if (dayName.equals("poniedziałek")) {
+//                        DetailsPlan planDetails = new DetailsPlan();
+//                        getData(resultSet, dayName, planDetails);
+//                        recipePlansListM.add(planDetails);
+//                    } else if (dayName.equals("wtorek")) {
+//                        DetailsPlan planDetails = new DetailsPlan();
+//                        getData(resultSet, dayName, planDetails);
+//                        recipePlansListT.add(planDetails);
+//                    } else if (dayName.equals("środa")) {
+//                        DetailsPlan planDetails = new DetailsPlan();
+//                        getData(resultSet, dayName, planDetails);
+//                        recipePlansListW.add(planDetails);
+//                    } else if (dayName.equals("czwartek")) {
+//                        DetailsPlan planDetails = new DetailsPlan();
+//                        getData(resultSet, dayName, planDetails);
+//                        recipePlansListTu.add(planDetails);
+//                    } else if (dayName.equals("piątek")) {
+//                        DetailsPlan planDetails = new DetailsPlan();
+//                        getData(resultSet, dayName, planDetails);
+//                        recipePlansListF.add(planDetails);
+//                    } else if (dayName.equals("sobota")) {
+//                        DetailsPlan planDetails = new DetailsPlan();
+//                        getData(resultSet, dayName, planDetails);
+//                        recipePlansListS.add(planDetails);
+//                    } else if (dayName.equals("niedziela")) {
+//                        DetailsPlan planDetails = new DetailsPlan();
+//                        getData(resultSet, dayName, planDetails);
+//                        recipePlansListSa.add(planDetails);
+//                    }
+//                }
+//            }
+//            if (!recipePlansListM.isEmpty()) {
+//                recipePlanListMap.put("poniedziałek", recipePlansListM);
+//            }
+//            if (!recipePlansListT.isEmpty()) {
+//                recipePlanListMap.put("wtorek", recipePlansListT);
+//            }
+//            if (!recipePlansListW.isEmpty()) {
+//                recipePlanListMap.put("środa", recipePlansListW);
+//            }
+//            if (!recipePlansListTu.isEmpty()) {
+//                recipePlanListMap.put("czwartek", recipePlansListTu);
+//            }
+//            if (!recipePlansListF.isEmpty()) {
+//                recipePlanListMap.put("piątek", recipePlansListF);
+//            }
+//            if (!recipePlansListS.isEmpty()) {
+//                recipePlanListMap.put("sobota", recipePlansListS);
+//            }
+//            if (!recipePlansListSa.isEmpty()) {
+//                recipePlanListMap.put("niedziela", recipePlansListSa);
+//            }
+//            displayPlan.setPlan(plan);
+//            displayPlan.setPlanDetails(recipePlanListMap);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return displayPlan;
+//    }
+//
+//    private void getData(ResultSet resultSet, String dayName, DetailsPlan planDetails) throws SQLException {
+//        planDetails.setMealName(resultSet.getString("meal_name"));
+//        planDetails.setRecipeName(resultSet.getString("recipe_name"));
+//        planDetails.setDayName(dayName);
+//        planDetails.setId(resultSet.getInt("id"));
+//        planDetails.setRecipeId(resultSet.getInt("recipe_id"));
+//    }
+
     /**
-     * Return full information for last added plan
-     *
-     * @param adminId
-     * @return
-     */
-
-    public DisplayPlan lastAddedPlan(int adminId) {
-        DisplayPlan displayPlan = new DisplayPlan();
-        Plan plan = new Plan();
-        LinkedHashMap<String, List<DetailsPlan>> recipePlanListMap = new LinkedHashMap<>();
-        List<DetailsPlan> recipePlansListM = new ArrayList<>();
-        List<DetailsPlan> recipePlansListT = new ArrayList<>();
-        List<DetailsPlan> recipePlansListW = new ArrayList<>();
-        List<DetailsPlan> recipePlansListTu = new ArrayList<>();
-        List<DetailsPlan> recipePlansListF = new ArrayList<>();
-        List<DetailsPlan> recipePlansListS = new ArrayList<>();
-        List<DetailsPlan> recipePlansListSa = new ArrayList<>();
-
-        int i = 0;
-
-        try (Connection connection = DbUtil.getConnection();
-             PreparedStatement statement = connection.prepareStatement(FIND_LAST_ADDED_PLAN_QUERY)
-        ) {
-            statement.setInt(1, adminId);
-            try (ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    i++;
-                    String dayName = resultSet.getString("day_name");
-                    if (i == 1) {
-                        plan.setName(resultSet.getString("name"));
-                    }
-                    if (dayName.equals("poniedziałek")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListM.add(planDetails);
-                    } else if (dayName.equals("wtorek")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListT.add(planDetails);
-                    } else if (dayName.equals("środa")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListW.add(planDetails);
-                    } else if (dayName.equals("czwartek")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListTu.add(planDetails);
-                    } else if (dayName.equals("piątek")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListF.add(planDetails);
-                    } else if (dayName.equals("sobota")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListS.add(planDetails);
-                    } else if (dayName.equals("niedziela")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListSa.add(planDetails);
-                    }
-                }
-            }
-            if (!recipePlansListM.isEmpty()) {
-                recipePlanListMap.put("poniedziałek", recipePlansListM);
-            }
-            if (!recipePlansListT.isEmpty()) {
-                recipePlanListMap.put("wtorek", recipePlansListT);
-            }
-            if (!recipePlansListW.isEmpty()) {
-                recipePlanListMap.put("środa", recipePlansListW);
-            }
-            if (!recipePlansListTu.isEmpty()) {
-                recipePlanListMap.put("czwartek", recipePlansListTu);
-            }
-            if (!recipePlansListF.isEmpty()) {
-                recipePlanListMap.put("piątek", recipePlansListF);
-            }
-            if (!recipePlansListS.isEmpty()) {
-                recipePlanListMap.put("sobota", recipePlansListS);
-            }
-            if (!recipePlansListSa.isEmpty()) {
-                recipePlanListMap.put("niedziela", recipePlansListSa);
-            }
-            displayPlan.setPlan(plan);
-            displayPlan.setPlanDetails(recipePlanListMap);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return displayPlan;
-    }
-
-    private void getData(ResultSet resultSet, String dayName, DetailsPlan planDetails) throws SQLException {
-        planDetails.setMealName(resultSet.getString("meal_name"));
-        planDetails.setRecipeName(resultSet.getString("recipe_name"));
-        planDetails.setDayName(dayName);
-        planDetails.setId(resultSet.getInt("id"));
-        planDetails.setRecipeId(resultSet.getInt("recipe_id"));
-    }
-
-    /**
-     * Return all details for plan
+     * Return all details pf plan
      * @param id
      * @return
      */
     public DisplayPlan detailsPlan(int id) {
         DisplayPlan displayPlan = new DisplayPlan();
         Plan plan = new Plan();
-        LinkedHashMap<String, List<DetailsPlan>> recipePlanListMap = new LinkedHashMap<>();
-        List<DetailsPlan> recipePlansListM = new ArrayList<>();
-        List<DetailsPlan> recipePlansListT = new ArrayList<>();
-        List<DetailsPlan> recipePlansListW = new ArrayList<>();
-        List<DetailsPlan> recipePlansListTu = new ArrayList<>();
-        List<DetailsPlan> recipePlansListF = new ArrayList<>();
-        List<DetailsPlan> recipePlansListS = new ArrayList<>();
-        List<DetailsPlan> recipePlansListSa = new ArrayList<>();
-
+        Multimap displayMap = ArrayListMultimap.create();
         int i = 0;
-
-
         try (Connection connection = DbUtil.getConnection();
              PreparedStatement statement = connection.prepareStatement(FIND_PLAN_ALL_DETITALS_BY_ID_QUERY)
         ) {
@@ -342,61 +330,17 @@ public class RecipePlanDao {
                         plan.setName(resultSet.getString("name"));
                         plan.setDescription(resultSet.getString("description"));
                     }
-                    if (dayName.equals("poniedziałek")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListM.add(planDetails);
-                    } else if (dayName.equals("wtorek")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListT.add(planDetails);
-                    } else if (dayName.equals("środa")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListW.add(planDetails);
-                    } else if (dayName.equals("czwartek")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListTu.add(planDetails);
-                    } else if (dayName.equals("piątek")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListF.add(planDetails);
-                    } else if (dayName.equals("sobota")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListS.add(planDetails);
-                    } else if (dayName.equals("niedziela")) {
-                        DetailsPlan planDetails = new DetailsPlan();
-                        getData(resultSet, dayName, planDetails);
-                        recipePlansListSa.add(planDetails);
-                    }
+                    DetailsPlan detailsPlan = new DetailsPlan();
+                    detailsPlan.setMealName(resultSet.getString("meal_name"));
+                    detailsPlan.setRecipeName(resultSet.getString("recipe_name"));
+                    detailsPlan.setDayName(dayName);
+                    detailsPlan.setId(resultSet.getInt("id"));
+                    detailsPlan.setRecipeId(resultSet.getInt("recipe_id"));
+                    displayMap.put(dayName,detailsPlan);
                 }
             }
-
-            if (!recipePlansListM.isEmpty()) {
-                recipePlanListMap.put("poniedziałek", recipePlansListM);
-            }
-            if (!recipePlansListT.isEmpty()) {
-                recipePlanListMap.put("wtorek", recipePlansListT);
-            }
-            if (!recipePlansListW.isEmpty()) {
-                recipePlanListMap.put("środa", recipePlansListW);
-            }
-            if (!recipePlansListTu.isEmpty()) {
-                recipePlanListMap.put("czwartek", recipePlansListTu);
-            }
-            if (!recipePlansListF.isEmpty()) {
-                recipePlanListMap.put("piątek", recipePlansListF);
-            }
-            if (!recipePlansListS.isEmpty()) {
-                recipePlanListMap.put("sobota", recipePlansListS);
-            }
-            if (!recipePlansListSa.isEmpty()) {
-                recipePlanListMap.put("niedziela", recipePlansListSa);
-            }
             displayPlan.setPlan(plan);
-            displayPlan.setPlanDetails(recipePlanListMap);
+            displayPlan.setDisplayMap(displayMap);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -64,16 +64,5 @@ public class PlanEditServlet extends HttpServlet {
         RecipePlanDao recipePlanDao = new RecipePlanDao();
         recipePlanDao.updatePlan(recipePlanList);
         response.sendRedirect(request.getContextPath() + "/app/plan/list");
-
-     /*
-      for (RecipePlan recipePlan : recipePlanList){
-            response.getWriter().println("<br>Id z tabeli recipe_plan: " + recipePlan.getId() +
-                " Id dla recipe: " + recipePlan.getRecipeId() +
-                " Meal: " + recipePlan.getMealName() +
-                " Id dnia: " +recipePlan.getDayNameId() + "<br>");
-
-        // Show connection with database recipe_plan
-    }*/
-
     }
 }
