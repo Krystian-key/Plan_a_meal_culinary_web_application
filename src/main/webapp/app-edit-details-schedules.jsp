@@ -18,13 +18,19 @@
                 <div class="dashboard-content border-dashed p-3 m-4">
                     <div class="row border-bottom border-3 p-1 m-1">
                         <div class="col noPadding">
-                            <h3 class="color-header text-uppercase">SZCZEGÓŁY PLANU</h3>
+                            <h3 class="color-header text-uppercase">EDYCJA PLANU</h3>
+                        </div>
+
+                        <div class="col d-flex justify-content-end mb-2 noPadding">
+                            <input type="submit" value="Edytuj" class="btn btn-color rounded-4 pt-0 pb-0 pr-4 pl-4">
+                            <a href="${pageContext.request.contextPath}/app/plan/list"></a>
                         </div>
                         <div class="col d-flex justify-content-end mb-2 noPadding">
-                            <input type="submit" value="Edytuj" class="btn btn-color rounded-0 pt-0 pb-0 pr-4 pl-4">
-                            <a href="${pageContext.request.contextPath}/app/plan/list"
-                               class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Powrót</a>
+                            <input type="submit" value="Powrót" class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">
+                            <a href="${pageContext.request.contextPath}/app/plan/list"></a>
                         </div>
+
+
                     </div>
 
                     <div class="schedules-content">
@@ -64,13 +70,12 @@
                                         <td class="col-2">
                                             <select class="form-control" id="selectedDay" name="selectedDay">
                                                 <option value="${day}">${day}</option>
-                                                <option value="poniedziałek">Poniedziałek</option>
-                                                <option value="wtorek">Wtorek</option>
-                                                <option value="środa">Środa</option>
-                                                <option value="czwartek">Czwartek</option>
-                                                <option value="piątek">Piątek</option>
-                                                <option value="sobota">Sobota</option>
-                                                <option value="niedziela">Niedziela</option>
+                                                <c:forEach var="days" items="${requestScope.days}">
+                                                    <option value="${days.name}">
+                                                            ${days.name}
+                                                    </option>
+                                                    <br>
+                                                </c:forEach>
                                             </select>
                                         </td>
                                         <td class="col-2">
@@ -91,7 +96,7 @@
                                                 <option value="${item.recipeId}">
                                                         ${item.recipeName}
                                                 </option>
-                                                <c:forEach var="recipe" items="${allRecipe}">
+                                                <c:forEach var="recipe" items="${requestScope.allRecipe}">
                                                     <option value="${recipe.id}">
                                                             ${recipe.name}
                                                     </option>

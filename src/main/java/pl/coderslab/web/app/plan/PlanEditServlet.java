@@ -31,16 +31,19 @@ public class PlanEditServlet extends HttpServlet {
             request.setAttribute("recipePlanDao", displayPlan);
             request.setAttribute("plan", displayPlan.getPlan());
             request.setAttribute("recipPlanId", id);
+            HttpSession session = request.getSession();
+            int adminId = Integer.parseInt(String.valueOf(session.getAttribute("adminId")));
+            RecipeDao recipeDao = new RecipeDao();
+            List<Recipe> recipe = new ArrayList<>();
+            recipe = recipeDao.showAllRecipeUser(adminId);
+            request.setAttribute("days", new DayNameDao().findAllDayName());
+            request.setAttribute("allRecipe", recipe);
         } else {
             Plan recipePlan = new PlanDao().readPlan(id);
             request.setAttribute("plan", recipePlan);
+
         }
-        HttpSession session = request.getSession();
-        int adminId = Integer.parseInt(String.valueOf(session.getAttribute("adminId")));
-        RecipeDao recipeDao = new RecipeDao();
-        List<Recipe> recipe = new ArrayList<>();
-        recipe = recipeDao.showAllRecipeUser(adminId);
-        request.setAttribute("allRecipe", recipe);
+
         request.getRequestDispatcher("/app-edit-details-schedules.jsp").forward(request, response);
     }
 
