@@ -20,7 +20,7 @@
                             <h3 class="color-header text-uppercase">DODAJ PRZEPIS DO PLANU </h3>
                         </div>
                         <div class="col d-flex justify-content-end mb-2 noPadding">
-                            <button type="submit" class="btn btn-success rounded-0 pt-0 pb-0 pr-4 pl-4">Wyślij</button>
+                            <button type="submit" class="btn btn-success rounded-4 pt-0 pb-0 pr-4 pl-4">Wyślij</button>
 
                         </div>
                     </div>
