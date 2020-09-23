@@ -1,43 +1,36 @@
-<img alt="Logo" src="http://coderslab.pl/svg/logo-coderslab.svg" width="400">
+## About Aplication:
 
-### Przygotowanie – pliki css/js.
-
-Pliki **css** możemy umieścić w katalogu 
-````src/main/webapp/css````
-przy powyższej lokalizacji w plikach szablonów załączamy je w następujący sposób:
 ````
-  <link href='<c:url value="/css/style.css"/>' rel="stylesheet" type="text/css">
-```` 
-Jako przykład został dołączony servlet `HomeServlet` wskazujący home.jsp, dla którego wyświetla się poprawny szablon strony głównej.
-
-### Dane do połączenia z bazą:
-
-Plik znajduje się w naszym projekcie w katalogu **src/main/webapp/META-INF**.
-
-`Zmodyfikuj znajdujące się w nim dane dotyczące połączenia.`
-
-### W przypadku wystąpienia błędu:
+Together with Mykola Diedukh, 
+we have created a Web Application that promotes healthy eating and emphasizes the importance of meal planning.
 ````
-javax.naming.NameNotFoundException: Name [jdbc/scrumlab] is not bound in this Context. Unable to find [jdbc].
+## the browser application allows:
+
 ````
-wykonujemy następujące kroki:
+- registration
+- logging in
+- adding, modifying and deleting recipes
+- displaying a list of recipes
+- creating, viewing and modifying a nutrition schedule
+- browsing and blocking users by the administrator
+- managing the meal list for the logged in user.
+````
+## Languages and Tools Used:
 
-Wybierz z górnego menu File –> Project Structure...
+````
+- Java
+- JSP
+- Maven 
+- Servlets
+- MySQL databases
+- data access layer in the form of DAO classes
+- data validation
+- password repeated validation during registration.
+````
 
-W okienku, które się pojawi, kliknij z lewej strony w Facets następnie **Web**.
-
-Pojawi się okno, w którym kliknij **Add Application Server specific descriptor...**.
-
-![Screenshot](readme-img/context_03.png)
-
-Wybierz z listy serwer **Tomcat** i zaakceptuj przyciskiem **OK**.
-
-![Screenshot](readme-img/context_04.png)
-
-Na liście pojawi się plik **Tomcat Context Descriptor**. Potwierdź przyciskiem **OK**.
-
-![Screenshot](readme-img/context_05.png)
-
-Plik znajduje się w naszym projekcie w katalogu **src/main/webapp/META-INF**.
-
-`Zmodyfikuj znajdujące się w nim dane dotyczące połączenia.`
+<img align="left" src="https://devicons.github.io/devicon/devicon.git/icons/java/java-original-wordmark.svg" alt="java" width="45"/>
+<img align="left" src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="45"/>
+<img align="left" src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="45"/>
+<img align="left" src="https://devicons.github.io/devicon/devicon.git/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="45"/> 
+<img align="left" src="https://avatars3.githubusercontent.com/u/348262?s=200&v=4" alt="mysql" width="45"/> 
+<img align="left" src="https://avatars2.githubusercontent.com/u/7658037?s=200&v=4" width="45"/> 
