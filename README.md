@@ -1,7 +1,7 @@
 ## About Aplication:
 
 ````
-Together with Mykola Diedukh, 
+Together with Mykola Diedukh, KrzysiekDyrkacz, 
 we have created a Web Application that promotes healthy eating and emphasizes the importance of meal planning.
 ````
 ## the browser application allows:
@@ -22,11 +22,18 @@ we have created a Web Application that promotes healthy eating and emphasizes th
 - JSP
 - Maven 
 - Servlets
+- Tomcat
 - MySQL databases
 - data access layer in the form of DAO classes
 - data validation
 - password repeated validation during registration.
 ````
+## Job distribution tools:
+
+````
+- trello board
+````
+
 
 <img align="left" src="https://devicons.github.io/devicon/devicon.git/icons/java/java-original-wordmark.svg" alt="java" width="45"/>
 <img align="left" src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="45"/>
