@@ -33,7 +33,7 @@ we have created a Web Application that promotes healthy eating and emphasizes th
 ````
 - trello board
 ````
-
+![Screenshot](readme-img/startowa.png)
 
 <img align="left" src="https://devicons.github.io/devicon/devicon.git/icons/java/java-original-wordmark.svg" alt="java" width="45"/>
 <img align="left" src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="45"/>
