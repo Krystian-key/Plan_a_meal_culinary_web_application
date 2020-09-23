@@ -32,7 +32,8 @@ we have created a Web Application that promotes healthy eating and emphasizes th
 ## Job distribution tools:
 
 ![Screenshot](readme-img/trello.png)
-
+````
+````
 ## Page layout:
 
 ![Screenshot](readme-img/startowa.png)
@@ -52,11 +53,3 @@ we have created a Web Application that promotes healthy eating and emphasizes th
 ````
 ![Screenshot](readme-img/all.png)
 
-
-
-<img align="left" src="https://devicons.github.io/devicon/devicon.git/icons/java/java-original-wordmark.svg" alt="java" width="45"/>
-<img align="left" src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="spring" width="45"/>
-<img align="left" src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="45"/>
-<img align="left" src="https://devicons.github.io/devicon/devicon.git/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="45"/> 
-<img align="left" src="https://avatars3.githubusercontent.com/u/348262?s=200&v=4" alt="mysql" width="45"/> 
-<img align="left" src="https://avatars2.githubusercontent.com/u/7658037?s=200&v=4" width="45"/> 
