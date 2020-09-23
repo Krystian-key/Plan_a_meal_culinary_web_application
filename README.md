@@ -4,16 +4,16 @@
 Together with Mykola Diedukh, KrzysiekDyrkacz, 
 we have created a Web Application that promotes healthy eating and emphasizes the importance of meal planning.
 ````
-## the browser application allows:
+## The browser application allows You to:
 
 ````
-- registration
-- logging in
-- adding, modifying and deleting recipes
-- displaying a list of recipes
-- creating, viewing and modifying a nutrition schedule
-- browsing and blocking users by the administrator
-- managing the meal list for the logged in user.
+- register
+- login in
+- add, modify and delete recipes
+- display a list of recipes
+- create, viewing and modify a nutrition schedule
+- browse and block users by the administrator
+- manage the meal list for the logged in user.
 ````
 ## Languages and Tools Used:
 
@@ -27,21 +27,30 @@ we have created a Web Application that promotes healthy eating and emphasizes th
 - data access layer in the form of DAO classes
 - data validation
 - password repeated validation during registration.
+- Trello
 ````
 ## Job distribution tools:
 
-````
-- trello board
-````
 ![Screenshot](readme-img/trello.png)
 
 ## Page layout:
 
 ![Screenshot](readme-img/startowa.png)
+````
+````
 ![Screenshot](readme-img/przepisy.png)
+````
+````
 ![Screenshot](readme-img/plany.png)
+````
+````
 ![Screenshot](readme-img/dataEdit.png)
+````
+````
 ![Screenshot](readme-img/passwordedit.png)
+````
+````
+![Screenshot](readme-img/all.png)
 
 
 
